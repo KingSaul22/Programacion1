@@ -14,6 +14,7 @@ public class ejemploErrores {
         System.out.println("Ingrese la operación (suma o resta): ");
         scanner.nextLine();
         String operacion = scanner.nextLine();
+        scanner.close();
 
         int resultado;
 
@@ -27,6 +28,6 @@ public class ejemploErrores {
             System.out.println("Operación no válida.");
         }
 
-        scanner.close();
+        //scanner.close();
     }
 }

@@ -8,7 +8,7 @@ public class Main {
         System.out.println("Encantado de conocerte, " + nombre + ". ¿Desde qué ciudad vienes?");
         String ciudad = teclado.nextLine();
         System.out.println("Wow, " + ciudad + " es una ciudad muy bonita");
-        System.out.println("Tanto " + nombre + " como " + ciudad + " son palabras que suena muy bien");
+        System.out.println("Me gusta como suena, tanto " + nombre + " como " + ciudad + " son palabras agradables de oir.");
     }
 
 }

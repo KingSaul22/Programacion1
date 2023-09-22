@@ -1,4 +1,4 @@
-Algoritmo Ejer3
+Algoritmo Ejer3c
 	Escribir 'Introduzca la cantidad de números que desea indicar:'
 	Leer numP
 	Mientras numP<=0 Hacer

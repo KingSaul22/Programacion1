@@ -1,6 +1,10 @@
 Algoritmo Ejer8b
 	Escribir 'Cantidad de números que desea incluir:'
 	Leer base
+	Mientras base <= 0 Hacer
+		Escribir 'Número no valido, introduzca uno positivo'
+		Leer base
+	FinMientras
 	baseCopy <- base
 	Escribir 'Introduzca un número'
 	Leer numA
@@ -14,11 +18,21 @@ Algoritmo Ejer8b
 		base <- base-1
 	FinMientras
 	Escribir '¿Desea añadir más números? Conteste con S o N'
-	Mientras resp<>S O n Hacer
+	Leer resp
+	Mientras resp<>'S' Y resp<>'N' Y resp<>'s' Y resp<>'n' Hacer
 		Escribir 'Respuesta no valida, responda con S o N'
 		Leer resp
 	FinMientras
-	Repetir
-		Leer resp
-	Hasta Que resp=n O n
+	Si resp='S' O resp='s' Entonces
+		Repetir
+			Escribir 'Introduzca otro número:'
+			Leer numB
+			Si numA>numB Entonces
+				numA <- numB
+			FinSi
+			Escribir '¿Desea añadir más números? Conteste con S o N'
+			Leer resp
+		Hasta Que resp='n' O resp='N'
+	FinSi
+	Escribir 'El número más pequeño que ha  escrito es: ' numA
 FinAlgoritmo

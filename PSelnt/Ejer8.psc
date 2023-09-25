@@ -9,10 +9,10 @@ Algoritmo Ejer8
 		FinSi
 		Escribir '¿Desea añadir más números? Conteste con S o N'
 		Leer resp
-		Mientras resp <> "S" o "N" Hacer
+		Mientras resp<><>'S' O 'N' Hacer
 			Escribir 'Respuesta no valida, responda con S o N'
 			Leer resp
 		FinMientras
 		Leer resp
-	Hasta Que resp=N
+	Hasta Que resp==N
 FinAlgoritmo

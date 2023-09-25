@@ -7,14 +7,15 @@ Algoritmo Ejer1
 	Leer numB
 	base <- 1
 	Repetir
-		Si base % numA = entero Entonces
-			Escribir base, ' es divisible por ', numA
-			Si base % numB = entero Entonces
-				Escribir base ' también es divisible por ', numB
+		Si base MOD numA=entero Entonces
+			Si base MOD numB=entero Entonces
+				Escribir base, ' es divisible por ' numA ', también es divisible por ', numB
+			SiNo
+				Escribir base, ' solo es divisible por ', numA
 			FinSi
 		SiNo
-			Si base % numB = entero Entonces
-				Escribir base ', solo es divisible por ', numB
+			Si base MOD numB=entero Entonces
+				Escribir base, ', solo es divisible por ', numB
 			FinSi
 		FinSi
 		base <- base+1

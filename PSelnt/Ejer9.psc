@@ -7,17 +7,14 @@ Algoritmo Ejer9
 		Leer num
 		numR <- redon(num)-num
 	FinMientras
-	// Escribir num, ' es entero y positivo'
+	numL = (redon(num) / 2) + 1
 	rslt <- 0
-	numCalc = num - 1
-	Para divisor<-numCalc Hasta 1 Con Paso -1 Hacer
-		numB = num / divisor
-		numBR <- redon(numB)-num
-		Si divisorR=0 Entonces
-			rslt <- rslt+numB
+	Para divisor<-1 Hasta numL Con Paso 1 Hacer
+		numB <- num MOD divisor
+		Si numB=0 Entonces
+			rslt <- rslt + divisor
 		FinSi
 	FinPara
-	Escribir rslt ' Y ' num
 	Si rslt=num Entonces
 		Escribir num, ' es un número perfecto'
 	SiNo

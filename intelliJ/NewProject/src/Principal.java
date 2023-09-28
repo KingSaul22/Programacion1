@@ -11,12 +11,15 @@ public class Principal {
 /*      if (vehi.equals("Coche")){
             vel = 120;
         }
-        else (vehi.equals("Moto")) {
+        else if (vehi.equals("Moto")) {
             vel = 90;
         }
-        else (vehi.equals("Camión")){
+        else if(vehi.equals("Camión")){
             vel = 80;
-        } */
+        }
+        else {
+        System.out.println("No se reconoce ese vehículo");
+        }*/
         switch(vehi) {
             case "Coche":
                 vel = 120;

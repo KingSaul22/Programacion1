@@ -18,6 +18,6 @@ public class Main {
     }
 
     public static void saluda(String user){
-        System.out.println("La contraseña es correcta, cuenta inicializada.\nBienvenido, " + user + ".");
+        System.out.println("\nLa contraseña es correcta, cuenta inicializada.\n\nBienvenido, " + user + ".");
     }
 }

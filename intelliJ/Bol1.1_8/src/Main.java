@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int num;
+        float ans = 0;
 
         System.out.println("¿Cuantos números desea introducir?");
 
@@ -16,11 +17,13 @@ public class Main {
             num = sc.nextInt();
         } while (num <= 0);
 
-        System.out.println(num);
-
-        /*for (int i = 1; i <= 5; i++) {
-
-            System.out.println("i = " + i);
-        }*/
+        for (int i = 1; i <= num; i++) {
+            System.out.println("Introduzca un número");
+            float numI = Float.parseFloat(sc.next());
+            if (numI < ans){
+                ans = numI;
+            }
+        }
+        System.out.println("El menos número es: " + ans);
     }
 }

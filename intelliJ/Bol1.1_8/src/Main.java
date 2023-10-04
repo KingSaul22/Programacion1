@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int num;
-        float ans = 0;
+        int i = 0;
+        double ans = Double.MAX_VALUE;
 
         System.out.println("¿Cuantos números desea introducir?");
-
         do {
             System.out.println("Introduzca un número positivo");
             while (!sc.hasNextInt()) {
@@ -17,13 +17,17 @@ public class Main {
             num = sc.nextInt();
         } while (num <= 0);
 
-        for (int i = 1; i <= num; i++) {
-            System.out.println("Introduzca un número");
-            float numI = Float.parseFloat(sc.next());
-            if (numI < ans){
+        do {
+            i++;
+            System.out.printf("\nIntroduzca el %dº número", i);
+            double numI = sc.nextDouble();
+            if (numI < ans) {
                 ans = numI;
             }
-        }
-        System.out.println("El menos número es: " + ans);
+            num--;
+        } while (num > 0);
+        sc.close();
+
+        System.out.println("El número más pequeño es: " + ans);
     }
 }

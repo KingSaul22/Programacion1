@@ -9,7 +9,7 @@ Algoritmo Ejer3
 	Mientras numP>0 Hacer
 		Escribir 'Introduzca un número:'
 		Leer numA
-		Si numA % 2=entero Entonces
+		Si numA % 2=0 Entonces
 			Escribir numA, ' es par'
 		SiNo
 			Escribir numA, ' es impar'

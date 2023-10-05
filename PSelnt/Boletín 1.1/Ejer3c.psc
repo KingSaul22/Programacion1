@@ -9,7 +9,7 @@ Algoritmo Ejer3c
 	Para variable<-numP Hasta 1 Con Paso -1 Hacer
 		Escribir 'Introduzca un número:'
 		Leer numA
-		Si numA MOD 2=entero Entonces
+		Si numA MOD 2=0 Entonces
 			Escribir numA, ' es par'
 		SiNo
 			Escribir numA, ' es impar'

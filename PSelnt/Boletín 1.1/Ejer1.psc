@@ -7,14 +7,14 @@ Algoritmo Ejer1
 	Leer numB
 	base <- 1
 	Repetir
-		Si base MOD numA=entero Entonces
-			Si base MOD numB=entero Entonces
-				Escribir base, ' es divisible por ' numA ', también es divisible por ', numB
+		Si base MOD numA=0 Entonces
+			Si base MOD numB=0 Entonces
+				Escribir base, ' es divisible por ', numA, ', también es divisible por ', numB
 			SiNo
 				Escribir base, ' solo es divisible por ', numA
 			FinSi
 		SiNo
-			Si base MOD numB=entero Entonces
+			Si base MOD numB=0 Entonces
 				Escribir base, ', solo es divisible por ', numB
 			FinSi
 		FinSi

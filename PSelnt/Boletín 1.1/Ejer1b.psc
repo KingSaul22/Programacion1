@@ -5,19 +5,19 @@ Algoritmo Ejer1b
 	Leer numA
 	Escribir 'Escriba otro número:'
 	Leer numB
-	Si max > 0 Entonces
+	Si max>0 Entonces
 		numInm <- 1
 	SiNo
 		numInm <- -1
 	FinSi
 	Para base<-1 Hasta max Con Paso numInm Hacer
-		Si base MOD numA=entero Entonces
+		Si base MOD numA=0 Entonces
 			Escribir base, ' es divisible por ', numA
-			Si base MOD numB=entero Entonces
+			Si base MOD numB=0 Entonces
 				Escribir base, ' también es divisible por ', numB
 			FinSi
 		SiNo
-			Si base MOD numB=entero Entonces
+			Si base MOD numB=0 Entonces
 				Escribir base, ', solo es divisible por ', numB
 			FinSi
 		FinSi

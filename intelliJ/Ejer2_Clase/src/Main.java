@@ -5,9 +5,9 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int numFb = 1;
+        int numA = 1;
         int ans = 1;
-        int numC, lvlN;
+        int numB, lvlN;
 
         do {
             System.out.println("Introduzca un número natural:");
@@ -22,9 +22,9 @@ public class Main {
             /*if (ans != 0) {
                 numC = ans;
             }*/
-            numC = ans;
-            ans += numFb;
-            numFb = numC;
+            numB = ans;
+            ans += numA;
+            numA = numB;
         }
         System.out.printf("El valor correspondiente al %dº dígito de la sucesión de fibonacci es %d.", lvlN, ans);
     }

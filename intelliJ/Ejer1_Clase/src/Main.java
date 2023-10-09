@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int numA, numB, numC;
-        int i, j;
+        int i = 2;
+        int j = 0;
 
         System.out.println("Introduzca un primer número Natural");
         numA = sc.nextInt();
@@ -25,8 +26,17 @@ public class Main {
         }*/
 
         do {
+            if (numA % i == 0 && numB % i == 0) {
+                System.out.printf("Los números %d y %d no son números primos, tienen común divisor %d.", numA, numB, i);
+                j++;
+            } else {
+                i++;
+            }
+            //i++;
+        } while (i <= (numB / 2) && 0 == j);
 
-        } while (i <= numB / 2 || j  1)
-
+        if (j <= 0) {
+            System.out.printf("Los números %d y %d son números primos.", numA, numB);
+        }
     }
 }

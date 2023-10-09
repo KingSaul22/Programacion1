@@ -1,4 +1,5 @@
 package Ejer3;
+
 import java.util.Scanner;
 
 public class Main {
@@ -8,15 +9,25 @@ public class Main {
         int num2;
 
         do {
+            System.out.println("Intrdouzca un número:");
+            num1 = sc.nextInt();
+        } while (num1 <= 0);
 
-        } while ();
+        do {
+            System.out.println("Introduzca otro número:");
+            num2 = sc.nextInt();
+        } while (num2 <= 0);
 
-        /*System.out.printf("Introuzca un número:");
+        if (num1 % 2 == 0){
+            System.out.printf("%d es par.\n", num1);
+        } else {
+            System.out.printf("%d es impar.\n", num1);
+        }
 
-
-        for (int i = 1; i <= 5; i++) {
-
-            System.out.println("i = " + i);
-        }*/
+        if (num2 % 2 == 0){
+            System.out.printf("%d es par.\n", num2);
+        } else {
+            System.out.printf("%d es impar.\n", num2);
+        }
     }
 }

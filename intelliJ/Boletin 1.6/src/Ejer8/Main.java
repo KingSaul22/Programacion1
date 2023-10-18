@@ -17,7 +17,7 @@ public class Main {
         float ansA;
         float ansB;
 
-        float numX = (float) numB - 4 * numB * numC;
+        float numX = (float) (numB * numB) - (4 * numB * numC);
 
         if (numX >= 0) {
             numX = (float) Math.sqrt(numX);

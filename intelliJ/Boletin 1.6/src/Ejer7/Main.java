@@ -27,5 +27,4 @@ public class Main {
         System.out.printf("El Máximo Común Divisor de %d y %d es %d", numA, numB, numB);
     }
 
-    private static 
 }

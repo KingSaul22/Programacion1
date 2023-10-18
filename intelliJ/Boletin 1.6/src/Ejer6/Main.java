@@ -21,9 +21,11 @@ public class Main {
             }
         }
 
-        float porcAprob = ();
+        float porcAprob =  100 / (float) alum * aprob;
+        float porcSusp = 100 - porcAprob;
 
-        System.out.printf("De los %d alumnos, %d% están aprobados y el otro %d% está suspenso.", alum, );
+        //System.out.printf("De los %d alumnos, %d% están aprobados y el otro %d% está suspenso.", alum, porcAprob, 100 - porcAprob);
+        System.out.println("De los " + alum + " alumnos, " + porcAprob + "% están aprobados y el otro " + porcSusp + "% está suspenso.");
 
     }
 }

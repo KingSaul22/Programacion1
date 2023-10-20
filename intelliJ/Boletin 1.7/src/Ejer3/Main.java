@@ -26,7 +26,7 @@ public class Main {
             char digit = numRomano.charAt(i);
             int digitValue = valueOf(digit);
 
-            /* FUNCIONAL
+             //FUNCIONAL
             if (i == 0) {
                 valorDecimal = digitValue;
             } else {
@@ -37,9 +37,8 @@ public class Main {
                 }
             }
             lastDigitValue = digitValue;
-            */
 
-            if (i == 0) {
+            /*if (i == 0) {
                 lastDigitValue = digitValue;
             } else {
                 if (lastDigitValue >= digitValue) {
@@ -48,7 +47,7 @@ public class Main {
                 } else {
                     valorDecimal += digitValue - lastDigitValue;
                 }
-            }
+            }*/
         }
 
         System.out.printf("El valor introducido %s traducido a decimal es: %d", numRomano, valorDecimal);

@@ -1,0 +1,28 @@
+Solo más de tres repeticiones para 'M'
+
+Los símbolos V, L y D no pueden escribirse dos veces seguidas ni dos veces en el mismo número
+
+La letra I situada delante de la V o la X resta una unidad a V o a X
+
+La cifra X colocada delante de la L o la C resta diez unidades a L o a C.
+
+La cifra C situada delante de la D o la M resta cien unidades a D o a M.
+
+
+
+
+Descomponemos 999 en: 
+
+900 + 90 + 9
+
+
+Convertimos cada parte a números romanos:
+
+Para el número 900, colocamos el símbolo 'C' antes de 'M' para indicar una resta. Así obtenemos 'CM'.
+
+Para el número 90, colocamos el símbolo 'X' antes de 'C' para indicar una resta. Así obtenemos 'XC'.
+
+Para el número 9, colocamos el símbolo 'I' antes de 'X' para indicar una resta. Así obtenemos 'IX'.
+
+
+Combinando todas las partes, obtenemos: CMXCIX

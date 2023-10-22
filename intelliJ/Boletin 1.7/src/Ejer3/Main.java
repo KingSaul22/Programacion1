@@ -19,14 +19,18 @@ public class Main {
         String numRomano = sc.nextLine();
         sc.close();
 
+
+        char digit;
+        int digitValue;
+        //int digitSave;
         int valorDecimal = 0;
         int lastDigitValue = 0;
 
-        for (int i = 0; i < numRomano.length(); i++) {
-            char digit = numRomano.charAt(i);
-            int digitValue = valueOf(digit);
+        /*for (int i = 0; i < numRomano.length(); i++) {
+            digit = numRomano.charAt(i);
+            digitValue = valueOf(digit);
 
-             //FUNCIONAL
+            //FUNCIONAL
             if (i == 0) {
                 valorDecimal = digitValue;
             } else {
@@ -38,16 +42,32 @@ public class Main {
             }
             lastDigitValue = digitValue;
 
-            /*if (i == 0) {
-                lastDigitValue = digitValue;
+            if (i == 0) {
+                valorDecimal = digitValue;
             } else {
                 if (lastDigitValue >= digitValue) {
                     valorDecimal += lastDigitValue;
-                    lastDigitValue = digitValue;
                 } else {
-                    valorDecimal += digitValue - lastDigitValue;
+                    digitSave = valorDecimal;
+                    valorDecimal = digitValue - lastDigitValue;
                 }
-            }*/
+            }
+            lastDigitValue = digitValue;
+        }*/
+        for (int i = numRomano.length() - 1; i > -1; i--) {
+            digit = numRomano.charAt(i);
+            digitValue = valueOf(digit);
+
+            if (i == numRomano.length() - 1) {
+                valorDecimal = digitValue;
+            } else {
+                if (lastDigitValue > digitValue) {
+                    valorDecimal -= digitValue;
+                } else {
+                    valorDecimal += digitValue;
+                }
+            }
+            lastDigitValue = digitValue;
         }
 
         System.out.printf("El valor introducido %s traducido a decimal es: %d", numRomano, valorDecimal);

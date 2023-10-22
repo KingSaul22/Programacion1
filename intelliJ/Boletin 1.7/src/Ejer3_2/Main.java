@@ -19,6 +19,7 @@ public class Main {
         sc.close();
 
         int contV, contL, contD, contRept;
+        char lastLetter;
 
         char digit;
         int digitValue;
@@ -27,8 +28,31 @@ public class Main {
         int lastDigitValue = 0;
 
 
-        for (char letter : numRomano.toCharArray()) {
-            
+        for (int i = 0; i < numRomano.length(); i++) {
+            if (i == 0) {
+
+                lastLetter = numRomano.charAt(i);
+            } else {
+                switch (numRomano.charAt(i)) {
+                    case 'I':
+                        yield valueI;
+                    case 'V':
+                        yield valueV;
+                    case 'X':
+                        yield valueX;
+                    case 'L':
+                        yield valueL;
+                    case 'C':
+                        yield valueC;
+                    case 'D':
+                        yield valueD;
+                    case 'M':
+                        yield valueM;
+                    default:
+                        yield -1;
+                }
+
+            }
         }
 
         for (int i = numRomano.length() - 1; i > -1; i--) {

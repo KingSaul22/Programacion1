@@ -1,24 +1,26 @@
-package Ejer3;
+package Ejer4;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
+
         int numMax = Integer.MIN_VALUE;
         int numMin = Integer.MAX_VALUE;
         float media = 0;
         int maxR = 1, minR = 1;
 
-        System.out.println("¿Cuantos números desea introducir?");
-        int numArray = sc.nextInt();
+        final int numRandom = 101;
+
+        int numArray = 6000;
         int[] miArray = new int[numArray];
 
+        int[] miDigito = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
         for (int elem = 0; elem <= miArray.length - 1; elem++) {
-            elem++;
-            System.out.printf("\nIntroduzca un %dº número entero para colocar en la matriz: ", elem);
-            elem--;
-            miArray[elem] = sc.nextInt();
+            miArray[elem] = r.nextInt(numRandom);
+            miArray[elem] = r.nextInt(numRandom);
 
             media += miArray[elem];
             if (elem == 0) {
@@ -42,7 +44,6 @@ public class Main {
             }
         }
 
-        sc.close();
         media /= numArray;
 
         if (maxR <= 1) {

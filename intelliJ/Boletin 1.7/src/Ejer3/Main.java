@@ -26,34 +26,6 @@ public class Main {
         int valorDecimal = 0;
         int lastDigitValue = 0;
 
-        /*for (int i = 0; i < numRomano.length(); i++) {
-            digit = numRomano.charAt(i);
-            digitValue = valueOf(digit);
-
-            //FUNCIONAL
-            if (i == 0) {
-                valorDecimal = digitValue;
-            } else {
-                if (lastDigitValue >= digitValue) {
-                    valorDecimal += digitValue;
-                } else {
-                    valorDecimal += digitValue - 2 * lastDigitValue;
-                }
-            }
-            lastDigitValue = digitValue;
-
-            if (i == 0) {
-                valorDecimal = digitValue;
-            } else {
-                if (lastDigitValue >= digitValue) {
-                    valorDecimal += lastDigitValue;
-                } else {
-                    digitSave = valorDecimal;
-                    valorDecimal = digitValue - lastDigitValue;
-                }
-            }
-            lastDigitValue = digitValue;
-        }*/
         for (int i = numRomano.length() - 1; i > -1; i--) {
             digit = numRomano.charAt(i);
             digitValue = valueOf(digit);

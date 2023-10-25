@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int numMax = Integer.MIN_VALUE;
         int numMin = Integer.MAX_VALUE;
-        float media = 0;
+        double media = 0;
         int maxR = 1, minR = 1;
 
         System.out.println("¿Cuantos números desea introducir?");
@@ -48,13 +48,13 @@ public class Main {
         if (maxR <= 1) {
             System.out.printf("\nEl mayor valor de la matriz es: %d", numMax);
         } else {
-            System.out.printf("\nEl mayor valor de la matriz es: %d y se repite %d veces", numMax, maxR);
+            System.out.printf("\nEl mayor valor de la matriz es: %d y se repite un total de %d veces", numMax, maxR);
         }
 
         if (minR <= 1) {
             System.out.printf("\nEl menor valor de la matriz es: %d", numMin);
         } else {
-            System.out.printf("\nEl menor valor de la matriz es: %d y se repite %d veces", numMin, minR);
+            System.out.printf("\nEl menor valor de la matriz es: %d y se repite un total de %d veces", numMin, minR);
         }
 
         System.out.println("\nY la media es: " + media);

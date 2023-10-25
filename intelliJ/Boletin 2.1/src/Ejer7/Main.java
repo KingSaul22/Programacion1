@@ -1,3 +1,4 @@
+/*
 package Ejer7;
 
 import java.util.Random;
@@ -40,4 +41,4 @@ public class Main {
         }
 
     }
-}
+}*/

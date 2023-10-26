@@ -52,6 +52,8 @@ public class Main {
         }
 
         System.out.println("Empieza el jugador " + nombreJugadores[almacen]);
+        System.out.println("\nEl orden será el siguiente:");
+        ordenarJugadores();
         ordenJugadores();
 
 
@@ -93,7 +95,19 @@ public class Main {
     }
 
     public static void ordenarJugadores() {
-        
+        String guardar;
+        while(misJugadores[0] != 1){
+            misJugadores[0]=misJugadores[1];
+            misJugadores[1]=misJugadores[2];
+            misJugadores[2]=misJugadores[3];
+            misJugadores[3]=0;
+
+            guardar= nombreJugadores[0];
+            nombreJugadores[0]=nombreJugadores[1];
+            nombreJugadores[1]=nombreJugadores[2];
+            nombreJugadores[2]=nombreJugadores[3];
+            nombreJugadores[3]=guardar;
+        }
     }
 
 }

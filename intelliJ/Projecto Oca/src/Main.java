@@ -1,11 +1,11 @@
 
 public class Main {
 
+    public static final int numJugadores = 4;
+    public static final int carasDado = 6;
     public static int[] misJugadores = {1, 0, 0, 0};
     public static String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
     public static int dadoIgual = 0;
-    public static final int numJugadores = 4;
-    public static final int carasDado = 6;
 
     public static void main(String[] args) {
         int almacen = 0;
@@ -62,14 +62,9 @@ public class Main {
         int i = -1;
         while (misJugadores[0] <= 63 && misJugadores[1] <= 63 && misJugadores[2] <= 63 && misJugadores[3] <= 63) {
             i++;
-            if (i == 4) {
+            if (i == numJugadores) {
                 i = 0;
             }
-            /*for (int i = 0; i < numJugadores; i++) {
-                almacen = miDado();
-                misJugadores[i] += almacen;
-                System.out.printf("El jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
-            }*/
 
             almacen = miDado();
             misJugadores[i] += almacen;

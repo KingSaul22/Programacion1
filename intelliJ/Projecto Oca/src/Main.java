@@ -51,11 +51,44 @@ public class Main {
             }
         }
 
-        System.out.println("Empieza el jugador " + nombreJugadores[almacen]);
-        System.out.println("\nEl orden será el siguiente:");
-        ordenarJugadores();
-        ordenJugadores();
+        {
+            System.out.println("Empieza el jugador " + nombreJugadores[almacen]);
+            System.out.println("\nEl orden será el siguiente:");
+            ordenarJugadores();
+            ordenJugadores();
+        }//Orden de los jugadores
 
+
+        int i = -1;
+        while (misJugadores[0] <= 63 && misJugadores[1] <= 63 && misJugadores[2] <= 63 && misJugadores[3] <= 63) {
+            i++;
+            if (i == 4) {
+                i = 0;
+            }
+            /*for (int i = 0; i < numJugadores; i++) {
+                almacen = miDado();
+                misJugadores[i] += almacen;
+                System.out.printf("El jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
+            }*/
+
+            almacen = miDado();
+            misJugadores[i] += almacen;
+            System.out.printf("\nEl jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
+
+            while (misJugadores[i] % 4 == 0 && misJugadores[i] !=64) {
+                System.out.println("El jugador a caido en la casilla de la Oca, recibe tirada extra");
+                almacen = miDado();
+                misJugadores[i] += almacen;
+                System.out.printf("El jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
+            }
+
+            if (misJugadores[i] == 63){
+                misJugadores[i] = 1;
+                System.out.printf("El jugador %s ha caido en la casilla calavera.\nEmpieza desde el inicio.", nombreJugadores[i]);
+            }
+        }
+
+        System.out.printf("\n\nEl ganador es el jugador %s.", nombreJugadores[i]);
 
     }
 
@@ -63,7 +96,7 @@ public class Main {
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño
         //igual al del número de Jugadores.
         for (int elem = 0; elem < misTiradas.length; elem++) {
-            misTiradas[elem] = (int) (Math.random() * (carasDado)) + 1; //Los valores del array serán números
+            misTiradas[elem] = miDado(); //Los valores del array serán números
         }                                                               //aleatorios de rango [1, 6] que son
         return misTiradas;                                              //las caras del dado.
     }
@@ -96,18 +129,22 @@ public class Main {
 
     public static void ordenarJugadores() {
         String guardar;
-        while(misJugadores[0] != 1){
-            misJugadores[0]=misJugadores[1];
-            misJugadores[1]=misJugadores[2];
-            misJugadores[2]=misJugadores[3];
-            misJugadores[3]=0;
+        while (misJugadores[0] != 1) {
+            misJugadores[0] = misJugadores[1];
+            misJugadores[1] = misJugadores[2];
+            misJugadores[2] = misJugadores[3];
+            misJugadores[3] = 0;
 
-            guardar= nombreJugadores[0];
-            nombreJugadores[0]=nombreJugadores[1];
-            nombreJugadores[1]=nombreJugadores[2];
-            nombreJugadores[2]=nombreJugadores[3];
-            nombreJugadores[3]=guardar;
+            guardar = nombreJugadores[0];
+            nombreJugadores[0] = nombreJugadores[1];
+            nombreJugadores[1] = nombreJugadores[2];
+            nombreJugadores[2] = nombreJugadores[3];
+            nombreJugadores[3] = guardar;
         }
+        misJugadores[1] = 1;
+        misJugadores[2] = 1; //Colocar a los jugadores en la casilla 1
+        misJugadores[3] = 1;
+
     }
 
 }

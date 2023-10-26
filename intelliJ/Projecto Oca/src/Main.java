@@ -2,6 +2,7 @@
 public class Main {
 
     public static int[] misJugadores = {1, 0, 0, 0};
+    public static String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
     public static int dadoIgual = 0;
     public static final int numJugadores = 4;
     public static final int carasDado = 6;
@@ -9,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
         int almacen = 0;
 
-        String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
         int[] primeraTirada = dadoAleatorio();
 
         for (int elem = 1; elem < primeraTirada.length; elem++) {
@@ -52,6 +52,7 @@ public class Main {
         }
 
         System.out.println("Empieza el jugador " + nombreJugadores[almacen]);
+        ordenJugadores();
 
 
     }
@@ -83,6 +84,16 @@ public class Main {
             return true;
         }
         return false;
+    }
+
+    public static void ordenJugadores() {
+        for (String elem : nombreJugadores) {
+            System.out.println(elem);
+        }
+    }
+
+    public static void ordenarJugadores() {
+        
     }
 
 }

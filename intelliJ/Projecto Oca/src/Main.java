@@ -1,13 +1,23 @@
+import java.util.Scanner;
 
 public class Main {
 
+    public static Scanner sc = new Scanner(System.in);
     public static final int numJugadores = 4;
-    public static final int carasDado = 6;
+    //public static final int carasDado = 6;
+    public static int carasDado = 6;
     public static int[] misJugadores = {1, 0, 0, 0};
     public static String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
     public static int dadoIgual = 0;
 
     public static void main(String[] args) {
+        System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n");
+
+        {
+
+            carasDado = getCarasDado();
+        }
+
         int almacen = 0;
 
         int[] primeraTirada = dadoAleatorio();
@@ -70,14 +80,14 @@ public class Main {
             misJugadores[i] += almacen;
             System.out.printf("\nEl jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
 
-            while (misJugadores[i] % 4 == 0 && misJugadores[i] !=64) {
+            while (misJugadores[i] % 4 == 0 && misJugadores[i] != 64) {
                 System.out.println("El jugador a caido en la casilla de la Oca, recibe tirada extra");
                 almacen = miDado();
                 misJugadores[i] += almacen;
                 System.out.printf("El jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
             }
 
-            if (misJugadores[i] == 63){
+            if (misJugadores[i] == 63) {
                 misJugadores[i] = 1;
                 System.out.printf("El jugador %s ha caido en la casilla calavera.\nEmpieza desde el inicio.", nombreJugadores[i]);
             }
@@ -85,6 +95,10 @@ public class Main {
 
         System.out.printf("\n\nEl ganador es el jugador %s.", nombreJugadores[i]);
 
+    }
+
+    public static int getCarasDado() {
+        return sc.nextInt();
     }
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,

@@ -4,7 +4,7 @@ package Ejer5b;
 import java.util.Scanner;
 
 public class Main {
-    public static final int numRandom = 1001;
+    public static final int numRandom = 6;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -28,7 +28,7 @@ public class Main {
         int[] miArray = new int[tamArray];
 
         for (int elem = 0; elem <= miArray.length - 1; elem++) {
-            miArray[elem] = (int) (Math.random() * (numRandom + 1));
+            miArray[elem] = (int) (Math.random() * (numRandom) + 1);
         }
 
         return miArray;

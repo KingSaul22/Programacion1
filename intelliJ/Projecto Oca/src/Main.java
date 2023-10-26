@@ -13,7 +13,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n");
 
-        {
+
+        if (ans == s){
 
             carasDado = getCarasDado();
         }
@@ -98,7 +99,16 @@ public class Main {
     }
 
     public static int getCarasDado() {
-        return sc.nextInt();
+        int num;
+        do {
+            System.out.println("Introduzca un número mayor que uno");
+            while (!sc.hasNextInt()) {
+                System.out.println("El dato introducido no es reconocido como un número entero.");
+                sc.next();
+            }
+            num = sc.nextInt();
+        } while (num < 2);
+        return num;
     }
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,

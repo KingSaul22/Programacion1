@@ -15,8 +15,8 @@ public class Main {
 
         char ans;
         {
-            System.out.printf("NUMERO DE JUGADORES\n\nPor defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
-            ans = sc.nextLine().charAt(0);
+            System.out.println("NUMERO DE JUGADORES\n\nPor defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.");
+            ans = getRespuestaSN();
 
             if (ans == 's') {
                 numJugadores = getEnteroMayorQue(2);
@@ -46,8 +46,8 @@ public class Main {
         }           //Se pregunta a la persona el número de jugadores y sus nombres
 
         {
-            System.out.printf("TIPO DE DADO\n\nPor defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
-            ans = sc.nextLine().charAt(0);
+            System.out.println("TIPO DE DADO\n\nPor defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.");
+            ans = getRespuestaSN();
             if (ans == 's') {
                 carasDado = getEnteroMayorQue(2);
             }
@@ -116,7 +116,7 @@ public class Main {
             misJugadores[i] += almacen;             // Le sumamos a la posición el resultado del dado
             System.out.printf("\nEl jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
 
-            while (misJugadores[i] % 4 == 0 && misJugadores[i] != 64) {     // Siempre que caiga en una casilla multiplo de 4 y no haya alcanzado la meta
+            while (misJugadores[i] % 4 == 0 && misJugadores[i] < 64) {     // Siempre que caiga en una casilla multiplo de 4 y no haya alcanzado la meta
                 System.out.println("El jugador a caido en la casilla de la Oca, recibe tirada extra");
                 almacen = miDado();                                         // El jugador recibe una tirada extra
                 misJugadores[i] += almacen;
@@ -146,6 +146,19 @@ public class Main {
         sc.nextLine();
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'
+
+    public static char getRespuestaSN() {
+        char respuesta;
+        do {
+            System.out.print("Responda con 's' o 'n': ");
+            respuesta = sc.next().toLowerCase().charAt(0);
+            if (respuesta != 's' && respuesta != 'n') {
+                System.out.println("El carácter introducido no es 's' ni 'n'.");
+            }
+        } while (respuesta != 's' && respuesta != 'n');
+        sc.nextLine();
+        return respuesta;
+    }
 
     public static String getNombre() {
         System.out.printf("\nIntroduzca un nombre: ");

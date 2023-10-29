@@ -3,12 +3,11 @@ import java.util.Scanner;
 public class Main {
 
     public static Scanner sc = new Scanner(System.in);
-    public static final int numJugadores = 4;
-    //public static final int carasDado = 6;
+    public static int numJugadores = 4;
     public static int carasDado = 6;
-    public static int[] misJugadores = {1, 0, 0, 0};
+    public static int[] misJugadores;
     public static String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
-    public static int dadoIgual = 0;
+    public static int dadoIgual = 0, i = -1;
 
     public static void main(String[] args) {
         System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n");
@@ -18,17 +17,22 @@ public class Main {
             System.out.printf("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
             if (ans == 's') {
-                carasDado = getCarasDado();
+                System.out.println("Introduzca el número de jugadores mayor que dos:");
+                numJugadores = getCarasDado(2);
+                misJugadores = new int[numJugadores];
+                misJugadores[0] = 1;
+
+
             }
 
-        }           //Se prefunta a la persona el número de jugadores y sus nombres
+        }           //Se pregunta a la persona el número de jugadores y sus nombres
 
 
         {
             System.out.printf("Por defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
             if (ans == 's') {
-                carasDado = getCarasDado();
+                carasDado = getCarasDado(2);
             }
             System.out.printf("\n La partida se desarrollará usando un dado de %d caras. \n\n", carasDado);
         }       //Se pregunta a la persona si desea cabiar de dado
@@ -84,8 +88,7 @@ public class Main {
         }       //Se recalcula e imprime por pantalla el orden de los jugadores
 
 
-        int i = -1;
-        while (misJugadores[0] <= 63 && misJugadores[1] <= 63 && misJugadores[2] <= 63 && misJugadores[3] <= 63) {  // Este bucle se repetira hasta que un jugador haya llegado o superado la meta
+        while (jugadorMeta()) {                     // Este bucle se repetira hasta que un jugador haya llegado o superado la meta
             i++;                                    // El while ciclara cada turno, de ahí que necesite sumar un 1 al indice del Array misJugadores y nombreJugadores
             if (i == numJugadores) {                // Al sumar 1 cada vez, si queremos que empiece a leer desde la posición 0 debo declarar que i es igual a -1
                 i = 0;                              // En el caso de que el índice sea igual que numJugadores, se empezará de nuevo el Array cambiando su valor a cero
@@ -112,16 +115,16 @@ public class Main {
 
     }
 
-    public static int getCarasDado() {
+    public static int getCarasDado(int min) {
         int num;
         do {
-            System.out.println("Introduzca un número mayor que uno");
+            System.out.printf("Introduzca un número mayor que %d \n", min - 1);
             while (!sc.hasNextInt()) {
                 System.out.println("El dato introducido no es reconocido como un número entero.");
                 sc.next();
             }
             num = sc.nextInt();
-        } while (num < 2);
+        } while (num < min);
         return num;
     } // Módulo que devuelve un número entero mayor a 1
 
@@ -180,5 +183,13 @@ public class Main {
         misJugadores[3] = 1;
 
     }   //Reordena a los jugadores
+
+    public static boolean jugadorMeta() {
+        if (misJugadores[i] <= 63) {
+            return true;
+        }
+
+        return false;
+    }       //Revisará si un jugador ha llegado a la meta
 
 }

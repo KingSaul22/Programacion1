@@ -48,7 +48,7 @@ public class Main {
 
                 System.out.println("Se usaran los nombres por defecto: Amarillo, Verde, Rojo y Naranja.\n");
             }
-        }           //Se pregunta a la persona el número de jugadores y sus nombres
+        }       //Se pregunta a la persona el número de jugadores y sus nombres
 
         {
             System.out.println("TIPO DE DADO\n\nPor defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.");
@@ -183,13 +183,11 @@ public class Main {
             reglasRotas++;
         }
         if (firstLetter == firstLetterMin) {
-            System.out.println("La primera letra está en minuscula, no cumple la pr");
+            System.out.println("La primera letra está en minuscula.");
             reglasRotas++;
         }
         firstLetter = name.charAt(name.length() - 1);
-        System.out.println(firstLetter);
         firstLetterMin = name.charAt(name.length() - 2);
-        System.out.println(firstLetterMin);
 
         int caja = 0;
         char numA;

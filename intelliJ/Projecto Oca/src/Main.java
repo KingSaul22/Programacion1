@@ -172,7 +172,12 @@ public class Main {
     }   //Comprueba que la respuesta sea 's' o 'n'.
 
     public static String getNombre() {
-        System.out.println("\nIntroduzca un nombre: ");
+        //String respuesta;
+        //do{
+            System.out.println("\nIntroduzca un nombre: ");
+            //respuesta = sc.next();
+        //} while (respuesta == null);
+        //System.out.println("fuera");
         return sc.nextLine();
     }   //Devuelve un nombre para un jugador.
 

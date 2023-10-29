@@ -26,9 +26,14 @@ public class Main {
                     misJugadores[elem] = 0;
                 }
 
+                System.out.println(" los nombres deben cumplir una serie de aspectos:\n ·La longitud máxima es de 10 caracteres y la mínima de 4.\n ·La primera letra debe ser mayuscula.\n ·Siempre debe acabar con dos números.");
                 nombreJugadores = new String[numJugadores];
                 for (int elem = 0; elem < numJugadores; elem++) {
                     nombreJugadores[elem] = getNombre();
+                    if (reglasNombre(nombreJugadores[elem])) {
+                        elem--;
+                        System.out.println("El nombre no cumple todas las condiciones, pruebe de nuevo.");
+                    }
                 }
                 System.out.println("Nombres recogidos y almacenados.\n");
 
@@ -169,14 +174,43 @@ public class Main {
         return sc.nextLine();
     }   //Devuelve un nombre para un jugador
 
-    public static boolean reglasNombre(){
-        do {
-            respTotal = sc.next();
-            if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
-                System.out.println("El carácter introducido no es 's' ni 'n'.");
+    public static boolean reglasNombre(String name) {
+        int reglasRotas = 0;
+        char firstLetter = name.charAt(0);
+        char firstLetterMin = name.toLowerCase().charAt(0);
+        if (name.length() >= 11 || name.length() <= 3) {
+            System.out.println("La longitud es incorrecta, los nombre deben incluir más de 3 carcteres y menos de 10.");
+            reglasRotas++;
+        }
+        if (firstLetter == firstLetterMin) {
+            System.out.println("La primera letra está en minuscula, no cumple la pr");
+            reglasRotas++;
+        }
+        firstLetter = name.charAt(name.length() - 1);
+        System.out.println(firstLetter);
+        firstLetterMin = name.charAt(name.length() - 2);
+        System.out.println(firstLetterMin);
+
+        int caja = 0;
+        char numA;
+        for (int num = 0; num < 10; num++) {
+            numA = (char) num;
+            System.out.println(numA);
+            if (firstLetter == numA) {
+                caja++;
+                System.out.println("Se ha sumado");
             }
-        } while (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n"));
-        sc.nextLine();
+            if (firstLetterMin == numA) {
+                caja++;
+                System.out.println("Se ha sumado");
+            }
+        }
+        if (caja != 2) {
+            System.out.println("Los dos últimos caracteres del nombre deben ser números.");
+            reglasRotas++;
+        }
+
+        return reglasRotas > 0;
     }
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,

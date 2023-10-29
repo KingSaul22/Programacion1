@@ -3,20 +3,22 @@ import java.util.Scanner;
 public class Main {
 
     public static Scanner sc = new Scanner(System.in);
-    public static int numJugadores = 4, dadoIgual = 0, i = -1, carasDado = 6;
+    public static int numJugadores = 4;
+    public static int dadoIgual = 0;
+    public static int i = -1;
+    public static int carasDado = 6;
     public static int[] misJugadores;
     public static String[] nombreJugadores;
 
     public static void main(String[] args) {
-        System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n");
+        System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n\n");
 
         char ans;
         {
-            System.out.printf("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
+            System.out.printf("NUMERO DE JUGADORES\n\nPor defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
 
             if (ans == 's') {
-                //System.out.printf("Introduzca el número de jugadores mayor que dos:");
                 numJugadores = getEnteroMayorQue(2);
                 misJugadores = new int[numJugadores];
                 misJugadores[0] = 1;
@@ -44,14 +46,13 @@ public class Main {
         }           //Se pregunta a la persona el número de jugadores y sus nombres
 
         {
-            System.out.printf("Por defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
+            System.out.printf("TIPO DE DADO\n\nPor defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
             if (ans == 's') {
                 carasDado = getEnteroMayorQue(2);
             }
-            System.out.printf("\n La partida se desarrollará usando un dado de %d caras. \n\n", carasDado);
-        }       //Se pregunta a la persona si desea cabiar de dado
-        //System.out.println();
+            System.out.printf("\nLa partida se desarrollará usando un dado de %d caras.\n\n", carasDado);
+        }       //Se pregunta a la persona si desea cambiar de dado
         sc.close();
 
 
@@ -126,34 +127,10 @@ public class Main {
                 misJugadores[i] = 1;        //El jugador es enviado a la casilla de salida
                 System.out.printf("El jugador %s ha caido en la casilla calavera.\nEmpieza desde el inicio.", nombreJugadores[i]);
             }
-        } while (jugadorMeta());
+        } while (jugadorMeta());   //Simulador de la partida
 
-
-        /*while (jugadorMeta()) {                     // Este bucle se repetira hasta que un jugador haya llegado o superado la meta
-            i++;                                    // El while ciclara cada turno, de ahí que necesite sumar un 1 al indice del Array misJugadores y nombreJugadores
-            if (i == numJugadores) {                // Al sumar 1 cada vez, si queremos que empiece a leer desde la posición 0 debo declarar que i es igual a -1
-                i = 0;                              // En el caso de que el índice sea igual que numJugadores, se empezará de nuevo el Array cambiando su valor a cero
-            }
-
-            almacen = miDado();                     // Reusamos la variable para ahorrar crear una nueva y llamamos al módulo miDado
-            misJugadores[i] += almacen;             // Le sumamos a la posición el resultado del dado
-            System.out.printf("\nEl jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
-
-            while (misJugadores[i] % 4 == 0 && misJugadores[i] != 64) {     // Siempre que caiga en una casilla multiplo de 4 y no haya alcanzado la meta
-                System.out.println("El jugador a caido en la casilla de la Oca, recibe tirada extra");
-                almacen = miDado();                                         // El jugador recibe una tirada extra
-                misJugadores[i] += almacen;
-                System.out.printf("El jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
-            }
-
-            if (misJugadores[i] == 63) {    //En el caso de que caiga en la casilla calavera
-                misJugadores[i] = 1;        //El jugador es enviado a la casilla de salida
-                System.out.printf("El jugador %s ha caido en la casilla calavera.\nEmpieza desde el inicio.", nombreJugadores[i]);
-            }
-        } // Progresión del juego*/
 
         System.out.printf("\n\nEl ganador es el jugador %s.", nombreJugadores[i]);
-
     }
 
     public static int getEnteroMayorQue(int min) {
@@ -173,7 +150,7 @@ public class Main {
     public static String getNombre() {
         System.out.printf("\nIntroduzca un nombre: ");
         return sc.nextLine();
-    }
+    }   //Devuelve un nombre para un jugador
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño
@@ -182,7 +159,7 @@ public class Main {
             misTiradas[elem] = miDado();                                //Los valores del array serán números
         }                                                               //aleatorios de rango [1, n] según
         return misTiradas;                                              //las caras del dado.
-    }
+    }   //Devuelve un Array que contiene la primera tirada con la que se decidirá el orden de los jugadores.
 
     public static int miDado() {
 
@@ -192,16 +169,12 @@ public class Main {
     public static boolean repetirTirada() {
         dadoIgual = 0;
 
-        for (int elem = 0; elem < misJugadores.length; elem++) {
-            if (misJugadores[elem] == 1) {          // Si un jugador a sacado el número máximo, se suma uno a la variable dadoIgual
+        for (int elem : misJugadores) {
+            if (elem == 1) {          // Si un jugador a sacado el número máximo, se suma uno a la variable dadoIgual
                 dadoIgual++;
             }
         }
-        if (dadoIgual >= 2) {                       // En el caso de que haya dos jugadores o más que hayan coincidido se devuelve True
-
-            return true;
-        }
-        return false;
+        return dadoIgual >= 2;        // En el caso de que haya dos jugadores o más que hayan coincidido se devuelve True
     } //Módulo que devuelve True en caso de que dos jugadores hayan empatado en la tirada inicial.
 
     public static void ordenJugadores() {
@@ -213,9 +186,6 @@ public class Main {
     public static void ordenarJugadores() {
         String guardar;                                 //Tras las tiradas, y si es el caso, el desempate; solo hay un jugador en la casilla de salida
         int guardarB;
-        /*for (int elem=0;elem< misJugadores.length;elem++){
-            System.out.println();
-        }*/
 
         while (misJugadores[0] != 1) {                  //Se repite hasta que el jugador designado para salir primero este colocado en la posición 0 del Array
             guardar = nombreJugadores[0];
@@ -236,11 +206,7 @@ public class Main {
     }   //Reordena a los jugadores
 
     public static boolean jugadorMeta() {
-        if (misJugadores[i] <= 63) {
-            return true;
-        }
-
-        return false;
-    }       //Revisará si un jugador ha llegado a la meta
+        return misJugadores[i] <= 63;
+    }       //Revisará si el jugador que acaba de terminar su turno ha llegado a la meta.
 
 }

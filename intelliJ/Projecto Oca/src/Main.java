@@ -148,22 +148,36 @@ public class Main {
     } // Módulo que devuelve un número entero mayor a 'min'
 
     public static char getRespuestaSN() {
-        char respuesta;
+        //char respuesta;
+        String respTotal;
         do {
             System.out.print("Responda con 's' o 'n': ");
-            respuesta = sc.next().toLowerCase().charAt(0);
-            if (respuesta != 's' && respuesta != 'n') {
+            respTotal = sc.next();
+            if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
                 System.out.println("El carácter introducido no es 's' ni 'n'.");
             }
-        } while (respuesta != 's' && respuesta != 'n');
+        } while (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n"));
         sc.nextLine();
-        return respuesta;
+
+        //respuesta = respTotal.charAt(0);
+        //return respuesta;
+        return respTotal.charAt(0);
     }
 
     public static String getNombre() {
-        System.out.printf("\nIntroduzca un nombre: ");
+        System.out.println("\nIntroduzca un nombre: ");
         return sc.nextLine();
     }   //Devuelve un nombre para un jugador
+
+    public static boolean reglasNombre(){
+        do {
+            respTotal = sc.next();
+            if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
+                System.out.println("El carácter introducido no es 's' ni 'n'.");
+            }
+        } while (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n"));
+        sc.nextLine();
+    }
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño

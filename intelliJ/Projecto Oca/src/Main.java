@@ -3,22 +3,20 @@ import java.util.Scanner;
 public class Main {
 
     public static Scanner sc = new Scanner(System.in);
-    public static int numJugadores = 4;
-    public static int carasDado = 6;
+    public static int numJugadores = 4, dadoIgual = 0, i = -1, carasDado = 6;
     public static int[] misJugadores;
     public static String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
-    public static int dadoIgual = 0, i = -1;
 
     public static void main(String[] args) {
         System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n");
 
         char ans;
         {
-            System.out.printf("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
+            System.out.println("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
             if (ans == 's') {
                 System.out.println("Introduzca el número de jugadores mayor que dos:");
-                numJugadores = getCarasDado(2);
+                numJugadores = getEnteroMayorQue(2);
                 misJugadores = new int[numJugadores];
                 misJugadores[0] = 1;
 
@@ -27,15 +25,15 @@ public class Main {
 
         }           //Se pregunta a la persona el número de jugadores y sus nombres
 
-
         {
-            System.out.printf("Por defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
+            System.out.println("Por defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
             if (ans == 's') {
-                carasDado = getCarasDado(2);
+                carasDado = getEnteroMayorQue(2);
             }
             System.out.printf("\n La partida se desarrollará usando un dado de %d caras. \n\n", carasDado);
         }       //Se pregunta a la persona si desea cabiar de dado
+        sc.close();
 
 
         int almacen = 0;
@@ -115,7 +113,7 @@ public class Main {
 
     }
 
-    public static int getCarasDado(int min) {
+    public static int getEnteroMayorQue(int min) {
         int num;
         do {
             System.out.printf("Introduzca un número mayor que %d \n", min - 1);
@@ -125,8 +123,9 @@ public class Main {
             }
             num = sc.nextInt();
         } while (num < min);
+        sc.nextLine();
         return num;
-    } // Módulo que devuelve un número entero mayor a 1
+    } // Módulo que devuelve un número entero mayor a 'min'
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño

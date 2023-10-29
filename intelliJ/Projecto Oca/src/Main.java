@@ -58,7 +58,6 @@ public class Main {
             }
             System.out.printf("\nLa partida se desarrollará usando un dado de %d caras.\n\n", carasDado);
         }       //Se pregunta a la persona si desea cambiar de dado
-        sc.close();
 
 
         int almacen = 0;
@@ -136,6 +135,8 @@ public class Main {
 
 
         System.out.printf("\n\nEl ganador es el jugador %s.", nombreJugadores[i]);
+
+        sc.nextLine();
     }
 
     public static int getEnteroMayorQue(int min) {

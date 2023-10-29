@@ -29,5 +29,10 @@ public class Main {
                 }
             }
         }
+        System.out.println("\n\n\n");
+
+        for (int i=0 ;i<3;i++){
+            System.out.println(i);
+        }
     }
 }

@@ -5,7 +5,7 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int numJugadores = 4, dadoIgual = 0, i = -1, carasDado = 6;
     public static int[] misJugadores;
-    public static String[] nombreJugadores = {"Amarillo", "Verde", "Rojo", "Naranja"};
+    public static String[] nombreJugadores;
 
     public static void main(String[] args) {
         System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n");
@@ -14,15 +14,31 @@ public class Main {
         {
             System.out.println("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
+
             if (ans == 's') {
                 System.out.println("Introduzca el número de jugadores mayor que dos:");
                 numJugadores = getEnteroMayorQue(2);
                 misJugadores = new int[numJugadores];
                 misJugadores[0] = 1;
+                for (int elem = 1; elem < numJugadores; elem++) {
+                    misJugadores[elem] = 0;
+                }
 
+                nombreJugadores = new String[numJugadores];
+                for (int elem = 0; elem < numJugadores; elem++) {
+                    nombreJugadores[elem] = getNombre();
+                }
+
+            } else {
+                misJugadores = new int[numJugadores];
+
+                nombreJugadores = new String[numJugadores];
+                nombreJugadores[0] = "Amarillo";
+                nombreJugadores[1] = "Verde";
+                nombreJugadores[2] = "Rojo";
+                nombreJugadores[3] = "Naranja";
 
             }
-
         }           //Se pregunta a la persona el número de jugadores y sus nombres
 
         {
@@ -33,6 +49,7 @@ public class Main {
             }
             System.out.printf("\n La partida se desarrollará usando un dado de %d caras. \n\n", carasDado);
         }       //Se pregunta a la persona si desea cabiar de dado
+        sc.nextLine();
         sc.close();
 
 
@@ -86,7 +103,7 @@ public class Main {
         }       //Se recalcula e imprime por pantalla el orden de los jugadores
 
 
-        while (jugadorMeta()) {                     // Este bucle se repetira hasta que un jugador haya llegado o superado la meta
+        do {
             i++;                                    // El while ciclara cada turno, de ahí que necesite sumar un 1 al indice del Array misJugadores y nombreJugadores
             if (i == numJugadores) {                // Al sumar 1 cada vez, si queremos que empiece a leer desde la posición 0 debo declarar que i es igual a -1
                 i = 0;                              // En el caso de que el índice sea igual que numJugadores, se empezará de nuevo el Array cambiando su valor a cero
@@ -107,7 +124,31 @@ public class Main {
                 misJugadores[i] = 1;        //El jugador es enviado a la casilla de salida
                 System.out.printf("El jugador %s ha caido en la casilla calavera.\nEmpieza desde el inicio.", nombreJugadores[i]);
             }
-        } // Progresión del juego
+        } while (jugadorMeta());
+
+
+        /*while (jugadorMeta()) {                     // Este bucle se repetira hasta que un jugador haya llegado o superado la meta
+            i++;                                    // El while ciclara cada turno, de ahí que necesite sumar un 1 al indice del Array misJugadores y nombreJugadores
+            if (i == numJugadores) {                // Al sumar 1 cada vez, si queremos que empiece a leer desde la posición 0 debo declarar que i es igual a -1
+                i = 0;                              // En el caso de que el índice sea igual que numJugadores, se empezará de nuevo el Array cambiando su valor a cero
+            }
+
+            almacen = miDado();                     // Reusamos la variable para ahorrar crear una nueva y llamamos al módulo miDado
+            misJugadores[i] += almacen;             // Le sumamos a la posición el resultado del dado
+            System.out.printf("\nEl jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
+
+            while (misJugadores[i] % 4 == 0 && misJugadores[i] != 64) {     // Siempre que caiga en una casilla multiplo de 4 y no haya alcanzado la meta
+                System.out.println("El jugador a caido en la casilla de la Oca, recibe tirada extra");
+                almacen = miDado();                                         // El jugador recibe una tirada extra
+                misJugadores[i] += almacen;
+                System.out.printf("El jugador %s ha sacado un %d y pasa a la casilla %d\n", nombreJugadores[i], almacen, misJugadores[i]);
+            }
+
+            if (misJugadores[i] == 63) {    //En el caso de que caiga en la casilla calavera
+                misJugadores[i] = 1;        //El jugador es enviado a la casilla de salida
+                System.out.printf("El jugador %s ha caido en la casilla calavera.\nEmpieza desde el inicio.", nombreJugadores[i]);
+            }
+        } // Progresión del juego*/
 
         System.out.printf("\n\nEl ganador es el jugador %s.", nombreJugadores[i]);
 
@@ -126,6 +167,11 @@ public class Main {
         sc.nextLine();
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'
+
+    public static String getNombre() {
+        System.out.println("Introduzca un nombre:");
+        return sc.nextLine();
+    }
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño
@@ -164,22 +210,30 @@ public class Main {
 
     public static void ordenarJugadores() {
         String guardar;                                 //Tras las tiradas, y si es el caso, el desempate; solo hay un jugador en la casilla de salida
+        int guardarB;
+        /*for (int elem=0;elem< misJugadores.length;elem++){
+            System.out.println();
+        }*/
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
 
         while (misJugadores[0] != 1) {                  //Se repite hasta que el jugador designado para salir primero este colocado en la posición 0 del Array
-            misJugadores[0] = misJugadores[1];
-            misJugadores[1] = misJugadores[2];          //Se mueve una posición atras a todos los valores del array donde guardamos las posiciones de los jugadores
-            misJugadores[2] = misJugadores[3];          //Y al primer valor lo colocamos último
-            misJugadores[3] = 0;
-
             guardar = nombreJugadores[0];
-            nombreJugadores[0] = nombreJugadores[1];    //Hacemos lo mismo pero con los nombres
-            nombreJugadores[1] = nombreJugadores[2];
-            nombreJugadores[2] = nombreJugadores[3];
-            nombreJugadores[3] = guardar;
+            guardarB = misJugadores[0];                 //Se guardan los valores en primera posición.
+
+            for (int i = 0; i < misJugadores.length - 1; i++) {     //Se guarda en la posición 0, el valor de la posición 1
+                misJugadores[i] = misJugadores[i + 1];              //Se guarda en la posición uno, el valor de la posición 2
+                nombreJugadores[i] = nombreJugadores[i + 1];        //Asi hasta que la penultima posición, recibe el valor de la última posición
+            }
+            nombreJugadores[nombreJugadores.length - 1] = guardar;
+            misJugadores[misJugadores.length - 1] = guardarB;       //Se recolocan en última posición los valores guardados desde la primera posición
         }
-        misJugadores[1] = 1;
-        misJugadores[2] = 1; //Colocamos a los jugadores ya ordenados en la casilla de salida
-        misJugadores[3] = 1;
+
+        for (int elem = 0; elem < numJugadores; elem++) {      //Colocamos a los jugadores ya ordenados en la casilla de salida
+            misJugadores[elem] = 1;
+        }
 
     }   //Reordena a los jugadores
 

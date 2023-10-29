@@ -12,11 +12,11 @@ public class Main {
 
         char ans;
         {
-            System.out.println("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
+            System.out.printf("Por defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
 
             if (ans == 's') {
-                System.out.println("Introduzca el número de jugadores mayor que dos:");
+                //System.out.printf("Introduzca el número de jugadores mayor que dos:");
                 numJugadores = getEnteroMayorQue(2);
                 misJugadores = new int[numJugadores];
                 misJugadores[0] = 1;
@@ -28,6 +28,7 @@ public class Main {
                 for (int elem = 0; elem < numJugadores; elem++) {
                     nombreJugadores[elem] = getNombre();
                 }
+                System.out.println("Nombres recogidos y almacenados.\n");
 
             } else {
                 misJugadores = new int[numJugadores];
@@ -38,18 +39,19 @@ public class Main {
                 nombreJugadores[2] = "Rojo";
                 nombreJugadores[3] = "Naranja";
 
+                System.out.println("Se usaran los nombres por defecto: Amarillo, Verde, Rojo y Naranja.\n");
             }
         }           //Se pregunta a la persona el número de jugadores y sus nombres
 
         {
-            System.out.println("Por defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
+            System.out.printf("Por defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.\nResponda con 'n' o 's': ");
             ans = sc.nextLine().charAt(0);
             if (ans == 's') {
                 carasDado = getEnteroMayorQue(2);
             }
             System.out.printf("\n La partida se desarrollará usando un dado de %d caras. \n\n", carasDado);
         }       //Se pregunta a la persona si desea cabiar de dado
-        sc.nextLine();
+        //System.out.println();
         sc.close();
 
 
@@ -157,7 +159,7 @@ public class Main {
     public static int getEnteroMayorQue(int min) {
         int num;
         do {
-            System.out.printf("Introduzca un número mayor que %d \n", min - 1);
+            System.out.printf("Introduzca un número mayor que %d: ", min - 1);
             while (!sc.hasNextInt()) {
                 System.out.println("El dato introducido no es reconocido como un número entero.");
                 sc.next();
@@ -169,7 +171,7 @@ public class Main {
     } // Módulo que devuelve un número entero mayor a 'min'
 
     public static String getNombre() {
-        System.out.println("Introduzca un nombre:");
+        System.out.printf("\nIntroduzca un nombre: ");
         return sc.nextLine();
     }
 
@@ -214,10 +216,6 @@ public class Main {
         /*for (int elem=0;elem< misJugadores.length;elem++){
             System.out.println();
         }*/
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
 
         while (misJugadores[0] != 1) {                  //Se repite hasta que el jugador designado para salir primero este colocado en la posición 0 del Array
             guardar = nombreJugadores[0];

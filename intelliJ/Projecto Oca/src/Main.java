@@ -194,16 +194,15 @@ public class Main {
         int caja = 0;
         char numA;
         for (int num = 0; num < 10; num++) {
+            num += 48;
             numA = (char) num;
-            System.out.println(numA);
             if (firstLetter == numA) {
                 caja++;
-                System.out.println("Se ha sumado");
             }
             if (firstLetterMin == numA) {
                 caja++;
-                System.out.println("Se ha sumado");
             }
+            num -= 48;
         }
         if (caja != 2) {
             System.out.println("Los dos últimos caracteres del nombre deben ser números.");

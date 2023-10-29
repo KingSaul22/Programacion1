@@ -58,7 +58,7 @@ public class Main {
             }
             System.out.printf("\nLa partida se desarrollará usando un dado de %d caras.\n\n", carasDado);
         }       //Se pregunta a la persona si desea cambiar de dado
-
+        sc.close();
 
         int almacen = 0;
 
@@ -136,7 +136,8 @@ public class Main {
 
         System.out.printf("\n\nEl ganador es el jugador %s.", nombreJugadores[i]);
 
-        sc.nextLine();
+        //sc.nextLine();
+        //sc.close();
     }
 
     public static int getEnteroMayorQue(int min) {
@@ -144,14 +145,14 @@ public class Main {
         do {
             System.out.printf("Introduzca un número mayor que %d: ", min - 1);
             while (!sc.hasNextInt()) {
-                System.out.println("El dato introducido no es reconocido como un número entero.");
+                System.out.println("El dato introducido no es reconocido como un número entero.\nPruebe de nuevo:");
                 sc.next();
             }
             num = sc.nextInt();
         } while (num < min);
         sc.nextLine();
         return num;
-    } // Módulo que devuelve un número entero mayor a 'min'
+    } // Módulo que devuelve un número entero mayor a 'min'.
 
     public static char getRespuestaSN() {
         //char respuesta;
@@ -162,18 +163,18 @@ public class Main {
             if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
                 System.out.println("El carácter introducido no es 's' ni 'n'.");
             }
-        } while (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n"));
+        } while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n"));
         sc.nextLine();
 
         //respuesta = respTotal.charAt(0);
         //return respuesta;
-        return respTotal.charAt(0);
-    }
+        return respTotal.toLowerCase().charAt(0);
+    }   //Comprueba que la respuesta sea 's' o 'n'.
 
     public static String getNombre() {
         System.out.println("\nIntroduzca un nombre: ");
         return sc.nextLine();
-    }   //Devuelve un nombre para un jugador
+    }   //Devuelve un nombre para un jugador.
 
     public static boolean reglasNombre(String name) {
         int reglasRotas = 0;
@@ -209,7 +210,7 @@ public class Main {
         }
 
         return reglasRotas > 0;
-    }
+    }   //Devuelve True o False en función de si el nombre introducido cumple las reglas.
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño
@@ -223,7 +224,7 @@ public class Main {
     public static int miDado() {
 
         return (int) (Math.random() * (carasDado)) + 1;
-    }   //Módulo básico que devuelve un número aleatorio a modo de dado
+    }   //Módulo básico que devuelve un número aleatorio a modo de dado.
 
     public static boolean repetirTirada() {
         dadoIgual = 0;
@@ -240,7 +241,7 @@ public class Main {
         for (String elem : nombreJugadores) {
             System.out.println(elem);
         }
-    }   //Imprime por pantalla los nombres de los jugadores
+    }   //Imprime por pantalla los nombres de los jugadores.
 
     public static void ordenarJugadores() {
         String guardar;                                 //Tras las tiradas, y si es el caso, el desempate; solo hay un jugador en la casilla de salida
@@ -262,7 +263,7 @@ public class Main {
             misJugadores[elem] = 1;
         }
 
-    }   //Reordena a los jugadores
+    }   //Reordena a los jugadores.
 
     public static boolean jugadorMeta() {
         return misJugadores[i] <= 63;

@@ -6,6 +6,7 @@ public class Main {
     public static int numJugadores = 4;
     public static int dadoIgual = 0;
     public static int i = -1;
+    public static int nombreTrue = 0;
     public static int carasDado = 6;
     public static int[] misJugadores;
     public static String[] nombreJugadores;
@@ -13,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n\n");
 
-        char ans;   //Una variable para almacenar la respuesta del usuario
+        char ans;       //Una variable para almacenar la respuesta del usuario
         {
             System.out.println("NUMERO DE JUGADORES\n\nPor defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.");
             ans = getRespuestaSN(); //Llamamos al módulo que solo devolverá 's' o 'n'
@@ -26,13 +27,18 @@ public class Main {
                 //    misJugadores[elem] = 0;
                 //}
 
-                System.out.println(" los nombres deben cumplir una serie de aspectos:\n ·La longitud máxima es de 10 caracteres y la mínima de 5.\n ·La primera letra debe ser mayuscula.\n ·Siempre debe acabar con dos números.");
-                nombreJugadores = new String[numJugadores];                     //El array nombreJugadores tendrá un tamaño especificado por el usuario
-                for (int elem = 0; elem < nombreJugadores.length; elem++) {     //Repasaremos el Array donde almacenaremos los nombres de los jugadores
-                    nombreJugadores[elem] = getNombre();                        //En cada posición almacenamos un nombre que es proporcionado por el módulo getNombre()
-                    if (reglasNombre(nombreJugadores[elem])) {                  //En el caso de que el nombre no cumpla las reglas,
-                        elem--;                                                 //restamos 1 al indice para que el for repase de nuevo la posición.
+                System.out.println(" los nombres deben cumplir una serie de aspectos:\n ·La longitud máxima es de 10 caracteres y la mínima de 5.\n ·La primera letra debe ser mayuscula.\n ·Siempre debe acabar con dos números.\n ·No se puede repetir un nombre.");
+                nombreJugadores = new String[numJugadores];                                   //El array nombreJugadores tendrá un tamaño especificado por el usuario
+                for (nombreTrue = 0; nombreTrue < nombreJugadores.length; nombreTrue++) {     //Repasaremos el Array donde almacenaremos los nombres de los jugadores
+                    nombreJugadores[nombreTrue] = getNombre();                          //En cada posición almacenamos un nombre que es proporcionado por el módulo getNombre()
+                    if (reglasNombre(nombreJugadores[nombreTrue])) {                    //En el caso de que el nombre no cumpla las reglas,
+                        nombreTrue--;                                                   //restamos 1 al indice para que el for repase de nuevo la posición.
                         System.out.println("El nombre no cumple todas las condiciones, pruebe de nuevo.");
+                    }else if (nombreTrue > 0){                                          //En el caso de que se cumplan las reglas y no sea el primer nombre introducido:
+                        if (nombreRepetido(nombreJugadores[nombreTrue])){               //Se llama al método que comprueba si se ha repetido el nombre.
+                            System.out.println("Ese nombre ya esta seleccionado, introduzca otro.");
+                            nombreTrue--;                                               //En caso de que esté repetido, restamos 1 al indice para que el for repase de nuevo la posición.
+                        }
                     }
                 }
                 System.out.println("Nombres recogidos y almacenados.\n");
@@ -50,7 +56,7 @@ public class Main {
 
                 System.out.println("Se usaran los nombres por defecto: Amarillo, Verde, Rojo y Naranja.\n");
             }
-        }       //Se pregunta a la persona el número de jugadores y sus nombres
+        }           //Se pregunta a la persona el número de jugadores y sus nombres
 
         {
             System.out.println("TIPO DE DADO\n\nPor defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.");
@@ -59,8 +65,8 @@ public class Main {
                 carasDado = getEnteroMayorQue(2);   //recogemos ese número
             }
             System.out.printf("\nLa partida se desarrollará usando un dado de %d caras.\n\n", carasDado);
-        }       //Se pregunta a la persona si desea cambiar de dado
-        sc.close();
+        }           //Se pregunta a la persona si desea cambiar de dado
+        sc.close();     //No se usará más el escaner
 
 
         int[] primeraTirada = dadoAleatorio();                      // Se guarda la primera tirada para calcular el orden de salida
@@ -156,20 +162,6 @@ public class Main {
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'.
 
-    /*    public static char getRespuestaSN() {
-            String respTotal;  //Se almacenara aquí la respuesta
-            do {
-                System.out.print("Responda con 's' o 'n': ");
-                respTotal = sc.next();
-                if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
-                    System.out.println("El carácter introducido no es 's' ni 'n'.");
-                }
-            } while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n"));
-            sc.nextLine();
-
-            return respTotal.toLowerCase().charAt(0);  //Se devuelve la respuesta en minusculas
-        }   //Comprueba que la respuesta sea 's' o 'n'.
-    */
     public static char getRespuestaSN() {
         String respTotal;  //Se almacenara aquí la respuesta
         System.out.print("Responda con 's' o 'n': ");
@@ -232,6 +224,17 @@ public class Main {
 
         return reglasRotas > 0;  //Si se rompe una o más reglas se devuelve true
     }   //Devuelve True o False en función de si el nombre introducido cumple las reglas.
+
+    public static boolean nombreRepetido(String nombre){
+        int repetido = 0;       //Aquí almacenaremos las veces que se ha repetido el nombre
+
+        for (int copia = nombreTrue -1; copia >= 0; copia--){       //Repasaremos el array desde; la posición del nombre recibido menos 1, hasta la posicion 0
+            if (nombre.equals(nombreJugadores[copia])){             //Si el nombre recibido es igual a uno ya seleccionado,
+                repetido++;                                         //Se sumará uno al contador repetido.
+            }
+        }
+        return repetido >= 1;  //Devuelve True si se ha repetido
+    }    //Revisará que no se repita el nombre
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño

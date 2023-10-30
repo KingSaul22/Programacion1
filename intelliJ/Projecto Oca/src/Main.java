@@ -26,7 +26,7 @@ public class Main {
                 //    misJugadores[elem] = 0;
                 //}
 
-                System.out.println(" los nombres deben cumplir una serie de aspectos:\n ·La longitud máxima es de 10 caracteres y la mínima de 4.\n ·La primera letra debe ser mayuscula.\n ·Siempre debe acabar con dos números.");
+                System.out.println(" los nombres deben cumplir una serie de aspectos:\n ·La longitud máxima es de 10 caracteres y la mínima de 5.\n ·La primera letra debe ser mayuscula.\n ·Siempre debe acabar con dos números.");
                 nombreJugadores = new String[numJugadores];                     //El array nombreJugadores tendrá un tamaño especificado por el usuario
                 for (int elem = 0; elem < nombreJugadores.length; elem++) {     //Repasaremos el Array donde almacenaremos los nombres de los jugadores
                     nombreJugadores[elem] = getNombre();                        //En cada posición almacenamos un nombre que es proporcionado por el módulo getNombre()
@@ -38,12 +38,13 @@ public class Main {
                 System.out.println("Nombres recogidos y almacenados.\n");
 
             } else {        //En el caso de que el usuario no quiera cambiar el número y nombre de los jugadores,
-                misJugadores = new int[numJugadores];
+                misJugadores = new int[numJugadores];   //Creamos un Array con el tamaño estandar, 4 jugadores
+                misJugadores[1] = 1;            //A la posición 0, le damos el valor 1, esto nos será util a la hora de seleccionar el orden
 
                 //nombreJugadores = new String{"Amarillo", "Verde", "Rojo", "Naranja"};
-                nombreJugadores = new String[numJugadores];
+                nombreJugadores = new String[numJugadores];   //Creamos un Array con el tamaño estandar, 4 jugadores
                 nombreJugadores[0] = "Amarillo";
-                nombreJugadores[1] = "Verde";
+                nombreJugadores[1] = "Verde";               //Almacenamos una serie de nombres predeterminados
                 nombreJugadores[2] = "Rojo";
                 nombreJugadores[3] = "Naranja";
 
@@ -53,31 +54,30 @@ public class Main {
 
         {
             System.out.println("TIPO DE DADO\n\nPor defecto, el dado usado tiene 6 caras pero puedes cambiarlo si lo deseas.");
-            ans = getRespuestaSN();
-            if (ans == 's') {
-                carasDado = getEnteroMayorQue(2);
+            ans = getRespuestaSN();         //Se recoge la respuesta del usuario
+            if (ans == 's') {               //Si desea cambiar el número de las caras del dado,
+                carasDado = getEnteroMayorQue(2);   //recogemos ese número
             }
             System.out.printf("\nLa partida se desarrollará usando un dado de %d caras.\n\n", carasDado);
         }       //Se pregunta a la persona si desea cambiar de dado
         sc.close();
 
+
+        int[] primeraTirada = dadoAleatorio();                      // Se guarda la primera tirada para calcular el orden de salida
         int almacen = 0;
+        for (int elem = 1; elem < primeraTirada.length; elem++) {       //Se repasa el array con la primera tirada
 
-        int[] primeraTirada = dadoAleatorio();                       // Se guarda la primera tirada para calcular el orden de salida
+            if (primeraTirada[almacen] < primeraTirada[elem]) {         //Este bucle conpara el dado de cada jugador
 
-        for (int elem = 1; elem < primeraTirada.length; elem++) {       //Se repasa
-
-            if (primeraTirada[almacen] < primeraTirada[elem]) {
-
-                misJugadores[almacen] = 0;
+                misJugadores[almacen] = 0;                              //Y se le coloca en misJugadores el valor 1 al primer jugador de la lista que haya sacado el número máximo
                 misJugadores[elem] = 1;
                 almacen = elem;
             }
         }         // Se revisará quién tiene el número más alto
 
         for (int elem = almacen + 1; elem < primeraTirada.length; elem++) {
-            if (primeraTirada[almacen] == primeraTirada[elem]) {
-                misJugadores[elem] = 1;
+            if (primeraTirada[almacen] == primeraTirada[elem]) {        //En el caso de que haya más jugadores con la tirada maxima,
+                misJugadores[elem] = 1;                                 //también se les otorga un 1
             }
         }   //Todos los jugadores que tengan la misma tirada máxima, también tendrán un 1 guardado en misJugadores[]
 
@@ -85,7 +85,7 @@ public class Main {
 
             for (int elem = 0; elem < misJugadores.length; elem++) {
 
-                if (misJugadores[elem] == 1) {          // Si un jugadore esta empatado tendrá un '1'
+                if (misJugadores[elem] == 1) {          // Si un jugador esta empatado tendrá un '1'
                     primeraTirada[elem] = miDado();     // Se le tira otro dado
                 } else {
                     primeraTirada[elem] = 0;            // Si ya ha sido descartado para ocupar la posición de salida, se cambia el valor de su tirada a 0 para facilitar calculos posteriores.
@@ -145,41 +145,54 @@ public class Main {
         int num;
         do {
             System.out.printf("Introduzca un número mayor que %d: ", min - 1);
-            while (!sc.hasNextInt()) {
+            while (!sc.hasNextInt()) {     //Se repetirá hasta que se almacene un entero
                 System.out.println("El dato introducido no es reconocido como un número entero.\nPruebe de nuevo:");
                 sc.next();
             }
             num = sc.nextInt();
-        } while (num < min);
+        } while (num < min);  //En el caso de que no cumpla con el mínimo, se repite.
         sc.nextLine();
+
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'.
 
+    /*    public static char getRespuestaSN() {
+            String respTotal;  //Se almacenara aquí la respuesta
+            do {
+                System.out.print("Responda con 's' o 'n': ");
+                respTotal = sc.next();
+                if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
+                    System.out.println("El carácter introducido no es 's' ni 'n'.");
+                }
+            } while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n"));
+            sc.nextLine();
+
+            return respTotal.toLowerCase().charAt(0);  //Se devuelve la respuesta en minusculas
+        }   //Comprueba que la respuesta sea 's' o 'n'.
+    */
     public static char getRespuestaSN() {
-        //char respuesta;
-        String respTotal;
-        do {
-            System.out.print("Responda con 's' o 'n': ");
+        String respTotal;  //Se almacenara aquí la respuesta
+        System.out.print("Responda con 's' o 'n': ");
+        respTotal = sc.next(); //Se recoge el input
+
+        while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n")) {  //Si no introduce 's' o 'n'
+            System.out.println("El carácter introducido no es 's' ni 'n'.");
+            System.out.print("Pruebe de nuevo: ");                  //Se le pide de nuevo
             respTotal = sc.next();
-            if (respTotal.equalsIgnoreCase("s") && respTotal.equalsIgnoreCase("n")) {
-                System.out.println("El carácter introducido no es 's' ni 'n'.");
-            }
-        } while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n"));
+        }
         sc.nextLine();
 
-        //respuesta = respTotal.toLowerCase().charAt(0);
-        //return respuesta;
-        return respTotal.toLowerCase().charAt(0);
+        return respTotal.toLowerCase().charAt(0);  //Se devuelve la respuesta en minusculas
     }   //Comprueba que la respuesta sea 's' o 'n'.
 
     public static String getNombre() {
-        //String respuesta;
-        //do{
+        String respuesta;
+        do {
             System.out.println("\nIntroduzca un nombre: ");
-            //respuesta = sc.next();
-        //} while (respuesta == null);
-        //System.out.println("fuera");
-        return sc.nextLine();
+            respuesta = sc.nextLine();
+        } while (respuesta.length() <= 1);  //Se comprueba que la respuesta no esté vacia, y que tenga al menos dos caracteres, de está manera no habrá errores en reglasNombres()
+
+        return respuesta;  //Se devuelve lo que se haya escrito
     }   //Devuelve un nombre para un jugador.
 
     public static boolean reglasNombre(String name) {
@@ -192,8 +205,8 @@ public class Main {
             reglasRotas++;
         }
 
-        if (name.length() >= 11 || name.length() <= 3) {        //Se comprueba la longitud del nombre
-            System.out.println("La longitud es incorrecta, los nombre deben incluir más de 3 carcteres y menos de 10.");
+        if (name.length() >= 11 || name.length() <= 4) {        //Se comprueba la longitud del nombre
+            System.out.println("La longitud es incorrecta, los nombre deben incluir más de 4 carcteres y menos de 11.");
             reglasRotas++;
         }
 
@@ -274,7 +287,7 @@ public class Main {
     }   //Reordena a los jugadores.
 
     public static boolean jugadorMeta() {
-        return misJugadores[i] <= 63;
-    }       //Revisará si el jugador que acaba de terminar su turno ha llegado a la meta.
+        return misJugadores[i] <= 63; //Devuelve True mientras no llega a la meta
+    }     //Revisará si el jugador que acaba de terminar su turno ha llegado a la meta.
 
 }

@@ -13,33 +13,34 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Bienvenido al juego de la Oca.\nAntes de simular la partida puede editar algunos valores si lo desea.\n\n");
 
-        char ans;
+        char ans;   //Una variable para almacenar la respuesta del usuario
         {
             System.out.println("NUMERO DE JUGADORES\n\nPor defecto, el juego cuenta con 4 jugadores (Amarillo, Verde, Rojo y Naranja) pero puedes cambiar el número de jugadores y sus nombres se lo deseas.");
-            ans = getRespuestaSN();
+            ans = getRespuestaSN(); //Llamamos al módulo que solo devolverá 's' o 'n'
 
-            if (ans == 's') {
-                numJugadores = getEnteroMayorQue(2);
-                misJugadores = new int[numJugadores];
-                misJugadores[0] = 1;
-                for (int elem = 1; elem < numJugadores; elem++) {
-                    misJugadores[elem] = 0;
-                }
+            if (ans == 's') {       //Si la persona quiere modificar el número de jugadores y sus nombres:
+                numJugadores = getEnteroMayorQue(2);    //El número de jugadores cambiará de 4 al deseado por la persona
+                misJugadores = new int[numJugadores];       //El array misJugadores tendrá un tamaño especificado por el usuario
+                misJugadores[0] = 1;                        //A la posición 0, le damos el valor 1, esto nos será util a la hora de seleccionar el orden
+                //for (int elem = 1; elem < numJugadores; elem++) { //Al resto de posiciones le damos valor 0
+                //    misJugadores[elem] = 0;
+                //}
 
                 System.out.println(" los nombres deben cumplir una serie de aspectos:\n ·La longitud máxima es de 10 caracteres y la mínima de 4.\n ·La primera letra debe ser mayuscula.\n ·Siempre debe acabar con dos números.");
-                nombreJugadores = new String[numJugadores];
-                for (int elem = 0; elem < numJugadores; elem++) {
-                    nombreJugadores[elem] = getNombre();
-                    if (reglasNombre(nombreJugadores[elem])) {
-                        elem--;
+                nombreJugadores = new String[numJugadores];                     //El array nombreJugadores tendrá un tamaño especificado por el usuario
+                for (int elem = 0; elem < nombreJugadores.length; elem++) {     //Repasaremos el Array donde almacenaremos los nombres de los jugadores
+                    nombreJugadores[elem] = getNombre();                        //En cada posición almacenamos un nombre que es proporcionado por el módulo getNombre()
+                    if (reglasNombre(nombreJugadores[elem])) {                  //En el caso de que el nombre no cumpla las reglas,
+                        elem--;                                                 //restamos 1 al indice para que el for repase de nuevo la posición.
                         System.out.println("El nombre no cumple todas las condiciones, pruebe de nuevo.");
                     }
                 }
                 System.out.println("Nombres recogidos y almacenados.\n");
 
-            } else {
+            } else {        //En el caso de que el usuario no quiera cambiar el número y nombre de los jugadores,
                 misJugadores = new int[numJugadores];
 
+                //nombreJugadores = new String{"Amarillo", "Verde", "Rojo", "Naranja"};
                 nombreJugadores = new String[numJugadores];
                 nombreJugadores[0] = "Amarillo";
                 nombreJugadores[1] = "Verde";
@@ -64,7 +65,7 @@ public class Main {
 
         int[] primeraTirada = dadoAleatorio();                       // Se guarda la primera tirada para calcular el orden de salida
 
-        for (int elem = 1; elem < primeraTirada.length; elem++) {
+        for (int elem = 1; elem < primeraTirada.length; elem++) {       //Se repasa
 
             if (primeraTirada[almacen] < primeraTirada[elem]) {
 
@@ -166,7 +167,7 @@ public class Main {
         } while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n"));
         sc.nextLine();
 
-        //respuesta = respTotal.charAt(0);
+        //respuesta = respTotal.toLowerCase().charAt(0);
         //return respuesta;
         return respTotal.toLowerCase().charAt(0);
     }   //Comprueba que la respuesta sea 's' o 'n'.
@@ -182,39 +183,41 @@ public class Main {
     }   //Devuelve un nombre para un jugador.
 
     public static boolean reglasNombre(String name) {
-        int reglasRotas = 0;
-        char firstLetter = name.charAt(0);
-        char firstLetterMin = name.toLowerCase().charAt(0);
-        if (name.length() >= 11 || name.length() <= 3) {
+        int reglasRotas = 0;                    //Variable donde almacenamos si se rompe una regla
+        char letterA = name.charAt(0);                  //Almacenamos la primera letra del nombre introducido
+        char LetterB = name.toLowerCase().charAt(0);    //Al macenamos la primera letra en minusculas
+
+        if (letterA == LetterB) {           //Si la primera letra es igual a ella misma en minuscula
+            System.out.println("La primera letra está en minuscula.");  //Quiere decir que rompe una regla
+            reglasRotas++;
+        }
+
+        if (name.length() >= 11 || name.length() <= 3) {        //Se comprueba la longitud del nombre
             System.out.println("La longitud es incorrecta, los nombre deben incluir más de 3 carcteres y menos de 10.");
             reglasRotas++;
         }
-        if (firstLetter == firstLetterMin) {
-            System.out.println("La primera letra está en minuscula.");
-            reglasRotas++;
-        }
-        firstLetter = name.charAt(name.length() - 1);
-        firstLetterMin = name.charAt(name.length() - 2);
 
-        int caja = 0;
+        letterA = name.charAt(name.length() - 1);   //Se almacena el último caracter del nombre
+        LetterB = name.charAt(name.length() - 2);   //Se almacena el penúltimo caracter del nombre
+        int numExiste = 0;              //En esta variable almacenaremos si el último o penúltimo caracter es un número
         char numA;
         for (int num = 0; num < 10; num++) {
-            num += 48;
-            numA = (char) num;
-            if (firstLetter == numA) {
-                caja++;
+            num += 48;              //Para almacenar el num en un char y realizar la comparación,
+            numA = (char) num;      //necesitamos almacenar el equivalente en código ASCII
+            if (letterA == numA) {          //Comparamos cada número con el último carcter,
+                numExiste++;                //Si coinciden, se suma 1 a la variable numExiste
             }
-            if (firstLetterMin == numA) {
-                caja++;
+            if (LetterB == numA) {          //Comparamos cada número con el penúltimo carcter,
+                numExiste++;                //Si coinciden, se suma 1 a la variable numExiste
             }
             num -= 48;
         }
-        if (caja != 2) {
+        if (numExiste != 2) {       //Si numExiste no ha llegado a 2 quiere decir que uno de los últimos caracteres no era un número
             System.out.println("Los dos últimos caracteres del nombre deben ser números.");
             reglasRotas++;
         }
 
-        return reglasRotas > 0;
+        return reglasRotas > 0;  //Si se rompe una o más reglas se devuelve true
     }   //Devuelve True o False en función de si el nombre introducido cumple las reglas.
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,

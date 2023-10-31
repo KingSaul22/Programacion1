@@ -34,8 +34,8 @@ public class Main {
                     if (reglasNombre(nombreJugadores[nombreTrue])) {                    //En el caso de que el nombre no cumpla las reglas,
                         nombreTrue--;                                                   //restamos 1 al indice para que el for repase de nuevo la posición.
                         System.out.println("El nombre no cumple todas las condiciones, pruebe de nuevo.");
-                    }else if (nombreTrue > 0){                                          //En el caso de que se cumplan las reglas y no sea el primer nombre introducido:
-                        if (nombreRepetido(nombreJugadores[nombreTrue])){               //Se llama al método que comprueba si se ha repetido el nombre.
+                    } else if (nombreTrue > 0) {                                          //En el caso de que se cumplan las reglas y no sea el primer nombre introducido:
+                        if (nombreRepetido(nombreJugadores[nombreTrue])) {               //Se llama al método que comprueba si se ha repetido el nombre.
                             System.out.println("Ese nombre ya esta seleccionado, introduzca otro.");
                             nombreTrue--;                                               //En caso de que esté repetido, restamos 1 al indice para que el for repase de nuevo la posición.
                         }
@@ -162,21 +162,52 @@ public class Main {
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'.
 
+    /*    public static int getEnteroMayorQue(int min) {
+        int num;
+        do {
+            System.out.printf("Introduzca un número mayor que %d: ", min - 1);
+            while (!sc.hasNextInt()) {     //Se repetirá hasta que se almacene un entero
+                System.out.println("El dato introducido no es reconocido como un número entero.\nPruebe de nuevo:");
+                sc.next();
+            }
+            num = sc.nextInt();
+        } while (num < min);  //En el caso de que no cumpla con el mínimo, se repite.
+        sc.nextLine();
+
+        return num;
+    } // Módulo que devuelve un número entero mayor a 'min'.
+*/ //getEnteroMayorQue() Sin recoger el enter, la consola no pararia de bajar si le das enter
+
     public static char getRespuestaSN() {
         String respTotal;  //Se almacenara aquí la respuesta
         System.out.print("Responda con 's' o 'n': ");
-        respTotal = sc.next(); //Se recoge el input
+        do {
+            respTotal = sc.nextLine(); //Se recoge el input
 
-        while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n")) {  //Si no introduce 's' o 'n'
-            System.out.println("El carácter introducido no es 's' ni 'n'.");
-            System.out.print("Pruebe de nuevo: ");                  //Se le pide de nuevo
-            respTotal = sc.next();
-        }
-        sc.nextLine();
+            if (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n")) {
+                System.out.println("No se ha detectado una respuesta valida('s' o 'n').");
+                System.out.print("Pruebe de nuevo: ");                  //Se le pide de nuevo
+            }
+        } while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n"));
 
         return respTotal.toLowerCase().charAt(0);  //Se devuelve la respuesta en minusculas
     }   //Comprueba que la respuesta sea 's' o 'n'.
 
+    /*    public static char getRespuestaSN() {
+            String respTotal;  //Se almacenara aquí la respuesta
+            System.out.print("Responda con 's' o 'n': ");
+            respTotal = sc.next(); //Se recoge el input
+
+            while (!respTotal.equalsIgnoreCase("s") && !respTotal.equalsIgnoreCase("n")) {  //Si no introduce 's' o 'n'
+                System.out.println("El carácter introducido no es 's' ni 'n'.");
+                System.out.print("Pruebe de nuevo: ");                  //Se le pide de nuevo
+                respTotal = sc.next();
+            }
+            sc.nextLine();
+
+            return respTotal.toLowerCase().charAt(0);  //Se devuelve la respuesta en minusculas
+        }   //Comprueba que la respuesta sea 's' o 'n'.
+    */ //GetNombre() Sin recoger el enter, la consola no pararia de bajar si le das enter
     public static String getNombre() {
         String respuesta;
         do {
@@ -225,11 +256,11 @@ public class Main {
         return reglasRotas > 0;  //Si se rompe una o más reglas se devuelve true
     }   //Devuelve True o False en función de si el nombre introducido cumple las reglas.
 
-    public static boolean nombreRepetido(String nombre){
+    public static boolean nombreRepetido(String nombre) {
         int repetido = 0;       //Aquí almacenaremos las veces que se ha repetido el nombre
 
-        for (int copia = nombreTrue -1; copia >= 0; copia--){       //Repasaremos el array desde; la posición del nombre recibido menos 1, hasta la posicion 0
-            if (nombre.equals(nombreJugadores[copia])){             //Si el nombre recibido es igual a uno ya seleccionado,
+        for (int copia = nombreTrue - 1; copia >= 0; copia--) {       //Repasaremos el array desde; la posición del nombre recibido menos 1, hasta la posicion 0
+            if (nombre.equals(nombreJugadores[copia])) {             //Si el nombre recibido es igual a uno ya seleccionado,
                 repetido++;                                         //Se sumará uno al contador repetido.
             }
         }

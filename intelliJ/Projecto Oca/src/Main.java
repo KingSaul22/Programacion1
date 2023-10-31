@@ -149,20 +149,24 @@ public class Main {
 
     public static int getEnteroMayorQue(int min) {
         int num;
+        String datoNum;
         do {
             System.out.printf("Introduzca un número mayor que %d: ", min - 1);
-            while (!sc.hasNextInt()) {     //Se repetirá hasta que se almacene un entero
-                System.out.println("El dato introducido no es reconocido como un número entero.\nPruebe de nuevo:");
-                sc.next();
+            datoNum = sc.nextLine();
+
+            while (datoNum.isEmpty() || soloDigitos(datoNum)) {
+                System.out.print("No se ha podido recoger ningún dato válido, pruebe de nuevo: ");
+                datoNum = sc.nextLine();
             }
-            num = sc.nextInt();
+
+            num = Integer.parseInt(datoNum);
         } while (num < min);  //En el caso de que no cumpla con el mínimo, se repite.
-        sc.nextLine();
+        //sc.nextLine();
 
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'.
 
-    /*    public static int getEnteroMayorQue(int min) {
+    /*  public static int getEnteroMayorQue(int min) {
         int num;
         do {
             System.out.printf("Introduzca un número mayor que %d: ", min - 1);
@@ -176,7 +180,25 @@ public class Main {
 
         return num;
     } // Módulo que devuelve un número entero mayor a 'min'.
-*/ //getEnteroMayorQue() Sin recoger el enter, la consola no pararia de bajar si le das enter
+*/ //getEnteroMayorQue() Sin recoger el enter, la consola no pararia de bajar si le das enter.
+
+    public static boolean soloDigitos(String dato) {
+        int comprobante = 0;
+        char comprobado;
+        for (int numA = 0; numA < dato.length(); numA++) {
+            comprobado = dato.charAt(numA);
+
+            for (int numB = 0; numB < 10; numB++) {
+                numB += 48;
+                if (comprobado == numB){
+                    comprobante++;
+                }
+                numB -= 48;
+            }
+        }
+
+        return comprobante != dato.length();
+    }   //Comprueba que el dato recogido en getEnteroMayorQue() sean solo números.
 
     public static char getRespuestaSN() {
         String respTotal;  //Se almacenara aquí la respuesta
@@ -207,7 +229,7 @@ public class Main {
 
             return respTotal.toLowerCase().charAt(0);  //Se devuelve la respuesta en minusculas
         }   //Comprueba que la respuesta sea 's' o 'n'.
-    */ //GetNombre() Sin recoger el enter, la consola no pararia de bajar si le das enter
+    */ //getRespuestaSN() Sin recoger el enter, la consola no pararia de bajar si le das enter.
     public static String getNombre() {
         String respuesta;
         do {
@@ -265,7 +287,7 @@ public class Main {
             }
         }
         return repetido >= 1;  //Devuelve True si se ha repetido
-    }    //Revisará que no se repita el nombre
+    }    //Revisará que no se repita el nombre.
 
     public static int[] dadoAleatorio() {                               //El módulo dadoAleatorio,
         int[] misTiradas = new int[numJugadores];                       //genera un Array de un tamaño

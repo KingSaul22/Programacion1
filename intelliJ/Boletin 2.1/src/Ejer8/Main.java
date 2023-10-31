@@ -24,10 +24,10 @@ public class Main {
         insertarValor(miArray);
 
         if (contieneValor(miArray, numBuscar)) {
-            if (encontrado==1){
+            if (encontrado == 1) {
                 System.out.printf("El número %d, se encuentra %d veces en el Array.\nSu posición es la siguiente:\n", numBuscar, encontrado);
 
-            }else{
+            } else {
 
                 System.out.printf("El número %d, se encuentra %d veces en el Array.\nSus posiciones son las siguientes:\n", numBuscar, encontrado);
             }
@@ -53,14 +53,16 @@ public class Main {
             }
         }
         if (encontrado >= 1) {
-            int indice=0;
+            int indice = 0;
             arrayEncontrado = new int[encontrado];
             for (int elem = 0; elem < arrayEnteros.length; elem++) {
                 if (arrayEnteros[elem] == buscarNum) {
-                    arrayEncontrado[indice]=elem;
+                    arrayEncontrado[indice] = elem;
                     indice++;
                 }
             }
+        } else {
+            encontrado = -1;
         }
 
         return encontrado > 0;

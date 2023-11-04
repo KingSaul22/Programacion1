@@ -18,7 +18,7 @@ public class Main {
         sc.nextLine();
 
         do {
-            System.out.println("\nIndique si quiere apilar un número desapilar el último introducido('apilar' 'desapilar')");
+            System.out.println("\nIndique si quiere apilar un número o desapilar el último introducido('apilar' 'desapilar')");
             System.out.println("También puede introducir 'exit' para finalizar el programa.");
             ans = sc.nextLine();
 

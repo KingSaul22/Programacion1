@@ -28,7 +28,9 @@ public class Main {
     public static void ordenBurbuja(int[] arrayEnteros) {
         int cajon;
         for (int i = 0; i < arrayEnteros.length - 1; i++) {
+
             for (int elem = 1; elem < arrayEnteros.length - i; elem++) {
+
                 if (arrayEnteros[elem] < arrayEnteros[elem - 1]) {
                     cajon = arrayEnteros[elem];
                     arrayEnteros[elem] = arrayEnteros[elem - 1];

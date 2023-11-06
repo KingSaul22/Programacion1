@@ -1,4 +1,4 @@
-package Ejer4;
+package Ejer5;
 
 import java.util.Scanner;
 
@@ -18,9 +18,7 @@ public class Main {
 
         sc.close();
 
-        imprimirMatriz(miMatriz);
-
-        imprimirMatrizReverse(miMatriz);
+        imprimirMatrizC(miMatriz);
     }
 
     public static void insertarValores(int[][] matriz) {
@@ -33,20 +31,10 @@ public class Main {
         }
     }
 
-    public static void imprimirMatriz(int[][] matriz) {
+    public static void imprimirMatrizC(int[][] matriz) {
         System.out.print("\nLa salida es:");
-        for (int fila = 0; fila < matriz.length; fila++) {
-            for (int colum = 0; colum < matriz[0].length; colum++) {
-
-                System.out.print(" " + matriz[fila][colum]);
-            }
-        }
-    }
-
-    public static void imprimirMatrizReverse(int[][] matriz) {
-        System.out.print("\nLa salida es:");
-        for (int fila = matriz.length - 1; fila >= 0; fila--) {
-            for (int colum = matriz[0].length - 1; colum >= 0; colum--) {
+        for (int colum = 0; colum < matriz[0].length; colum++) {
+            for (int fila = 0; fila < matriz.length; fila++) {
 
                 System.out.print(" " + matriz[fila][colum]);
             }

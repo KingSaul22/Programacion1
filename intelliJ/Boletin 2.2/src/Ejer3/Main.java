@@ -24,7 +24,7 @@ public class Main {
         for (int fila = 0; fila < matriz.length; fila++) {
             for (int colum = 0; colum < matriz[0].length; colum++) {
 
-                System.out.printf("Introduzca un entero para la posición %dx%d:", fila, colum);
+                System.out.printf("Introduzca un entero para la posición %dx%d: ", fila, colum);
                 matriz[fila][colum] = sc.nextInt();
             }
         }

@@ -1,15 +1,15 @@
-package Ejer9;
+package Ejer10;
 
 public class Main {
     public static void main(String[] args) {
 
-        int[][] miMatrizA = {{1, 2, 3}, {2, -2, 2}, {2, -2, 2}, {1, 2, 3}};
+        int[][] miMatrizA = {{3, 2, 3}, {2, -2, 2}, {2, -2, 2}, {-3, 2, -3}};
 
         int[][] miMatrizB = invertirMatriz(miMatrizA);
 
         imprimirMatriz(miMatrizA);
         imprimirMatriz(miMatrizB);
-        comprobarIgualX(miMatrizA, miMatrizB);
+        comprobarIgualY(miMatrizA, miMatrizB);
     }
 
     public static int[][] invertirMatriz(int[][] matriz) {
@@ -18,14 +18,14 @@ public class Main {
         for (int fila = 0; fila < matriz.length; fila++) {
             for (int colum = 0; colum < matriz[0].length; colum++) {
 
-                matrizInv[matrizInv.length - 1 - fila][colum] = matriz[fila][colum];
+                matrizInv[fila][matrizInv[0].length - 1 - colum] = matriz[fila][colum];
             }
         }
 
         return matrizInv;
     }
 
-    public static void comprobarIgualX(int[][] matrizA, int[][] matrizB) {
+    public static void comprobarIgualY(int[][] matrizA, int[][] matrizB) {
         int numDiff = 0;
 
         for (int fila = 0; fila < matrizA.length; fila++) {

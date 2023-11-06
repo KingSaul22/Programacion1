@@ -3,8 +3,8 @@ package Ejer3;
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("Introduzca el número de filas para la matriz.");
         int numFila = sc.nextInt();
@@ -13,19 +13,29 @@ public class Main {
 
         int[][] miMatriz = new int[numFila][numColum];
 
-        for (int fila = 0; fila < miMatriz.length; fila++) {
-            for (int colum = 0; colum < miMatriz[0].length; colum++) {
+        insertarValores(miMatriz);
+
+        sc.close();
+
+        imprimirMatriz(miMatriz);
+    }
+
+    public static void insertarValores(int[][] matriz) {
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int colum = 0; colum < matriz[0].length; colum++) {
 
                 System.out.printf("Introduzca un entero para la posición %dx%d:", fila, colum);
-                miMatriz[fila][colum] = sc.nextInt();
+                matriz[fila][colum] = sc.nextInt();
             }
         }
+    }
 
+    public static void imprimirMatriz(int[][] matriz){
         System.out.print("\nLa salida es:");
-        for (int fila = 0; fila < miMatriz.length; fila++) {
-            for (int colum = 0; colum < miMatriz[0].length; colum++) {
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int colum = 0; colum < matriz[0].length; colum++) {
 
-                System.out.print(" " + miMatriz[fila][colum]);
+                System.out.print(" " + matriz[fila][colum]);
             }
         }
     }

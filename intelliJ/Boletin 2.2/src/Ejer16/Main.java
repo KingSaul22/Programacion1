@@ -2,7 +2,7 @@ package Ejer16;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] miMatriz = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] miMatriz = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 2, 3}, {1, 5, 3}, {7, 5, 9}};
         imprimirMatriz(miMatriz);
 
         int[][] posPares = casillasPares(miMatriz);
@@ -11,22 +11,33 @@ public class Main {
 
     public static int[][] casillasPares(int[][] matriz) {
         int[][] matrizPares = new int[matriz.length][matriz[0].length];
+        int paresADY = 0;
 
         for (int fila = 0; fila < matriz.length; fila++) {
             for (int colum = 0; colum < matriz[0].length; colum++) {
-                if (matriz[fila][colum] % 2 == 0){
 
+                for (int miniF = fila - 1; miniF < fila + 2; miniF++) {
+                    for (int miniC = colum - 1; miniC < colum + 2; miniC++) {
+
+                        if (miniF >= 0 && miniC >= 0 && miniF < matriz.length && miniC < matriz[0].length){
+
+                            if (matriz[miniF][miniC] % 2 == 0){
+                                paresADY++;
+                            }
+
+                        }
+                    }
+                }
+                if (matriz[fila][colum] % 2 ==0){
+                    paresADY--;
                 }
 
-                /*for (int miniF = 0; miniF < matriz.length; miniF++) {
-                    for (int minC = 0; minC < matriz[0].length; minC++) {
-
-
-                    }
-                }*/
+                matrizPares[fila][colum] = paresADY;
+                paresADY = 0;
             }
         }
 
+        return matrizPares;
     }
 
     public static void imprimirMatriz(int[][] matriz) {

@@ -3,25 +3,26 @@ package Ejer9;
 public class Main {
     public static void main(String[] args) {
 
-        int[][] miMatrizA = {{1, 2, 3}, {4, 5, 6}};
+        int[][] miMatrizA = {{1, 2, 3}, {2, -2, 2}, {2, -2, 2}, {1, 2, 3}};
 
         int[][] miMatrizB = invertirMatriz(miMatrizA);
 
         imprimirMatriz(miMatrizA);
         imprimirMatriz(miMatrizB);
+        comprobarIgual(miMatrizA, miMatrizB);
     }
 
-    public static int[][] matrizSuma(int[][] matrizA, int[][] matrizB) {
-        int[][] sumaMatriz= new int[matrizA.length][matrizA[0].length];
+    public static int[][] invertirMatriz(int[][] matriz) {
+        int[][] matrizInv = new int[matriz.length][matriz[0].length];
 
-        for (int fila = 0; fila < matrizA.length; fila++) {
-            for (int colum = 0; colum < matrizA[0].length; colum++) {
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int colum = 0; colum < matriz[0].length; colum++) {
 
-                sumaMatriz[fila][colum] = matrizA[fila][colum] + matrizB[fila][colum];
+                matrizInv[matrizInv.length - 1 - fila][colum] = matriz[fila][colum];
             }
         }
 
-        return sumaMatriz;
+        return matrizInv;
     }
 
     public static void comprobarIgual(int[][] matrizA, int[][] matrizB) {
@@ -37,14 +38,14 @@ public class Main {
         }
 
         if (numDiff >= 1) {
-            System.out.println("Las matrices dadas son diferentes");
+            System.out.println("La matriz dada no es simetrica.");
         } else {
-            System.out.println("Las matrices dadas son iguales");
+            System.out.println("La matriz dada es simetrica.");
         }
     }
 
     public static void imprimirMatriz(int[][] matriz) {
-        System.out.print("\nLa salida es:");
+        System.out.println("\nLa salida es:");
         for (int fila = 0; fila < matriz.length; fila++) {
             for (int colum = 0; colum < matriz[0].length; colum++) {
 

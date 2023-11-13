@@ -31,7 +31,7 @@ public class Main {
                 desapilado();
             } else if (numElem == 10 && ans.equalsIgnoreCase("apilar")) {
                 System.out.println("La pila está completa, no puedes apilar más.");
-            } else if (numElem==0 && ans.equalsIgnoreCase("desapilar")){
+            } else if (numElem == 0 && ans.equalsIgnoreCase("desapilar")) {
                 System.out.println("La pila está vacia, no puedes desapilar más.");
             }
         } while (!ans.equalsIgnoreCase("exit"));

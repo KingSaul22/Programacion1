@@ -25,7 +25,7 @@ public class Main {
 
         if (contieneValor(miArray, numBuscar)) {
             if (encontrado == 1) {
-                System.out.printf("El número %d, se encuentra %d veces en el Array.\nSu posición es la siguiente:\n", numBuscar, encontrado);
+                System.out.printf("El número %d, se encuentra %d vez en el Array.\nSu posición es la siguiente:\n", numBuscar, encontrado);
 
             } else {
 

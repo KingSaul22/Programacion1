@@ -42,7 +42,7 @@ public class Main {
 
             } else {        //En el caso de que el usuario no quiera cambiar el número y nombre de los jugadores,
                 misJugadores = new int[numJugadores];   //Creamos un Array con el tamaño estandar, 4 jugadores
-                misJugadores[1] = 1;            //A la posición 0, le damos el valor 1, esto nos será util a la hora de seleccionar el orden
+                misJugadores[0] = 1;            //A la posición 0, le damos el valor 1, esto nos será util a la hora de seleccionar el orden
 
                 //nombreJugadores = new String{"Amarillo", "Verde", "Rojo", "Naranja"};
                 nombreJugadores = new String[numJugadores];   //Creamos un Array con el tamaño estandar, 4 jugadores
@@ -67,6 +67,7 @@ public class Main {
 
         int[] primeraTirada = dadoAleatorio();                      // Se guarda la primera tirada para calcular el orden de salida
         int almacen = 0;
+
         for (int elem = 1; elem < primeraTirada.length; elem++) {       //Se repasa el array con la primera tirada
 
             if (primeraTirada[almacen] < primeraTirada[elem]) {         //Este bucle conpara el dado de cada jugador
@@ -84,7 +85,6 @@ public class Main {
         }   //Todos los jugadores que tengan la misma tirada máxima, también tendrán un 1 guardado en misJugadores[]
 
         while (repetirTirada()) {
-            //TODO Fix the infinite LOOP.
 
             for (int elem = 0; elem < misJugadores.length; elem++) {
 
@@ -168,7 +168,7 @@ public class Main {
 
             for (int numB = 0; numB < 10; numB++) {
                 numB += 48;
-                if (comprobado == numB){
+                if (comprobado == numB) {
                     comprobante++;
                 }
                 numB -= 48;

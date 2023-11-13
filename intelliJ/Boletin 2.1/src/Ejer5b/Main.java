@@ -1,6 +1,7 @@
 package Ejer5b;
 
 //import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +18,7 @@ public class Main {
         int[] arrayAleatorio = generaArrayAleatorio(numArray);
 
         for (int elem : arrayAleatorio) {
-            System.out.println(elem);
+            System.out.print(" " + elem);
         }
         //System.out.println();
 

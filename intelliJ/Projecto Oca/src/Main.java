@@ -65,7 +65,6 @@ public class Main {
         }           //Se pregunta a la persona si desea cambiar de dado
         sc.close();     //No se usará más el escaner
 
-
         int[] primeraTirada = dadoAleatorio();                      // Se guarda la primera tirada para calcular el orden de salida
         int almacen = 0;
         for (int elem = 1; elem < primeraTirada.length; elem++) {       //Se repasa el array con la primera tirada
@@ -85,6 +84,7 @@ public class Main {
         }   //Todos los jugadores que tengan la misma tirada máxima, también tendrán un 1 guardado en misJugadores[]
 
         while (repetirTirada()) {
+            //TODO Fix the infinite LOOP.
 
             for (int elem = 0; elem < misJugadores.length; elem++) {
 

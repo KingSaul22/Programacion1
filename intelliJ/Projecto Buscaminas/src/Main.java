@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -20,10 +19,14 @@ public class Main {
 
     }
 
-    public static void imprimirMatriz(String[][] matriz) {  //TODO: Realizar una impresión con souf para evitar espacios diferentes para cada casilla.
+    public static void imprimirMatriz(String[][] matriz) {
 
         for (int fila = 0; fila < matriz.length; fila++) {
-            System.out.println(Arrays.toString(matriz[fila]));
+            System.out.print("[");
+            for (int colum = 0; colum < matriz[0].length - 1; colum++) {
+                System.out.printf("%2s, ",matriz[fila][colum]);
+            }
+            System.out.printf("%2s]\n", matriz[fila][matriz[0].length - 1]);
         }
 
     }       //Imprime una matriz dada.
@@ -65,8 +68,8 @@ public class Main {
             matriz[0][i] = String.valueOf(i);
             matriz[i][0] = String.valueOf(i);
         }
-        for (int fila = 1; fila < matriz.length; fila++){
-            for (int colum = 1; colum < matriz[0].length; colum++){
+        for (int fila = 1; fila < matriz.length; fila++) {
+            for (int colum = 1; colum < matriz[0].length; colum++) {
 
                 matriz[fila][colum] = "0";
             }

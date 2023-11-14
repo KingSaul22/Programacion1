@@ -13,14 +13,14 @@ public class Main {
         String ans = sc.nextLine();
         modoJuego(ans);
 
-        int[][] tablero = new int[tamTabla + 1][tamTabla + 1];
-        imprimirMatriz(tablero);
+        String[][] tablero = new String[tamTabla + 1][tamTabla + 1];
 
         rellenoBase(tablero);
+        imprimirMatriz(tablero);
 
     }
 
-    public static void imprimirMatriz(int[][] matriz) {
+    public static void imprimirMatriz(String[][] matriz) {  //TODO: Realizar una impresión con souf para evitar espacios diferentes para cada casilla.
 
         for (int fila = 0; fila < matriz.length; fila++) {
             System.out.println(Arrays.toString(matriz[fila]));
@@ -59,8 +59,17 @@ public class Main {
         System.out.println("\nIniciando modo de juego " + dificultad + ".\nSe procederá a crear una tabla con un tamaño de " + tamTabla + "x" + tamTabla + ".\nUn " + pcMina + "% de sus casillas serán minas.\n");
     }       //Ajusta parametros según dificultad seleccionada
 
-    public static void rellenoBase(int[][] matriz) {
+    public static void rellenoBase(String[][] matriz) {
+        matriz[0][0] = "X";
+        for (int i = 1; i < matriz.length; i++) {
+            matriz[0][i] = String.valueOf(i);
+            matriz[i][0] = String.valueOf(i);
+        }
+        for (int fila = 1; fila < matriz.length; fila++){
+            for (int colum = 1; colum < matriz[0].length; colum++){
 
-
-    }
+                matriz[fila][colum] = "0";
+            }
+        }
+    }       //Ajustes iniciales al tablero.
 }

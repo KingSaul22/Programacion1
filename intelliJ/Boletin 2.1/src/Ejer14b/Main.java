@@ -1,8 +1,8 @@
-package Ejer14;
+package Ejer14b;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main { //TODO: Evitar mover todo el array.
 
     public static int[] cola;
     public static int numElem = 1;

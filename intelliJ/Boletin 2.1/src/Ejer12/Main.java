@@ -27,7 +27,7 @@ public class Main {
 
     public static void ordenBurbuja(int[] arrayEnteros) {
         int cajon;
-        for (int i = 0; i < arrayEnteros.length - 1; i++) {
+        for (int i = 0; i < arrayEnteros.length - 1; i++) { //TODO: Calcular si se puede sumar -2 en lugar de -1
 
             for (int elem = 1; elem < arrayEnteros.length - i; elem++) {
 

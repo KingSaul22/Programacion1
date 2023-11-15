@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Main {
-    //public static int[][] tablero;
     public static Scanner sc = new Scanner(System.in);
     public static int tamTabla;
     public static int numMina;
@@ -12,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Indique la dificultad del juego.");
-        String ans = sc.nextLine();
-        modoJuego(ans);
+        //String ans = sc.nextLine();
+        modoJuego(sc.nextLine());
 
         tablero = new String[tamTabla + 1][tamTabla + 1];
         ubiMinas = new String[tamTabla + 1][tamTabla + 1];
@@ -26,8 +25,8 @@ public class Main {
         generarMinas();
         imprimirMatriz(ubiMinas);
 
-        int filaUser;
-        int columUser;
+        int filaUser;       //Creo dos variables que almacenarán la fila
+        int columUser;      //y columna que el usuario quierre dedspejar.
 
         while (endGame() && minaTocada == 0) {
             System.out.println("Introduzca la fila deseada.");

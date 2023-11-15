@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
+    public static long crono;
     public static int tamTabla;
     public static int numMina;
     public static String[][] tablero;
     public static String[][] ubiMinas;
-    public static int minaTocada = 0;
+    public static boolean minaTocada = false;
 
     public static void main(String[] args) {
 
@@ -28,16 +29,32 @@ public class Main {
         int filaUser;       //Creo dos variables que almacenarán la fila
         int columUser;      //y columna que el usuario quierre dedspejar.
 
-        while (endGame() && minaTocada == 0) {
-            System.out.println("Introduzca la fila deseada.");
-            filaUser = sc.nextInt();
-            System.out.println("Introduzca la columna deseada.");
-            columUser = sc.nextInt();
+        cronometro("iniciar");
 
-            bombaTocada(filaUser, columUser);
-            despejarCasilla(filaUser, columUser);
-            imprimirMatriz(tablero);
+        while (endGame() && !minaTocada) {
+            System.out.print("\nIntroduzca la fila deseada: ");
+            filaUser = sc.nextInt();
+            System.out.print("\nIntroduzca la columna deseada: ");
+            columUser = sc.nextInt();
+            System.out.println();
+
+            if (!bombaTocada(filaUser, columUser)) {
+
+                if (tablero[filaUser][columUser].equals("░░")) {
+                    System.out.println("Esa casilla ya está descubierta, pruebe otra.");
+
+                } else {
+                    despejarCasilla(filaUser, columUser);
+                    imprimirMatriz(tablero);
+                }
+            } else {
+                minaTocada = true;
+                System.out.println("La casilla seleccionada contenia una mina.");
+                tablero[filaUser][columUser] = "XX";
+                imprimirMatriz(tablero);
+            }
         }
+        cronometro("pausar");
     }
 
     public static void imprimirMatriz(String[][] matriz) {
@@ -104,32 +121,58 @@ public class Main {
         for (int i = 0; i < numMina; i++) {
             filRand = (int) ((Math.random() * (ubiMinas.length - 1)) + 1);
             colRand = (int) ((Math.random() * (ubiMinas.length - 1)) + 1);
-            ubiMinas[filRand][colRand] = "MN";
+
+            if (ubiMinas[filRand][colRand].equals("MN")) {
+                i--;
+            } else {
+                ubiMinas[filRand][colRand] = "MN";
+            }
         }
     }       //Se ubican las minas
 
-    public static void bombaTocada(int fil, int col) {
-        if (ubiMinas[fil][col].equals("MN")) {
-            minaTocada++;
-        }
+    public static boolean bombaTocada(int fil, int col) {
+        return ubiMinas[fil][col].equals("MN");
     }
 
     public static void despejarCasilla(int fil, int col) {
 
+        if (ubiMinas[fil][col].equals("██")) {
+            comprobarAlrededor(fil, col);
+        }
+    }
+
+    public static void comprobarAlrededor(int fila, int colum) {
+
+        tablero[fila][colum] = "░░";
 
     }
 
     public static boolean endGame() {
         int oculto = 0;
         for (int fila = 1; fila < tablero.length; fila++) {
-            for (int colum = 1; colum < tablero[0].length - 1; colum++) {
+            for (int colum = 1; colum < tablero[0].length; colum++) {
                 if (tablero[fila][colum].equals("██")) {
                     oculto++;
                 }
             }
         }
-        return oculto > 10;
+
+        return oculto > numMina;
     } //Comprueba si se ha despejado el tablero exitosamente.
     //Puede que no sea necesario teniendo en cuenta que despejarCasilla() comprueba si has tocado una mina o no
+
+    public static void cronometro(String funcion){
+
+        switch (funcion){
+            case "imprimir":
+
+                break;
+            case "iniciar":
+                crono = System.currentTimeMillis();
+                break;
+            case "pausar":
+                crono = System.currentTimeMillis() - crono;
+        }
+    }
 
 }

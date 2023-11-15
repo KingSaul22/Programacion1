@@ -22,7 +22,26 @@ public class Main {
             System.out.println("También puede introducir 'exit' para finalizar el programa.");
             ans = sc.nextLine();
 
-            if (numElem < 10 && ans.equalsIgnoreCase("apilar")) {
+            switch (ans){
+                case "apilar":
+                    if (numElem == 10){
+                        System.out.println("La pila está completa, no puedes apilar más.");
+                    } else {
+                        System.out.println("\nIntroduzca el número a añadir");
+                        numUsuario = sc.nextInt();
+                        sc.nextLine();
+                        apilado(numUsuario);
+                    }
+                    break;
+                case "desapilar":
+                    if (numElem == 0){
+                        System.out.println("La pila está vacia, no puedes desapilar más.");
+                    }else {
+                        desapilado();
+                    }
+            }
+
+            /*if (numElem < 10 && ans.equalsIgnoreCase("apilar")) {
                 System.out.println("\nIntroduzca el número a añadir");
                 numUsuario = sc.nextInt();
                 sc.nextLine();
@@ -36,7 +55,8 @@ public class Main {
 
             } else if (numElem == 0 && ans.equalsIgnoreCase("desapilar")) {
                 System.out.println("La pila está vacia, no puedes desapilar más.");
-            }
+            }*///Ambos métodos funcionan
+
         } while (!ans.equalsIgnoreCase("exit"));
         sc.close();
 

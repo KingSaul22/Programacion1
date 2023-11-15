@@ -13,8 +13,10 @@ public class Main {
         modoJuego(ans);
 
         String[][] tablero = new String[tamTabla + 1][tamTabla + 1];
+        int[][] ubiMinas = new int[tamTabla][tamTabla];
 
         rellenoBase(tablero);
+        generarMinas(ubiMinas);
         imprimirMatriz(tablero);
 
     }
@@ -24,9 +26,10 @@ public class Main {
         for (int fila = 0; fila < matriz.length; fila++) {
             System.out.print("[");
             for (int colum = 0; colum < matriz[0].length - 1; colum++) {
-                System.out.printf("%2s, ",matriz[fila][colum]);
+                System.out.printf("%2s|", matriz[fila][colum]);
             }
             System.out.printf("%2s]\n", matriz[fila][matriz[0].length - 1]);
+
         }
 
     }       //Imprime una matriz dada.
@@ -71,8 +74,12 @@ public class Main {
         for (int fila = 1; fila < matriz.length; fila++) {
             for (int colum = 1; colum < matriz[0].length; colum++) {
 
-                matriz[fila][colum] = "0";
+                matriz[fila][colum] = "██";
             }
         }
     }       //Ajustes iniciales al tablero.
+
+    public static void ubicarMinas(int[][] minas) {
+        
+    }
 }

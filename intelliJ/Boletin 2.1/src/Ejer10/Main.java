@@ -35,13 +35,13 @@ public class Main {
     }
 
     private static int[] killDuplicados(int[] examinar) {
-        int numDuplicados = examinar.length;
+        int tamlimp = examinar.length;
         for (int elem = 1; elem < examinar.length; elem++) {
             if (examinar[elem] == examinar[elem - 1]) {
-                numDuplicados--;
+                tamlimp--;
             }
         }
-        int[] arrayLimpio = new int[numDuplicados];
+        int[] arrayLimpio = new int[tamlimp];
         int indiceLimp=1;
         arrayLimpio[0] = examinar[0];
         for (int elem = 1; elem < examinar.length; elem++) {

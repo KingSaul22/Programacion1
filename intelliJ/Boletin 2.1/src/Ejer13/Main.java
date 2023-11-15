@@ -27,10 +27,13 @@ public class Main {
                 numUsuario = sc.nextInt();
                 sc.nextLine();
                 apilado(numUsuario);
+
             } else if (numElem > 0 && ans.equalsIgnoreCase("desapilar")) {
                 desapilado();
+
             } else if (numElem == 10 && ans.equalsIgnoreCase("apilar")) {
                 System.out.println("La pila está completa, no puedes apilar más.");
+
             } else if (numElem == 0 && ans.equalsIgnoreCase("desapilar")) {
                 System.out.println("La pila está vacia, no puedes desapilar más.");
             }
@@ -46,11 +49,7 @@ public class Main {
         if (numElem == 0) {
             System.out.println("No hay elementos en la pila.");
         } else {
-            System.out.print("Pila -> [" + pila[0]);
-            for (int elem = 1; elem < numElem; elem++) {
-                System.out.print(", " + pila[elem]);
-            }
-            System.out.println("]");
+            imprimirPila();
         }
     }
 
@@ -58,6 +57,10 @@ public class Main {
         pila[numElem] = num;
         numElem++;
 
+        imprimirPila();
+    }
+
+    public static void imprimirPila() {
         System.out.print("Pila -> [" + pila[0]);
         for (int elem = 1; elem < numElem; elem++) {
             System.out.print(", " + pila[elem]);

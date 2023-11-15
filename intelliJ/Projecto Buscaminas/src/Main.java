@@ -13,11 +13,15 @@ public class Main {
         modoJuego(ans);
 
         String[][] tablero = new String[tamTabla + 1][tamTabla + 1];
-        int[][] ubiMinas = new int[tamTabla][tamTabla];
+        String[][] ubiMinas = new String[tamTabla + 1][tamTabla + 1];
 
         rellenoBase(tablero);
-        generarMinas(ubiMinas);
         imprimirMatriz(tablero);
+        System.out.println();
+
+        rellenoBase(ubiMinas);
+        generarMinas(ubiMinas);
+        imprimirMatriz(ubiMinas);
 
     }
 
@@ -61,7 +65,7 @@ public class Main {
                 pcMina = sc.nextInt();
         }
 
-        numMina = (tamTabla ^ 2) * pcMina / 100;
+        numMina = tamTabla * tamTabla * pcMina / 100;
         System.out.println("\nIniciando modo de juego " + dificultad + ".\nSe procederá a crear una tabla con un tamaño de " + tamTabla + "x" + tamTabla + ".\nUn " + pcMina + "% de sus casillas serán minas.\n");
     }       //Ajusta parametros según dificultad seleccionada
 
@@ -79,7 +83,13 @@ public class Main {
         }
     }       //Ajustes iniciales al tablero.
 
-    public static void ubicarMinas(int[][] minas) {
-        
+    public static void generarMinas(String[][] minas) {
+        int filRand;
+        int colRand;
+        for (int i = 0; i < numMina; i++) {
+            filRand = (int) ((Math.random() * (minas.length - 1)) + 1);
+            colRand = (int) ((Math.random() * (minas.length - 1)) + 1);
+            minas[filRand][colRand] = "MN";
+        }
     }
 }

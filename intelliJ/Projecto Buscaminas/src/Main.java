@@ -34,7 +34,7 @@ public class Main {
         while (endGame() && !minaTocada) {
             System.out.print("\nIntroduzca la fila deseada: ");
             filaUser = sc.nextInt();
-            System.out.print("\nIntroduzca la columna deseada: ");
+            System.out.print("Introduzca la columna deseada: ");
             columUser = sc.nextInt();
             System.out.println();
 
@@ -45,12 +45,14 @@ public class Main {
 
                 } else {
                     despejarCasilla(filaUser, columUser);
+                    cronometro("imprimir");
                     imprimirMatriz(tablero);
                 }
             } else {
                 minaTocada = true;
                 System.out.println("La casilla seleccionada contenia una mina.");
                 tablero[filaUser][columUser] = "XX";
+                cronometro("imprimir");
                 imprimirMatriz(tablero);
             }
         }
@@ -58,6 +60,7 @@ public class Main {
     }
 
     public static void imprimirMatriz(String[][] matriz) {
+        //cronometro("imprimir");
 
         for (int fila = 0; fila < matriz.length; fila++) {
             System.out.print("[");
@@ -161,10 +164,23 @@ public class Main {
     } //Comprueba si se ha despejado el tablero exitosamente.
     //Puede que no sea necesario teniendo en cuenta que despejarCasilla() comprueba si has tocado una mina o no
 
-    public static void cronometro(String funcion){
+    public static void cronometro(String funcion) {
 
-        switch (funcion){
+        switch (funcion) {
             case "imprimir":
+                long caja = System.currentTimeMillis() - crono;
+                long hor = caja / 3600000;
+                caja -= hor * 3600000;
+                long min = caja / 60000;
+                caja -= min * 60000;
+                long seg = caja / 1000;
+                caja -= seg * 1000;
+
+                System.out.print("Tiempo transcurrido: ");
+                System.out.print(hor + ":");
+                System.out.print(min + ":");
+                System.out.print(seg + ".");
+                System.out.println(caja);
 
                 break;
             case "iniciar":

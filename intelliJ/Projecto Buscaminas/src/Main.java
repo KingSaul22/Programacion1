@@ -5,6 +5,9 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int tamTabla;
     public static int numMina;
+    public static String[][] tablero;
+    public static String[][] ubiMinas;
+    public static int minaTocada = 0;
 
     public static void main(String[] args) {
 
@@ -12,17 +15,30 @@ public class Main {
         String ans = sc.nextLine();
         modoJuego(ans);
 
-        String[][] tablero = new String[tamTabla + 1][tamTabla + 1];
-        String[][] ubiMinas = new String[tamTabla + 1][tamTabla + 1];
+        tablero = new String[tamTabla + 1][tamTabla + 1];
+        ubiMinas = new String[tamTabla + 1][tamTabla + 1];
 
         rellenoBase(tablero);
         imprimirMatriz(tablero);
         System.out.println();
 
         rellenoBase(ubiMinas);
-        generarMinas(ubiMinas);
+        generarMinas();
         imprimirMatriz(ubiMinas);
 
+        int filaUser;
+        int columUser;
+
+        while (endGame() && minaTocada == 0) {
+            System.out.println("Introduzca la fila deseada.");
+            filaUser = sc.nextInt();
+            System.out.println("Introduzca la columna deseada.");
+            columUser = sc.nextInt();
+
+            bombaTocada(filaUser, columUser);
+            despejarCasilla(filaUser, columUser);
+            imprimirMatriz(tablero);
+        }
     }
 
     public static void imprimirMatriz(String[][] matriz) {
@@ -41,7 +57,7 @@ public class Main {
     public static void modoJuego(String dificultad) {
         int pcMina = 0;
 
-        switch (dificultad) {   //TODO Simplificar el Switch y extraer lo que se pueda.
+        switch (dificultad) {
             case "facil":
                 tamTabla = 10;
                 pcMina = 10;
@@ -83,13 +99,38 @@ public class Main {
         }
     }       //Ajustes iniciales al tablero.
 
-    public static void generarMinas(String[][] minas) {
+    public static void generarMinas() {
         int filRand;
         int colRand;
         for (int i = 0; i < numMina; i++) {
-            filRand = (int) ((Math.random() * (minas.length - 1)) + 1);
-            colRand = (int) ((Math.random() * (minas.length - 1)) + 1);
-            minas[filRand][colRand] = "MN";
+            filRand = (int) ((Math.random() * (ubiMinas.length - 1)) + 1);
+            colRand = (int) ((Math.random() * (ubiMinas.length - 1)) + 1);
+            ubiMinas[filRand][colRand] = "MN";
+        }
+    }       //Se ubican las minas
+
+    public static void bombaTocada(int fil, int col) {
+        if (ubiMinas[fil][col].equals("MN")) {
+            minaTocada++;
         }
     }
+
+    public static void despejarCasilla(int fil, int col) {
+
+
+    }
+
+    public static boolean endGame() {
+        int oculto = 0;
+        for (int fila = 1; fila < tablero.length; fila++) {
+            for (int colum = 1; colum < tablero[0].length - 1; colum++) {
+                if (tablero[fila][colum].equals("██")) {
+                    oculto++;
+                }
+            }
+        }
+        return oculto > 10;
+    } //Comprueba si se ha despejado el tablero exitosamente.
+    //Puede que no sea necesario teniendo en cuenta que despejarCasilla() comprueba si has tocado una mina o no
+
 }

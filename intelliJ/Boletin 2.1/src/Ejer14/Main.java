@@ -2,7 +2,7 @@ package Ejer14;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main { //TODO: Evitar mover todo el array.
 
     public static int[] pila;
     public static int numElem = 1;

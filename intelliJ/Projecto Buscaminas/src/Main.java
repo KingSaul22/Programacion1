@@ -11,9 +11,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Indique la dificultad del juego.");
+        System.out.println("Bienvenido al Buscaminas.\nIndique la dificultad del juego.");
+        System.out.println(" 1) Facil.\n 2) Moderado.\n 3) Dificil.\n 4) Imposisble.\n 5) Custom.\n");
         //String ans = sc.nextLine();
-        modoJuego(sc.nextLine());
+        modoJuego(getEnteroRango(1, 5));
 
         tablero = new String[tamTabla + 1][tamTabla + 1];
         ubiMinas = new String[tamTabla + 1][tamTabla + 1];
@@ -73,35 +74,41 @@ public class Main {
 
     }       //Imprime una matriz dada.
 
-    public static void modoJuego(String dificultad) {
+    public static void modoJuego(int dificultad) {
         int pcMina = 0;
+        String nameDific = null;
 
         switch (dificultad) {
-            case "facil":
+            case 1:
+                nameDific = "facil";
                 tamTabla = 10;
                 pcMina = 10;
                 break;
-            case "moderado":
+            case 2:
+                nameDific = "moderado";
                 tamTabla = 16;
                 pcMina = 15;
                 break;
-            case "dificil":
+            case 3:
+                nameDific = "dificil";
                 tamTabla = 22;
                 pcMina = 25;
                 break;
-            case "imposible":
+            case 4:
+                nameDific = "imposible";
                 tamTabla = 26;
                 pcMina = 35;
                 break;
-            case "custom":
+            case 5:
+                nameDific = "custom";
                 System.out.println("Introduzca el tamaño del lado usado para el tablero cuadrado:");
-                tamTabla = sc.nextInt();
+                tamTabla = getEnteroRango(2, 99);
                 System.out.println("Introduzca el porcentaje de minas que se crearán:");
-                pcMina = sc.nextInt();
+                pcMina = getEnteroRango(1, 90);
         }
 
         numMina = tamTabla * tamTabla * pcMina / 100;
-        System.out.println("\nIniciando modo de juego " + dificultad + ".\nSe procederá a crear una tabla con un tamaño de " + tamTabla + "x" + tamTabla + ".\nUn " + pcMina + "% de sus casillas serán minas.\n");
+        System.out.println("\nIniciando modo de juego " + nameDific + ".\nSe procederá a crear una tabla con un tamaño de " + tamTabla + "x" + tamTabla + ".\nUn " + pcMina + "% de sus casillas serán minas.\n");
     }       //Ajusta parametros según dificultad seleccionada
 
     public static void rellenoBase(String[][] matriz) {
@@ -191,4 +198,39 @@ public class Main {
         }
     }
 
+    public static int getEnteroRango(int min, int max) {
+        int num;
+        String datoNum;     //Recogeremos le número en un String
+        do {
+            System.out.printf("Introduzca un número entre (incluidos) %d y  %d: ", min, max);
+            datoNum = sc.nextLine();
+
+            while (datoNum.isEmpty() || soloDigitos(datoNum)) {     //Si el input está vacio o no son exclusivamente números
+                System.out.print("No se ha podido recoger ningún dato válido, pruebe de nuevo: ");
+                datoNum = sc.nextLine();                            //Recogemos otro input
+            }
+
+            num = Integer.parseInt(datoNum);        //Transformamos a entero el String
+        } while (num < min || num > max);  //En el caso de que no cumpla con el mínimo, se repite.
+
+        return num;
+    } // Módulo que devuelve un número entero mayor a 'min'.
+
+    public static boolean soloDigitos(String dato) {
+        int comprobante = 0;
+        char comprobado;
+        for (int numA = 0; numA < dato.length(); numA++) {
+            comprobado = dato.charAt(numA);
+
+            for (int numB = 0; numB < 10; numB++) {
+                numB += 48;
+                if (comprobado == numB) {
+                    comprobante++;
+                }
+                numB -= 48;
+            }
+        }
+
+        return comprobante != dato.length();
+    }   //Comprueba que el dato recogido en getEnteroMayorQue() sean solo números.
 }

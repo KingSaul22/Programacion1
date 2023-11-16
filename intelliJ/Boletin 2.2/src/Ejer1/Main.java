@@ -5,7 +5,7 @@ public class Main {
         int[][] miMatriz = {{1, 3, 4, -1}, {1, 4, 54, 0}};
 
         if (tieneNegativo(miMatriz)) {
-            System.out.println("Eseta matriz tiene algún valor negativo.");
+            System.out.println("Esta matriz tiene algún valor negativo.");
         } else {
             System.out.println("No tiene nigún valor negativo.");
         }

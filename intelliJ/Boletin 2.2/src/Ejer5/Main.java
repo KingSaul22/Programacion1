@@ -15,9 +15,11 @@ public class Main {
         int[][] miMatriz = new int[numFila][numColum];
 
         insertarValores(miMatriz);
-
+        imprimirMatrizC(miMatriz);
         sc.close();
+        System.out.println();
 
+        insertarValoresAleatorio(miMatriz);
         imprimirMatrizC(miMatriz);
     }
 
@@ -27,6 +29,15 @@ public class Main {
 
                 System.out.printf("Introduzca un entero para la posición %dx%d: ", fila, colum);
                 matriz[fila][colum] = sc.nextInt();
+            }
+        }
+    }
+
+    public static void insertarValoresAleatorio(int[][] matriz) {
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int colum = 0; colum < matriz[0].length; colum++) {
+
+                matriz[fila][colum] = (int) (Math.random() * 11);
             }
         }
     }

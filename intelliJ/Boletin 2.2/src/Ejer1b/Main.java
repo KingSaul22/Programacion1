@@ -1,4 +1,4 @@
-package Ejer1;
+package Ejer1b;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,19 +12,6 @@ public class Main {
     }
 
     public static boolean tieneNegativo(int[][] matriz) {
-        for (int fila = 0; fila < matriz.length; fila++) {
-
-            for (int colum = 0; colum < matriz[0].length; colum++) {
-
-                if (matriz[fila][colum] < 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /*public static boolean tieneNegativoB(int[][] matriz) {
         boolean comprobar = false;
 
         for (int fila = 0; fila < matriz.length && !comprobar; fila++) {
@@ -37,5 +24,5 @@ public class Main {
             }
         }
         return comprobar;
-    }*/     // Mismo método para detectar negativos, con un solo return.
+    }
 }

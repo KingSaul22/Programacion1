@@ -3,12 +3,12 @@ package Ejer15;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Indique la fila a revisar:");
-        int posFila = 0;
+        int posFila = 1;
         System.out.println("Indique la columna a revisar:");
-        int posColum = 2;
+        int posColum = 4;
         System.out.println();
 
-        int[][] miMatriz = new int[6][6];
+        int[][] miMatriz = new int[4][5];
         int i = 1;
         for (int fila = 0; fila < miMatriz.length; fila++) {
             for (int colum = 0; colum < miMatriz[0].length; colum++) {
@@ -27,7 +27,7 @@ public class Main {
     public static int numPosicion(int[][] matriz, int x, int y) {
         int posicion = 1;
 
-        posicion += y * matriz.length;
+        posicion += y * matriz[0].length;
 
         posicion += x;
 

@@ -3,6 +3,8 @@ package Ejer1;
 public class Main {
     public static void main(String[] args) {
         int[][] miMatriz = {{1, 3, 4, -1}, {1, 4, 54, 0}};
+        System.out.println(miMatriz.length);
+        System.out.println(miMatriz[0].length);
 
         if (tieneNegativo(miMatriz)) {
             System.out.println("Esta matriz tiene algún valor negativo.");

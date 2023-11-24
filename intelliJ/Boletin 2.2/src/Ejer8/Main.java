@@ -25,12 +25,14 @@ public class Main {
     }
 
     public static void imprimirMatriz(int[][] matriz) {
-        System.out.print("\nLa salida es:");
+        System.out.println("\nLa salida es:");
         for (int fila = 0; fila < matriz.length; fila++) {
-            for (int colum = 0; colum < matriz[0].length; colum++) {
+            System.out.printf("[%2d", matriz[fila][0]);
+            for (int colum = 1; colum < matriz[0].length; colum++) {
 
-                System.out.print(" " + matriz[fila][colum]);
+                System.out.printf(", %2d", matriz[fila][colum]);
             }
+            System.out.println("]");
         }
     }
 }

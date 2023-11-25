@@ -26,7 +26,7 @@ public class Main {
         System.out.println(Arrays.toString(miArrayGood));
     }
 
-    private static void insertarValor(int[] arrayEnteros) {
+    protected static void insertarValor(int[] arrayEnteros) {
 
         for (int elem = 0; elem <= arrayEnteros.length - 1; elem++) {
 

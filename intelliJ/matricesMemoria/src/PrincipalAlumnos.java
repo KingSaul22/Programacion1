@@ -67,6 +67,23 @@ public class PrincipalAlumnos {
      */
     private static void randomizeMatrix(char[][] matriz) {
         // Una vez rellena la matriz, la desordenamos
+        char caja;
+        int a, b;
+
+        for (int i=0; i < matriz.length; i++){
+            for (int j=0; j< matriz.length; j++){
+
+                a = (int) (Math.random() * matriz.length);
+                b = (int) (Math.random() * matriz.length);
+
+                caja = matriz[i][j];
+                matriz[i][j] = matriz[a][b];
+                matriz[a][b] = caja;
+            }
+        }
+
+
+
 
     }
 

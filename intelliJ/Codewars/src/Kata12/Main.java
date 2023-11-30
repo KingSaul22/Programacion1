@@ -38,8 +38,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        long a = 88L;
-        long b = 91L;
+        long a = 8L;
+        long b = 15L;
 
         System.out.println(sumDigPow(a, b));
     }
@@ -74,21 +74,19 @@ public class Main {
             auxElem = 0;
             for (long i = (long) Math.log10(a); i >= 0; i--) {
                 elem = posElem;
-
-                for (long j = 1; j <= i; j++) {
+                for (long j = (long) Math.log10(a); j > i; j--) {
                     elem /= 10;
                 }
                 elem -= auxElem;
                 auxElem = 10 * (auxElem + elem);
 
                 box = elem;
-                for (int j = 0; j <= i; j++){
+                for (int j = (int) Math.log10(a); j > i; j--){
 
                     box *= elem;
                 }
-                System.out.println(box);
                 ans += box;
-                System.out.println("N" + ans);
+                box = 0;
             }
 
             if (ans == posElem) eureka.add(posElem);

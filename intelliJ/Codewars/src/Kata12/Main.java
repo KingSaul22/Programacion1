@@ -38,13 +38,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        long a = 8L;
-        long b = 15L;
+        long a = 135L;
+        long b = 135L;
 
         System.out.println(sumDigPow(a, b));
+        System.out.println(sumDigPow3(a, b));
     }
 
-    public static List<Long> sumDigPow2(long a, long b) {
+    /*public static List<Long> sumDigPow2(long a, long b) {
         List<Long> eureka = null;
         long elem = 0, auxElem = 0;
 
@@ -63,9 +64,9 @@ public class Main {
 
         // your code
         return eureka;
-    }
+    }*/
 
-    public static List<Long> sumDigPow(long a, long b) {
+    public static List<Long> sumDigPow3(long a, long b) {
         List<Long> eureka = new ArrayList<>();
         long elem, auxElem, box, ans = 0;
 
@@ -91,6 +92,34 @@ public class Main {
 
             if (ans == posElem) eureka.add(posElem);
             ans = 0;
+        }
+
+        // your code
+        return eureka;
+    }
+
+    public static List<Long> sumDigPow(long a, long b) {
+        List<Long> eureka = new ArrayList<>();
+        long ans = 0L;
+        int box;
+        String number;
+
+        for (long numList = a; numList <= b; numList++) {
+            number = Integer.toString((int) numList);
+            ans = 0L;
+
+            for (int i = 0; i < number.length(); i++) {
+
+                box = (int) (number.charAt(i)) - 48;
+
+                for (int j = 0; j < i; j++){
+                    box *= (int) (number.charAt(i)) - 48;
+                }
+
+                ans += (long) box;
+            }
+
+            if (ans == numList) eureka.add(numList);
         }
 
         // your code

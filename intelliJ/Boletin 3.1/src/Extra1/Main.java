@@ -37,7 +37,7 @@ public class Main {
         Avion avion1 = new Avion(depo1, 13, "Coca-Cola", "Zero-Zero");
         System.out.println(avion1);
 
-        Revision revi1_a = new Revision(LocalDateTime.of(2023, 10, 12, 21,01), 6);
+        Revision revi1_a = new Revision(LocalDateTime.of(2023, 10, 12, 21, 1), 6);
         avion1.addRevision(revi1_a);
         System.out.println(avion1);
 

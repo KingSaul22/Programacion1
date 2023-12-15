@@ -13,9 +13,9 @@ public class Revision {
         if (fecha.isBefore(LocalDateTime.now())) {
             this.fecha = fecha;
 
-            if (getValidezMes() > 0) {
+            /*if (getValidezMes() > 0) {
                 this.estado = true;
-            }
+            }*/
 
             this.validezMes = duracionValidez;
         }
@@ -23,11 +23,11 @@ public class Revision {
 
     }
 
-    public int getValidezMes() {//TODO continuar aquí.
+    /*public int getValidezMes() {//TODO continuar aquí.
         LocalDateTime auxFecha ? : ;
 
         return;
-    }
+    }*/
 
     public LocalDateTime getFecha() {
 

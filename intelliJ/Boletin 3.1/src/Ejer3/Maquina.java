@@ -2,9 +2,9 @@ package Ejer3;
 
 public class Maquina {
 
-    private static final int MAX_DEPOS_CAFE = 100;
+    private static final int MAX_DEPOS_CAFE = 50;
     private static final int MAX_DEPOS_LECHE = 50;
-    private static final int MAX_DEPOS_VASOS = 150;
+    private static final int MAX_DEPOS_VASOS = 80;
     private static final double MONEDERO_INICIAL = 150;
     protected static final double PRECIO_CAFE = 1;
     protected static final double PRECIO_LECHE = 0.8;
@@ -38,5 +38,12 @@ public class Maquina {
         cafeRestante = MAX_DEPOS_CAFE;
         lecheRestante = MAX_DEPOS_LECHE;
         vasosRestante = MAX_DEPOS_VASOS;
+    }
+
+    @Override
+    public String toString() {
+        return "Los depositos de la máquina de café se encuentran en el siguiente estado:\n Café: " + cafeRestante +
+                "\n Leche: " + lecheRestante + "\n Vasos: " + vasosRestante +
+                "\n Monedero: " + monedero;
     }
 }

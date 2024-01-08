@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Maquina a = new Maquina();
+
         int opcionEscogida;
         Scanner sc = new Scanner(System.in);
 
@@ -22,7 +24,7 @@ public class Main {
 
                     break;
                 case 4:
-
+                    System.out.println(a);
                     break;
                 default:
                     System.out.println("Tenga un buen día, agente.");

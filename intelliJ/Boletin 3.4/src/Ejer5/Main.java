@@ -22,7 +22,7 @@ public class Main {
 
     private static String reemplazaExpresion(String frase, String reemplazado, String reemplazador) {
         StringBuilder str = new StringBuilder(frase);
-        
+
         //for (int i = str.indexOf(reemplazado); i != -1; i += reemplazador.length()) {
         for (int i = 0; i != -1; i += reemplazador.length()) {
             i = str.indexOf(reemplazado, i);

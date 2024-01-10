@@ -9,20 +9,23 @@ public class Main {
         System.out.println("Introduzca una frase");
         String sentence = sc.nextLine();
 
-        System.out.println("Introduzca la palabra escondida");
+        System.out.println("\nIntroduzca la palabra escondida");
         String word = sc.nextLine();
 
-        if (encontrarPalabra(sentence.toLowerCase(), word.toLowerCase())) {
-            System.out.println("La palabra se ha encontrado.");
+        if (encontrarPalabra(sentence, word)) {
+            System.out.println("\nLa palabra se ha encontrado.");
         } else {
-            System.out.println("La palabra no se ha encontrado");
+            System.out.println("\nLa palabra no se ha encontrado");
         }
     }
 
     private static boolean encontrarPalabra(String cadena, String palabra) {
+        cadena = cadena.toLowerCase();
+        palabra = palabra.toLowerCase();
 
         int auxWord = 0;
         for (int i = 0; i < cadena.length() && auxWord < palabra.length(); i++) {
+
             if (cadena.charAt(i) == palabra.charAt(auxWord)) {
                 auxWord++;
             }

@@ -14,7 +14,8 @@ public class Main {
 
         int auxWord = 0;
         for (int i = 0; i < frase.length() && auxWord < word.length(); i++) {
-            if (frase.charAt(i) == word.charAt(auxWord)) {
+
+            if (frase.toLowerCase().charAt(i) == word.toLowerCase().charAt(auxWord)) {
                 auxWord++;
             }
         }

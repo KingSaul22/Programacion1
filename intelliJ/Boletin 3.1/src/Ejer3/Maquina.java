@@ -40,6 +40,10 @@ public class Maquina {
         vasosRestante = MAX_DEPOS_VASOS;
     }
 
+    public void vaciarMonedero() {
+        monedero = 0;
+    }
+
     @Override
     public String toString() {
         return "Los depositos de la máquina de café se encuentran en el siguiente estado:\n Café: " + cafeRestante +

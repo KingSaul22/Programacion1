@@ -13,8 +13,16 @@ public class Main {
         String word = sc.nextLine();
 
         int auxWord = 0;
-        for (int i = 0; i < frase.length(); i++) {
+        for (int i = 0; i < frase.length() && auxWord < word.length(); i++) {
+            if (frase.charAt(i) == word.charAt(auxWord)) {
+                auxWord++;
+            }
+        }
 
+        if (auxWord == word.length()) {
+            System.out.println("La palabra se ha encontrado.");
+        } else {
+            System.out.println("La palabra no se ha encontrado");
         }
     }
 }

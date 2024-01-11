@@ -21,54 +21,79 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        int[][] arrayTest = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        //int[][] arrayTest = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] arrayTest = {{}};
 
         System.out.println(Arrays.toString(snail(arrayTest)));
     }
 
     public static int[] snail(int[][] array) {
+        if (array.length == 1 && array[0].length == 0) return new int[]{};
+
+
         int[] snail = new int[array.length * array.length];
         boolean[][] auxSnail = new boolean[array.length][array.length];
         int contSnail = 0;
-
-        //Si trazas lineas segun el orden, se crearán (n+n -1) lineas.
-        int numIteraciones = 2 * array.length - 1;
-        int auxiteracion = 0;
-
         int fila = 0, colum = 0;
 
-        //System.arraycopy(array[0], 0, snail, 0, array.length);
-        for (int i = 0; i < array.length; i++) {
-            snail[i] = array[0][i];
-            auxSnail[0][i] = true;
-        }
+        int numIteraciones = 2 * array.length - 1;
+        int auxIteracion = 0;
+
 
         for (int i = 0; i < numIteraciones; i++) {
-            switch (auxiteracion) {
-                case 0:
 
+            switch (auxIteracion) {
+                case 0:
                     do {
-                        snail[contSnail] =array[fila][colum];
+                        snail[contSnail] = array[fila][colum];
+                        auxSnail[fila][colum] = true;
 
                         contSnail++;
                         colum++;
                     } while (colum < array.length && !auxSnail[fila][colum]);
 
                     colum--;
-                    auxiteracion++;
+                    fila++;
+                    auxIteracion++;
                     break;
                 case 1:
+                    do {
+                        snail[contSnail] = array[fila][colum];
+                        auxSnail[fila][colum] = true;
 
-                    auxiteracion++;
+                        contSnail++;
+                        fila++;
+                    } while (fila < array.length && !auxSnail[fila][colum]);
+
+                    fila--;
+                    colum--;
+                    auxIteracion++;
                     break;
                 case 2:
+                    do {
+                        snail[contSnail] = array[fila][colum];
+                        auxSnail[fila][colum] = true;
 
+                        contSnail++;
+                        colum--;
+                    } while (colum >= 0 && !auxSnail[fila][colum]);
 
-                    auxiteracion++;
+                    colum++;
+                    fila--;
+                    auxIteracion++;
                     break;
                 case 3:
+                    do {
+                        snail[contSnail] = array[fila][colum];
+                        auxSnail[fila][colum] = true;
 
-                    auxiteracion = 0;
+                        contSnail++;
+                        fila--;
+                    } while (fila >= 0 && !auxSnail[fila][colum]);
+
+                    fila++;
+                    colum++;
+                    auxIteracion = 0;
             }
         }
 

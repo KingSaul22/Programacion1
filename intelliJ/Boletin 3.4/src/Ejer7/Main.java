@@ -1,7 +1,6 @@
 package Ejer7;
 
 import java.util.Scanner;
-
 import static java.lang.Character.toLowerCase;
 
 public class Main {
@@ -14,7 +13,6 @@ public class Main {
         sc.close();
 
         System.out.println("\n" + moverVocales(frase));
-
     }
 
     private static String moverVocales(String cadena) {
@@ -23,7 +21,6 @@ public class Main {
 
         for (int i = 0; i < str.length(); i++) {
 
-            //if (toLowerCase(str.charAt(auxCadena)) == [aeiou]){
             //TODO: No detecta acentos.
             if (String.valueOf(toLowerCase(str.charAt(auxCadena))).matches("[aeiou]")) {
 
@@ -33,7 +30,6 @@ public class Main {
                 auxCadena++;
             }
         }
-
 
         return String.valueOf(str);
     }

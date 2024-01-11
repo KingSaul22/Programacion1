@@ -32,7 +32,8 @@ public class Main {
                 str.insert(i, reemplazador);
 
             } else {
-                i = -1 - reemplazador.length();
+                //i = -1 - reemplazador.length();
+                break;
             }
         }
 

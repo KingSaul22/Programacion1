@@ -35,7 +35,6 @@ public class Main {
         int numbers = observed.length();
         String[] adjacentsNumber = getAdjacents(observed);
 
-        //TODO: Crear matriz con cada numero del String observed y sus vecinos (vertical y horizontal).
         //TODO: Crear for dentro de for u con un contador externo para conseguir cada variación.
 
         return null;
@@ -57,7 +56,7 @@ public class Main {
         //for (int i = 0; i < base.length(); i++) {
 
         for (int fila = 0; fila < keypad.length && letter < base.length(); fila++) {
-            for (int colum = 0; colum < keypad[0].length && letter < base.length(); colum++) {
+            for (int colum = 0; colum < keypad[0].length; colum++) {
 
                 if (base.charAt(letter) == keypad[fila][colum]) {
                     adjacent[letter] = String.valueOf(keypad[fila][colum]);

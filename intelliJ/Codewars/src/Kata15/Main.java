@@ -49,7 +49,7 @@ public class Main {
         //Maybe while
         //for (int a = 0;)
 
-        
+
 
 
 

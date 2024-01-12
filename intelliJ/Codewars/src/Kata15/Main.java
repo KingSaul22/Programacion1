@@ -32,10 +32,16 @@ public class Main {
     }
 
     public static List<String> getPINs(String observed) {
+        int numbers = observed.length();
+        String[] diffNumber = new String[numbers];
 
         //TODO: Crear matriz con cada numero del String observed y sus vecinos (vertical y horizontal).
         //TODO: Crear for dentro de for u con un contador externo para conseguir cada variación.
 
         return null;
     } // getPINs
+
+    private static String getAdjacents(int base) {
+        
+    }
 }

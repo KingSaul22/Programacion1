@@ -12,7 +12,7 @@ import java.util.List;
  * │ 1 │ 2 │ 3 │<p>
  * │ 4 │ 5 │ 6 │<p>
  * │ 7 │ 8 │ 9 │<p>
- * │ X │ 0 │<p>
+ * │ X │ 0 │ X │<p>
  * He noted the PIN 1357, but he also said, it is possible that each of the digits he saw could actually be another adjacent digit (horizontally or vertically, but not diagonally). E.g. instead of the 1 it could also be the 2 or 4. And instead of the 5 it could also be the 2, 4, 6 or 8.
  * <p>
  * He also mentioned, he knows this kind of locks. You can enter an unlimited amount of wrong PINs, they never finally lock the system or sound the alarm. That's why we can try out all possible (*) variations.
@@ -33,7 +33,7 @@ public class Main {
 
     public static List<String> getPINs(String observed) {
         int numbers = observed.length();
-        String[] diffNumber = new String[numbers];
+        String[] adjacentsNumber = getAdjacents(observed);
 
         //TODO: Crear matriz con cada numero del String observed y sus vecinos (vertical y horizontal).
         //TODO: Crear for dentro de for u con un contador externo para conseguir cada variación.
@@ -41,7 +41,53 @@ public class Main {
         return null;
     } // getPINs
 
-    private static String getAdjacents(int base) {
-        
+    private static String[] getAdjacents(String base) {
+        char[][] keypad = {
+                {'1', '2', '3'},
+                {'4', '5', '6'},
+                {'7', '8', '9'},
+                {'x', '0', 'x'}
+        };
+
+        String[] adjacent = new String[base.length()];
+        int letter = 0;
+        int ejeX, ejeY;
+
+
+        //for (int i = 0; i < base.length(); i++) {
+
+        for (int fila = 0; fila < keypad.length && letter < base.length(); fila++) {
+            for (int colum = 0; colum < keypad[0].length && letter < base.length(); colum++) {
+
+                if (base.charAt(letter) == keypad[fila][colum]) {
+                    adjacent[letter] = String.valueOf(keypad[fila][colum]);
+
+                    if (fila > 0)
+                        adjacent[letter] += String.valueOf(keypad[fila - 1][colum]);
+
+                    if (fila < 3 && !(fila == 2 && (colum == 0 || colum == 2)))
+                        adjacent[letter] += String.valueOf(keypad[fila + 1][colum]);
+
+                    if (colum > 0 && fila != 3)
+                        adjacent[letter] += String.valueOf(keypad[fila][colum - 1]);
+
+                    if (colum < 2 && fila != 3)
+                        adjacent[letter] += String.valueOf(keypad[fila][colum + 1]);
+
+
+                    letter++;
+                    // break? continue? fila/colum = 0 o = -1...
+                    fila = -1;
+                    break;
+                }
+            }
+        }
+
+
+        //}
+
+        return adjacent;
     }
+
+
 }

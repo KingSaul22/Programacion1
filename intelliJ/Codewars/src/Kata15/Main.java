@@ -1,5 +1,6 @@
 package Kata15;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,16 +29,34 @@ public class Main {
 
     public static void main(String[] args) {
 
-        getPINs("1357");
+        getPINs("11");
     }
 
     public static List<String> getPINs(String observed) {
         int numbers = observed.length();
         String[] adjacentsNumber = getAdjacents(observed);
+        int combination = 1;
+
+        //La formula que me indica la longitud de la lista es: adjacentsNumber[i].length() * adjacentsNumber[i + 1].length() ...
+        for (int i = 0; i < adjacentsNumber.length; i++) {
+
+            combination *= adjacentsNumber[i].length();
+        }
+
+        List<String> listPin = new ArrayList<>(combination);
 
         //TODO: Crear for dentro de for u con un contador externo para conseguir cada variación.
+        //Maybe while
+        //for (int a = 0;)
 
-        return null;
+        
+
+
+
+
+
+
+        return listPin;
     } // getPINs
 
     private static String[] getAdjacents(String base) {
@@ -50,40 +69,32 @@ public class Main {
 
         String[] adjacent = new String[base.length()];
         int letter = 0;
-        int ejeX, ejeY;
-
-
-        //for (int i = 0; i < base.length(); i++) {
 
         for (int fila = 0; fila < keypad.length && letter < base.length(); fila++) {
             for (int colum = 0; colum < keypad[0].length; colum++) {
-
+                //TODO: Conseguir que los numeros se ordenen de menor a mayor(los numeros dentro de una posición)
                 if (base.charAt(letter) == keypad[fila][colum]) {
                     adjacent[letter] = String.valueOf(keypad[fila][colum]);
 
                     if (fila > 0)
                         adjacent[letter] += String.valueOf(keypad[fila - 1][colum]);
 
-                    if (fila < 3 && !(fila == 2 && (colum == 0 || colum == 2)))
-                        adjacent[letter] += String.valueOf(keypad[fila + 1][colum]);
-
                     if (colum > 0 && fila != 3)
                         adjacent[letter] += String.valueOf(keypad[fila][colum - 1]);
+
+                    if (fila < 3 && !(fila == 2 && (colum == 0 || colum == 2)))
+                        adjacent[letter] += String.valueOf(keypad[fila + 1][colum]);
 
                     if (colum < 2 && fila != 3)
                         adjacent[letter] += String.valueOf(keypad[fila][colum + 1]);
 
 
                     letter++;
-                    // break? continue? fila/colum = 0 o = -1...
                     fila = -1;
                     break;
                 }
             }
         }
-
-
-        //}
 
         return adjacent;
     }

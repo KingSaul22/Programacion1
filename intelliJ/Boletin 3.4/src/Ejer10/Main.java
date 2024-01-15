@@ -1,6 +1,7 @@
 package Ejer10;
 
 import java.util.Scanner;
+import static java.lang.Character.isLetter;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,6 +23,8 @@ public class Main {
     private static boolean isValidWeb(String web) {
 
         if (!web.startsWith("https://www.")) return false;
+        if (!web.endsWith(".com") && !web.endsWith(".es")) return false;
+        if (!isLetter(web.charAt(10))) return false;
 
         //TODO: Establecer reglas.
         return true;

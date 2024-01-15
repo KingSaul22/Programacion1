@@ -11,7 +11,7 @@ public class Main {
         System.out.println("Introduzca una dirección web:");
         cadena = sc.nextLine();
 
-        while (!isValidWeb(cadena)) {
+        while (!isValidWeb(cadena)) {//TODO: Establecer que el usuario introduzca 10 webs.
             System.out.println("\nNo es una web valida, pruebe de nuevo.");
             cadena = sc.nextLine();
         }
@@ -26,7 +26,6 @@ public class Main {
         if (!web.endsWith(".com") && !web.endsWith(".es")) return false;
         if (!isLetter(web.charAt(10))) return false;
 
-        //TODO: Establecer reglas.
         return true;
     }
 }

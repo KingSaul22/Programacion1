@@ -26,6 +26,8 @@ public class Main {
         if (!web.endsWith(".com") && !web.endsWith(".es")) return false;
         if (!isLetter(web.charAt(10))) return false;
 
+        //TODO: La dirección debe contener solo letras o digitos.
+
         return true;
     }
 }

@@ -1,7 +1,9 @@
 package Ejer10;
 
 import java.util.Scanner;
+
 import static java.lang.Character.isLetter;
+import static java.lang.Character.isDigit;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +25,22 @@ public class Main {
     private static boolean isValidWeb(String web) {
 
         if (!web.startsWith("https://www.")) return false;
-        if (!web.endsWith(".com") && !web.endsWith(".es")) return false;
-        if (!isLetter(web.charAt(10))) return false;
+        if (!isLetter(web.charAt(12))) return false;
+
+        StringBuilder direccion = new StringBuilder(web).delete(0, 12);
+
+        if (web.endsWith(".com")) {
+            direccion.delete(direccion.length() - 4, direccion.length());
+
+        } else if (web.endsWith(".es")) {
+            direccion.delete(direccion.length() - 3, direccion.length());
+
+        } else return false;
+
+        for (int i = 1; i < direccion.length(); i++) {
+
+            if (!isLetter(direccion.charAt(i)) || !isDigit(direccion.charAt(i))) return false;
+        }
 
         //TODO: La dirección debe contener solo letras o digitos.
 

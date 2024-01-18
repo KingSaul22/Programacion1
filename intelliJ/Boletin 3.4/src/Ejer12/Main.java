@@ -22,7 +22,7 @@ public class Main {
             }
 
             System.out.println("¿Desea intentar otra dirección? \n(s / n)");
-        } while (sc.nextLine().equals("s"));
+        } while (sc.nextLine().equalsIgnoreCase("s"));
         sc.close();
     }
 
@@ -55,7 +55,7 @@ public class Main {
 
             //if (usuario.matches(".*" + "[a-zA-Z0-9.]" + ".*")) {
             char character;
-            for (int i = 0; i < usuario.length(); i++) {
+            for (int i = 1; i < usuario.length(); i++) {
                 character = usuario.charAt(i);
 
                 if (!isDigit(character) && !isLetter(character) && character != '.') {
@@ -92,12 +92,14 @@ public class Main {
                       · Solo puede formarse por letras y números.\
                     """);
 
-        } else if (organizacionFin.split(".", 3).length > 2) {
+
+            //} else if (organizacionFin.split("\\.", 3).length > 2) {
+        } else if (organizacionFin.indexOf(".") != organizacionFin.lastIndexOf(".")) {
             validez = false;
             System.out.println("Se han detectado caracteres invalidos.");
 
         } else {
-            String organizacion = organizacionFin.split(".", 2)[0];
+            String organizacion = organizacionFin.split("\\.", 2)[0];
 
             for (int i = 1; i < organizacion.length(); i++) {
 
@@ -110,8 +112,36 @@ public class Main {
                             """);
                     break;
                 }
-            }
+            } //Valida la parte 'organización'
 
+            //String fin = organizacionFin.split("\\.", 2)[1].replaceFirst(".", "");
+            String fin = organizacionFin.split("\\.", 2)[1];
+
+            if (fin.length() > 3 || fin.length() < 2) {
+                validez = false;
+
+                System.out.println("""
+                        La terminación del correo no cumple con el correcto formato:
+                          · Estar formado explusivamente por letras.
+                          · Tener una longitud de 2 o 3 caracteres.
+                        """);
+
+            } else {
+                for (int i = 0; i < fin.length(); i++) {
+
+                    if (!isLetter(fin.charAt(i))) {
+                        validez = false;
+
+                        System.out.println("""
+                                La terminación del correo no cumple con el correcto formato:
+                                  · Estar formado explusivamente por letras.
+                                  · Tener una longitud de 2 o 3 caracteres.
+                                """);
+
+                        break;
+                    }
+                }
+            }
         }
 
 

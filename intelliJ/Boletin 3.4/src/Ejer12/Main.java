@@ -15,10 +15,10 @@ public class Main {
             correo = sc.nextLine();
 
             if (correoIsValid(correo)) {
-                System.out.println("Su correo es valido.");
+                System.out.println("\nSu correo es valido.");
 
             } else {
-                System.out.println("Correo no valido.");
+                System.out.println("\nCorreo no valido.");
             }
 
             System.out.println("¿Desea intentar otra dirección? \n(s / n)");

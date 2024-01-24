@@ -9,7 +9,7 @@ public class Pixel {
 
     private void setFuncional() {
 
-        if ((int) (Math.random() * 101) > 3) funcional = true;
+        if (Math.random() * 100 > 3) funcional = true;
     }
 
     public void setRed(int red) {

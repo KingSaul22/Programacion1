@@ -18,7 +18,7 @@ public class Televisor {
     }
 
     private void generarPanel() {
-        pxTelevisor = new Pixel[width][height];
+        pxTelevisor = new Pixel[height][width];
         int numDefectuoso = 0;
 
         for (int fila = 0; fila < height; fila++) {
@@ -98,7 +98,7 @@ public class Televisor {
         return mediaColor = mediaColor + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
     } //Método que calcula el color promedio.
 
-    public String conectar(Dispositivo dispositivo) {
+    public String conectar(Dispositivo dispositivo) throws DispositivoNoCompatibleException{
         boolean compatibleProt = false;
         boolean compatibleConex = false;
 
@@ -125,10 +125,17 @@ public class Televisor {
         }
 
 
+        if (!compatibleConex && !compatibleProt) {
+            throw new DispositivoNoCompatibleException("00");
 
-        if (compatibleProt && compatibleConex) {
+        } else if (!compatibleConex) {
+            throw new DispositivoNoCompatibleException("01");
 
-            return "El dispositivo está conectado.";
+        } else if (!compatibleProt){
+            throw new DispositivoNoCompatibleException("10");
+
         }
+
+        return "El dispositivo está conectado.";
     }
 }

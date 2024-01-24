@@ -8,6 +8,14 @@ public class Dispositivo {
         this.protocolo = protocolo;
     }
 
+    public void setConexionActivo(String conexionActivo) {
+        this.conexionActivo = conexionActivo;
+    }
+
+    public void setProtocoloActivo(String protocoloActivo) {
+        this.protocoloActivo = protocoloActivo;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -20,18 +28,9 @@ public class Dispositivo {
         return protocolo;
     }
 
-    public void setConexionActivo(String conexionActivo) {
-        
-        this.conexionActivo = conexionActivo;
-    }
-
-    public void setProtocoloActivo(String protocoloActivo) {
-        this.protocoloActivo = protocoloActivo;
-    }
-
     @Override
     public String toString() {
-        return "El dispositivo " + nombre + " se ha conectado en la conexion " + conexionActivo
+        return "El dispositivo " + nombre + " se ha conectado usando la conexion " + conexionActivo
                 + " a traves del protocolo " + protocoloActivo + ".";
     }
 }

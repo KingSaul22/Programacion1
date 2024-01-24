@@ -1,10 +1,10 @@
-public class DispositivoNoCompatibleException {
+public class DispositivoNoCompatibleException extends Exception {
 
     public DispositivoNoCompatibleException(String mensaje) {
-        mensaje = "Error";
+        super(mensaje);
     }
 
     public String getMessage(){
-        return "Dispositivo no compatible";
+        return super.getMessage();
     }
 }

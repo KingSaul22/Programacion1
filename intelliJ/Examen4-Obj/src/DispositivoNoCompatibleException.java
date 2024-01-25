@@ -4,7 +4,7 @@ public class DispositivoNoCompatibleException extends Exception {
         super(mensaje);
     }
 
-    public String getMessage(){
+    /*public String getMessage(){
         return super.getMessage();
-    }
+    }*/
 }

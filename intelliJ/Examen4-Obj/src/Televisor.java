@@ -94,6 +94,8 @@ public class Televisor {
         g /= (width * height);
         b /= (width * height);
 
+        //return String.format("#%02X%02X%02X", r, g, b);
+
         //Lo transformamos a String
         return mediaColor = mediaColor + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
     } //Método que calcula el color promedio.
@@ -124,7 +126,7 @@ public class Televisor {
             }
         }
 
-
+        //TODO: Completar con String == null para facilitar el mensaje con String.format
         if (!compatibleConex && !compatibleProt) {
             throw new DispositivoNoCompatibleException("00");
 

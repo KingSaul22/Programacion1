@@ -11,10 +11,12 @@ public class CuentaCredito extends Cuenta {
     }
 
     public CuentaCredito(double credito) throws CuentaCreditoException {
+        super();
         setCredito(credito);
     }
 
     public CuentaCredito() {
+        super();
         this.credito = CREDITO_DEFAULT;
     }
 

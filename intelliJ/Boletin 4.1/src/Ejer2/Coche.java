@@ -1,6 +1,6 @@
 package Ejer2;
 
-public class Coche extends Vehiculo{
+public class Coche extends Vehiculo {
     private Combustible combustible;
 
     public Coche(String matricula, Gama gama, Combustible combustible) {
@@ -12,10 +12,16 @@ public class Coche extends Vehiculo{
         return combustible;
     }
 
-
     @Override
     public double getPrecioDiario() {
 
         return getGama().getPrecioBaseDia() + combustible.getPrecioCombustibleDia();
+    }
+
+    @Override
+    public String toString() {
+        return "\nCoche con mátricula '" + getMatricula() +
+                "'\n  · Gama: " + getGama() +
+                "\n  · Combustible: " + getCombustible();
     }
 }

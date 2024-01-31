@@ -24,9 +24,8 @@ public abstract class Vehiculo {
     }*/
 
     public abstract double getPrecioDiario();
-    public double getPrecioAlquiler(int dias) {
 
+    public double getPrecioAlquiler(int dias) {
         return getPrecioDiario() * dias;
     }
-
 }

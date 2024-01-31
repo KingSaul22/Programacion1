@@ -22,4 +22,11 @@ public class Furgoneta extends Vehiculo {
 
         return getGama().getPrecioBaseDia() + PRECIO_KILO * pma;
     }
+
+    @Override
+    public String toString() {
+        return "\nFurgoneta con mátricula '" + getMatricula() +
+                "'\n  · Gama: " + getGama() +
+                "\n  · PMA: " + pma;
+    }
 }

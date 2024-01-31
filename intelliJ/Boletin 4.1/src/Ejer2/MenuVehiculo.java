@@ -12,7 +12,7 @@ public class MenuVehiculo {
 
         do {
             imprimirMenu();
-            opcion = Lectora.leerEnteroDeRango("Selección: ", 4, 1);
+            opcion = Lectora.leerEnteroDeRango("Selección: ", 5, 0);
 
             switch (opcion) {
                 case 1 -> darAltaVehiculo();
@@ -25,26 +25,26 @@ public class MenuVehiculo {
     }
 
     private static void imprimirMenu() {
-            System.out.println("""
-                                    
-                    Escoge una opción:
-                      1. Alta de Vehículo
-                      2. Cálculo de precio de alquiler
-                      3. Listar todos los vehículos
-                      4. Salir"""
-            );
+        System.out.println("""
+                                
+                Escoge una opción:
+                  1. Alta de Vehículo
+                  2. Cálculo de precio de alquiler
+                  3. Listar todos los vehículos
+                  4. Salir"""
+        );
     }
 
     private static void darAltaVehiculo() {
         int seleccionUsuario;
-        System.out.println("Estos son los vehículos disponibles:");
+        System.out.println("\nEstos son los vehículos disponibles:");
 
         int opcion = 0;
         for (TipoVehiculo t : TipoVehiculo.values()) {
             System.out.println(" " + ++opcion + ". " + String.valueOf(t).toLowerCase());
         }
 
-        seleccionUsuario = Lectora.leerEnteroDeRango("Selección: ", TipoVehiculo.values().length, 1);
+        seleccionUsuario = Lectora.leerEnteroDeRango("Selección: ", 1 + TipoVehiculo.values().length, 0);
 
         switch (seleccionUsuario) {
             case 1:
@@ -69,22 +69,42 @@ public class MenuVehiculo {
     }
 
     private static void calculoPrecio() {
+        int posVehiculo;
 
+        String matricula = Lectora.solicitarCadenaMayus("Introduzca la matrícula del vehículo: ");
+        int dias = Lectora.leerEnteroDeRango("Introduzca el número de días alquilado", 365, 1);
 
+        for (posVehiculo = 0; posVehiculo <= listaVehiculos.length; posVehiculo++) {
 
+            if (posVehiculo == MAX_VEHICULOS) break;
+            if (listaVehiculos[posVehiculo].getMatricula().equals(matricula)) break;
+        }
 
+        if (posVehiculo != MAX_VEHICULOS) {
+            System.out.printf("""
+                                    
+                    El vehículo seleccionado con matricula: %s
+                    y tras ser usado por %d dias;
+                    conlleva un precio total de %.2f€
+                    """, matricula, dias, listaVehiculos[posVehiculo].getPrecioAlquiler(dias)
+            );
+        } else {
+            System.out.println("Su matricula no ha sido detectada");
+        }
     }
 
     private static void listarVehiculos() {
 
+        for (int i = 0; i < vehiculosAlta; i++) {
 
-
+            System.out.println(listaVehiculos[i]);
+        }
 
     }
 
     private static String setMatricula() {
 
-        return Lectora.solicitarCadenaMayus("Introduzca la matricula:");
+        return Lectora.solicitarCadenaMayus("\nIntroduzca la matricula:");
     }
 
     private static Gama setGama() {
@@ -97,7 +117,7 @@ public class MenuVehiculo {
                 """
         );
 
-        return switch (Lectora.leerEnteroDeRango("Selección: ", Gama.values().length, 1)) {
+        return switch (Lectora.leerEnteroDeRango("Selección: ", 1 + Gama.values().length, 0)) {
             case 1 -> Gama.BAJA;
             case 2 -> Gama.MEDIA;
             default -> Gama.ALTA;
@@ -113,7 +133,7 @@ public class MenuVehiculo {
                 """
         );
 
-        return switch (Lectora.leerEnteroDeRango("Selección: ", Combustible.values().length, 1)) {
+        return switch (Lectora.leerEnteroDeRango("Selección: ", 1 + Combustible.values().length, 0)) {
             case 1 -> Combustible.DIESEL;
             default -> Combustible.GASOLINA;
         };

@@ -23,4 +23,11 @@ public class Microbus extends Vehiculo {
 
         return getGama().getPrecioBaseDia() + numPlazas * PRECIO_PLAZA;
     }
+
+    @Override
+    public String toString() {
+        return "\nMicrobus con mátricula '" + getMatricula() +
+                "'\n  · Gama: " + getGama() +
+                "\n  · Plazas: " + numPlazas;
+    }
 }

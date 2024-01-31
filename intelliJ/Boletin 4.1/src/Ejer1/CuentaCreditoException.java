@@ -1,6 +1,6 @@
 package Ejer1;
 
-public class CuentaCreditoException extends CuentaException{
+public class CuentaCreditoException extends Exception{
 
     public CuentaCreditoException(String message) {
         super(message);

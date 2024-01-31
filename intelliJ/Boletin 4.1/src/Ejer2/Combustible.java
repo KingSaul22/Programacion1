@@ -1,7 +1,7 @@
 package Ejer2;
 
 public enum Combustible {
-    GASOLINA(3.5), DIESEL(2);
+    DIESEL(2), GASOLINA(3.5);
 
     private double precioCombustibleDia;
 

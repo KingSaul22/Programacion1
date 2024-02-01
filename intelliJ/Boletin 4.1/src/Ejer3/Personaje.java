@@ -59,6 +59,26 @@ public abstract class Personaje {
         return vidaActual;
     }
 
+    public int getVidaMax() {
+        return vidaMax;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public TRaza getRaza() {
+        return raza;
+    }
+
+    public int getFuerza() {
+        return fuerza;
+    }
+
+    public int getInteligencia() {
+        return inteligencia;
+    }
+
     @Override
     public String toString() {
         return "Personaje{" +

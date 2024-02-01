@@ -1,14 +1,17 @@
 package Ejer3;
 
+import java.util.Arrays;
+
 public class Mago extends Personaje {
     public final int FUERZA_MAX = 15;
     public final int INTELIG_MIN = 17;
     public static final int CAPACIDAD_HECHIZOS = 4;
     public final int DAMAGE_HECHIZO = 10;
-    private String[] hechizos = new String[CAPACIDAD_HECHIZOS];
+    private final String[] hechizos;
 
     public Mago(String nombre, TRaza raza, int fuerza, int inteligencia, int vidaMax) throws PersonajeException {
         super(nombre, raza, fuerza, inteligencia, vidaMax);
+        hechizos = new String[CAPACIDAD_HECHIZOS];
     }
 
     @Override
@@ -47,7 +50,8 @@ public class Mago extends Personaje {
 
     public void lanzaHechizo(String hechizo, Personaje receptor) throws PersonajeException {
         if (this == receptor) throw new PersonajeException("No te puedes atacar a ti mismo");
-        if (receptor.getVidaActual() == 0) throw new PersonajeException("El personaje que quieres atacar ya esta muerto");
+        if (receptor.getVidaActual() == 0)
+            throw new PersonajeException("El personaje que quieres atacar ya esta muerto");
 
         int primerVacio = -1;
         for (int i = 0; i < hechizos.length && primerVacio == -1; i++) {
@@ -56,7 +60,45 @@ public class Mago extends Personaje {
         }
 
         if (primerVacio == -1) throw new PersonajeException("El hechizo seleccionado no ha sido aprendido por el mago");
+        hechizos[primerVacio] = null;
 
-        //TODO: Restar vida.
+        //Ajustar vida
+        if (receptor.getVidaActual() <= DAMAGE_HECHIZO) {
+            receptor.setVidaActual(0);
+
+        } else {
+            receptor.setVidaActual(receptor.getVidaActual() - DAMAGE_HECHIZO);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "\nEl mago " + getNombre() + " tiene las siguientes caracteristicas:" +
+                "\n  · Raza: " + getRaza() +
+                "\n  · Fuerza: " + getFuerza() +
+                "\n  · Inteligencia: " + getInteligencia() +
+                "\n  · Vida máxima: " + getVidaMax() +
+                "\n  · Vida actual: " + getVidaActual() +
+                "\n  · Hechizos: " + listaHechizos();
+    }
+
+    private String listaHechizos() {
+        StringBuilder lista = new StringBuilder("[");
+
+        for (String hechizo : hechizos) {
+
+            if (hechizo != null) {
+
+                if (String.valueOf(lista).equals("[")) {
+                    lista.append(hechizo);
+
+                } else {
+                    lista.append(", ").append(hechizo);
+                }
+            }
+        }
+        if (String.valueOf(lista).equals("[")) return "Sin hechizos";
+
+        return String.valueOf(lista.append("]"));
     }
 }

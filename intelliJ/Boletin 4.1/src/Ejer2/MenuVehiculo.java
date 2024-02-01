@@ -74,13 +74,12 @@ public class MenuVehiculo {
         String matricula = Lectora.solicitarCadenaMayus("Introduzca la matrícula del vehículo: ");
         int dias = Lectora.leerEnteroDeRango("Introduzca el número de días alquilado", 365, 1);
 
-        for (posVehiculo = 0; posVehiculo <= listaVehiculos.length; posVehiculo++) {
+        for (posVehiculo = 0; posVehiculo < vehiculosAlta; posVehiculo++) {
 
-            if (posVehiculo == MAX_VEHICULOS) break;
             if (listaVehiculos[posVehiculo].getMatricula().equals(matricula)) break;
         }
 
-        if (posVehiculo != MAX_VEHICULOS) {
+        if (posVehiculo != vehiculosAlta) {
             System.out.printf("""
                                     
                     El vehículo seleccionado con matricula: %s
@@ -103,7 +102,7 @@ public class MenuVehiculo {
     }
 
     private static String setMatricula() {
-
+        //TODO: Comprobar si existe la matricula.
         return Lectora.solicitarCadenaMayus("\nIntroduzca la matricula:");
     }
 

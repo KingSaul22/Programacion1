@@ -2,12 +2,14 @@ package Ejer4;
 
 import EntradaSalida.Lectora;
 
+import java.util.Arrays;
+
 import static java.lang.Character.toUpperCase;
 
 public class Main {
     private static final Personaje[] personajes = new Personaje[100];
-    private static int[] vidaPersonajes = new int[100];
-    private static int[] indiceVidaPJ = new int[100];
+    private static final int[] vidaPersonajes = new int[100];
+    private static final int[] indiceVidaPJ = new int[100];
     private static byte numPersonajes = 0;
 
     public static void main(String[] args) {
@@ -287,10 +289,35 @@ public class Main {
 
     private static void imprimirPersonajesOrdenados() {
         System.out.println("La lista de personajes existentes, ordenados segun sus puntos de vida actuales:");
+        /*
+        TODO: imprimirPersonajesOrdenados()
+        Tengo un array con la vida de los personajes y uno con los indices.
+        El objetivo es ordenar el de los indices e imprimir los personajes siguiendo el orden de esos indices
+        */
+        /*
+        Arrays.sort(indiceVidaPJ, (a, b) -> Integer.compare(vidaPersonajes[b], vidaPersonajes[a]));
+        https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Arrays.html#sort(T%5B%5D,int,int,java.util.Comparator)
+        for (int i = 0; i < numPersonajes; i++) {
+            System.out.println(personajes[indiceVidaPJ[i]]);
+        }
+        */
 
-        //Tengo un array con la vida de los personajes y uno con los indices.
-        //El objetivo es ordenar el de los indices e imprimir los personajes siguiendo el orden de esos indices
+        boolean[] imprimidoPJ = new boolean[numPersonajes];
+        int imprimir;
+        for (int i = 0; i < numPersonajes; i++) {
+            imprimir = 0;
+            for (int j = i; j < numPersonajes && !imprimidoPJ[i]; j++) {
 
+                if ((j != i && !imprimidoPJ[j])) {
+
+
+                }
+            }
+            if (!imprimidoPJ[i]) {
+                System.out.println(personajes[i]);
+                imprimidoPJ[i] = true;
+            }
+        }
     }
 
     private static String selectNombre() {

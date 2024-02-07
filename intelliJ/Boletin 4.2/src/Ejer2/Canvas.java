@@ -16,7 +16,14 @@ public class Canvas {
             if (figura instanceof Animable) ((Animable) figura).animar();
 
             try {
-                System.out.println("El area de esta forma es: " + figura.calcularArea());
+                /*System.out.println("El area de la figura " +
+                        (figura instanceof Circulo ? "Circulo" : (figura instanceof Rectangulo ? "Rectangulo" :(figura instanceof CirculoMovible ? "Circulo Movible" : "Linea"))) +
+                        " es: " + figura.calcularArea()
+                ); */
+                System.out.println("El area de la figura " +
+                        figura.getClass().getSimpleName() +
+                        " es: " + figura.calcularArea()
+                );
             } catch (FormaException e) {
                 System.out.println(e.getMessage());
                 System.err.println(e.getMessage());

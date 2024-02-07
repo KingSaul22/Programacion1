@@ -57,6 +57,26 @@ public class Lectora {
         return opcionIntroducido;
     }
 
+    public static byte leerSeleccionDeRango(String mensaje, int numMax, int nunMin) {
+        byte opcionIntroducido = 0;
+        boolean enRango = false;
+        while (!enRango) {
+            try {
+                System.out.print(mensaje);
+                opcionIntroducido = (byte) Integer.parseInt(sc.nextLine());
+                if (opcionIntroducido > nunMin && opcionIntroducido < numMax) {
+                    enRango = true;
+                } else {
+                    System.out.println("Numero fuera del rango.");
+
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Tienes que introducir un número.");
+            }
+        }
+        return opcionIntroducido;
+    }
+
     public static int leerEnteroPositivo(String mensaje) {
         int enteroPositivo = 0;
         boolean ok = false;

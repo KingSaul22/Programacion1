@@ -5,12 +5,18 @@ public class Fichero {
     private long size;
     private LocalDateTime dateCreation;
 
+    /**
+     *
+     * @param name Nombre del fichero
+     * @param size Tamaño del fichero
+     */
     public Fichero(String name, long size) {
         setSize(size);
         this.name = name;
         this.dateCreation = LocalDateTime.now();
     }
 
+    //TODO: getSize() -> Protected Abstract
     public long getSize() {
         return size;
     }

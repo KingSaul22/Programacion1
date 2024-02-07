@@ -18,6 +18,10 @@ public abstract class Fichero {
 
     public abstract long getSize();
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * @param size Tamaño recibido
      * @throws IllegalArgumentException Excepción para tamaños imposibles.

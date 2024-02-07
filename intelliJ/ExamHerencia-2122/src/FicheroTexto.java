@@ -1,4 +1,8 @@
-public class FicheroTexto extends Fichero implements Convertible{
+import Interfaces.Convertible;
+
+import java.nio.charset.StandardCharsets;
+
+public class FicheroTexto extends Fichero implements Convertible {
     protected String[][] contenido;
 
     public FicheroTexto(String name, long size, String[] contenido) {
@@ -15,7 +19,8 @@ public class FicheroTexto extends Fichero implements Convertible{
 
     @Override
     public long getSize() {
-        return contenido[0].length;
+        //return contenido[0].length;
+        return textToAudio().getBytes(StandardCharsets.UTF_8).length;
     }
 
     /**

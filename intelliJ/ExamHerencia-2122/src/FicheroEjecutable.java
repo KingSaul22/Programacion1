@@ -15,7 +15,8 @@ public class FicheroEjecutable extends Fichero{
 
     private void setPermisos(int permisos) throws FicheroException {
         String auxPermisos = String.valueOf(permisos);
-        //if (!auxPermisos.matches("%3O")) throw new FicheroException("El formato introducido para los permisos no es correcto");
+        //if (!auxPermisos.matches("%3O") || auxPermisos.contains("0"))
+        //    throw new FicheroException("El formato introducido para los permisos no es correcto");
         if (!auxPermisos.matches("^[1-7]{3}$")) throw new FicheroException("El formato introducido para los permisos no es correcto");
         this.permisos = permisos;
     }

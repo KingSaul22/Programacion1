@@ -1,4 +1,6 @@
-public class FicheroAudio extends Fichero{
+import Interfaces.Reproducible;
+
+public class FicheroAudio extends Fichero implements Reproducible {
     private int duracionSegundos;
     private byte[] contenido;
 
@@ -21,5 +23,10 @@ public class FicheroAudio extends Fichero{
     @Override
     public long getSize() {
         return contenido.length;
+    }
+
+    @Override
+    public void Reproducir() {
+        System.out.println("Se está reproduciendo el fichero de audio: " + this.getName() + " .");
     }
 }

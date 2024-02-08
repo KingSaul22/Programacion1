@@ -1,5 +1,4 @@
 import Interfaces.Convertible;
-
 import java.nio.charset.StandardCharsets;
 
 public class FicheroTexto extends Fichero implements Convertible {
@@ -19,8 +18,12 @@ public class FicheroTexto extends Fichero implements Convertible {
 
     @Override
     public long getSize() {
-        //return contenido[0].length;
-        return textToAudio().getBytes(StandardCharsets.UTF_8).length;
+        StringBuilder cadenaConjunta = new StringBuilder();
+        for (int i = 0; i < contenido[0].length; i++){
+            if (contenido[0][i] != null) cadenaConjunta.append(contenido[0][i]);
+        }
+
+        return String.valueOf(cadenaConjunta).getBytes(StandardCharsets.UTF_8).length;
     }
 
     /**
@@ -31,7 +34,7 @@ public class FicheroTexto extends Fichero implements Convertible {
     public String textToAudio() {
         StringBuilder cadenaConjunta = new StringBuilder();
         for (int i = 0; i < contenido[0].length; i++){
-            cadenaConjunta.append(" ").append(i + 1).append(". ").append(contenido[0][i]);
+            if (contenido[0][i] != null) cadenaConjunta.append(i + 1).append(". ").append(contenido[0][i]).append(" ");
         }
 
         return String.valueOf(cadenaConjunta);

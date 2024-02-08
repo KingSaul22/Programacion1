@@ -28,7 +28,7 @@ public class FicheroTexto extends Fichero implements Convertible {
 
     /**
      *
-     * @return Un String que junta el 'array vertical' en una sola cadena.
+     * @return Un String que junta el array 'vertical' en una sola cadena.
      */
     @Override
     public String textToAudio() {
@@ -37,6 +37,7 @@ public class FicheroTexto extends Fichero implements Convertible {
             if (contenido[0][i] != null) cadenaConjunta.append(i + 1).append(". ").append(contenido[0][i]).append(" ");
         }
 
-        return String.valueOf(cadenaConjunta);
+        //return String.valueOf(cadenaConjunta);
+        return cadenaConjunta.toString();
     }
 }

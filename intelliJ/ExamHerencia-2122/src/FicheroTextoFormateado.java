@@ -1,4 +1,6 @@
-public class FicheroTextoFormateado extends FicheroTexto{
+import Interfaces.Analizable;
+
+public class FicheroTextoFormateado extends FicheroTexto implements Analizable {
     private String fuente;
     private int tamFuente;
     private String colorFuente;
@@ -21,8 +23,13 @@ public class FicheroTextoFormateado extends FicheroTexto{
     }
 
     public void setColorFuente(String colorFuente) throws FicheroException{
-        //if (colorFuente.length() != 7) throw new FicheroException("No se ha recibido el color en formato hexadecimal");
-        if (!colorFuente.matches("#%06X")) throw new FicheroException("No se ha recibido el color en formato hexadecimal");
+        //if (!colorFuente.matches("#%06X")) throw new FicheroException("No se ha recibido el color en formato hexadecimal");
+        if (!colorFuente.matches("^#[0-9a-fA-F]{6}$")) throw new FicheroException("No se ha recibido el color en formato hexadecimal");
         this.colorFuente = colorFuente;
+    }
+
+    @Override
+    public String analizar() {
+        return "Analizando el fichero " + getName();
     }
 }

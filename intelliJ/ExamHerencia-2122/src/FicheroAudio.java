@@ -26,7 +26,7 @@ public class FicheroAudio extends Fichero implements Reproducible {
     }
 
     @Override
-    public void Reproducir() {
-        System.out.println("Se está reproduciendo el fichero de audio: " + this.getName() + " .");
+    public String reproducir() {
+        return "Se está reproduciendo el fichero de audio: " + this.getName() + " .";
     }
 }

@@ -1,5 +1,5 @@
 package Interfaces;
 
 public interface Reproducible {
-    public void Reproducir();
+    public String reproducir();
 }

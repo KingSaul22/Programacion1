@@ -1,5 +1,5 @@
 package Interfaces;
 
 public interface Analizable {
-    public void analizar();
+    public String analizar();
 }

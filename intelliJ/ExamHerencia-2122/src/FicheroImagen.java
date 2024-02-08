@@ -2,8 +2,8 @@ public class FicheroImagen extends Fichero{
     private byte[] contenido;
     private TFormatoImagen formato;
 
-    public FicheroImagen(String name, long size, byte[] contenido, TFormatoImagen formato) throws FicheroException {
-        super(name, size);
+    public FicheroImagen(String name, byte[] contenido, TFormatoImagen formato) throws FicheroException {
+        super(name);
         setContenido(contenido);
         setFormato(formato);
     }

@@ -2,8 +2,8 @@ public class FicheroVideo extends Fichero{
     private int duracionSegundos;
     private byte[] contenido;
 
-    public FicheroVideo(String name, long size, int duracionSegundos, byte[] contenido) throws FicheroException {
-        super(name, size);
+    public FicheroVideo(String name, int duracionSegundos, byte[] contenido) throws FicheroException {
+        super(name);
         setDuracionSegundos(duracionSegundos);
         setContenido(contenido);
     }

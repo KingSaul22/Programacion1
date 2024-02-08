@@ -5,8 +5,8 @@ import java.nio.charset.StandardCharsets;
 public class FicheroTexto extends Fichero implements Convertible {
     protected String[][] contenido;
 
-    public FicheroTexto(String name, long size, String[] contenido) {
-        super(name, size);
+    public FicheroTexto(String name, String[] contenido) {
+        super(name);
         setContenido(contenido);
     }
 

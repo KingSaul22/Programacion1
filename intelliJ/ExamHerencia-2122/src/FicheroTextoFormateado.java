@@ -3,8 +3,8 @@ public class FicheroTextoFormateado extends FicheroTexto{
     private int tamFuente;
     private String colorFuente;
 
-    public FicheroTextoFormateado(String name, long size, String[] contenido, String fuente, int tamFuente, String colorFuente) throws FicheroException {
-        super(name, size, contenido);
+    public FicheroTextoFormateado(String name, String[] contenido, String fuente, int tamFuente, String colorFuente) throws FicheroException {
+        super(name, contenido);
         setFuente(fuente);
         setTamFuente(tamFuente);
         setColorFuente(colorFuente);

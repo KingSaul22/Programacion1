@@ -4,8 +4,8 @@ public class FicheroAudio extends Fichero implements Reproducible {
     private int duracionSegundos;
     private byte[] contenido;
 
-    public FicheroAudio(String name, long size, int duracionSegundos, byte[] contenido) throws FicheroException {
-        super(name, size);
+    public FicheroAudio(String name,  int duracionSegundos, byte[] contenido) throws FicheroException {
+        super(name);
         setDuracionSegundos(duracionSegundos);
         setContenido(contenido);
     }

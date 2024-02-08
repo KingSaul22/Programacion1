@@ -7,7 +7,7 @@ public class FicheroBinario extends Fichero{
      * @param contenido Recibe el tamaño un array en Bytes con los datos del fichero
      */
     public FicheroBinario(String name, byte[] contenido) throws FicheroException {
-        super(name, contenido.length);
+        super(name);
         setContenido(contenido);
     }
 

@@ -2,8 +2,8 @@ public class FicheroEjecutable extends Fichero{
     private byte[] contenido;
     private int permisos;
 
-    public FicheroEjecutable(String name, long size, byte[] contenido, int permisos) throws FicheroException {
-        super(name, size);
+    public FicheroEjecutable(String name, byte[] contenido, int permisos) throws FicheroException {
+        super(name);
         setContenido(contenido);
         setPermisos(permisos);
     }

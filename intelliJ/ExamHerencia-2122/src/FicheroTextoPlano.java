@@ -1,8 +1,8 @@
 import Interfaces.Representable;
 
 public class FicheroTextoPlano extends FicheroTexto implements Representable {
-    public FicheroTextoPlano(String name, long size, String[] contenido) {
-        super(name, size, contenido);
+    public FicheroTextoPlano(String name,  String[] contenido) {
+        super(name, contenido);
     }
 
 

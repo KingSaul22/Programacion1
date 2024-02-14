@@ -1,3 +1,5 @@
+package Base;
+
 import Excepciones.IllegalValueException;
 import Interfaces.Lanzable;
 

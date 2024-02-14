@@ -1,3 +1,4 @@
+import Base.Dado;
 import Excepciones.IllegalValueException;
 
 public class Main {

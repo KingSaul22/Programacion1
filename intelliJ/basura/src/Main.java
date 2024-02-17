@@ -1,12 +1,22 @@
+
+
 public class Main {
-    private static int numCaras = 4;
-    private static int minValorCara = 2;
+
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) System.out.println(lanzar());
+        double media = 0;
+        int intentos = 20000;
+        byte valor;
+        for (int j = 0; j < 20; j++) {
+
+            for (int i = 0; i < intentos; i++) {
+                valor = (byte) (Math.random() * 3);
+                media += valor;
+            }
+            System.out.println(media / intentos);
+            media = 0;
+        }
     }
 
-    public static int lanzar() {
-        return (int) (Math.random() * numCaras + minValorCara);
-    }
+
 }

@@ -6,7 +6,7 @@ import Interfaces.Atacable;
 public abstract class CartaNave extends Carta implements Atacable{
     private int puntosDefensa;
 
-    public CartaNave(String nombre, int precio) throws IllegalValueException {
+    public CartaNave(String nombre, int precio){
         super(nombre, precio);
     }
 

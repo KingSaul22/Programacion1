@@ -6,6 +6,7 @@ import Interfaces.Lanzable;
 public class Dado implements Lanzable {
     private int numCaras;
     private int minValorCara;
+    private final int MINIMO_CARAS=4;
 
     public Dado(int numCaras, int minValorCara) throws IllegalValueException {
         setNumCaras(numCaras);
@@ -13,7 +14,7 @@ public class Dado implements Lanzable {
     }
 
     public void setNumCaras(int numCaras) throws IllegalValueException{
-        if (numCaras < 4) throw new IllegalValueException("El valor introducido no es valido para el número de caras del dado");
+        if (numCaras < MINIMO_CARAS) throw new IllegalValueException("El valor introducido no es valido para el número de caras del dado");
         this.numCaras = numCaras;
     }
 

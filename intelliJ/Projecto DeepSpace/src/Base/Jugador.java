@@ -3,22 +3,30 @@ package Base;
 import Excepciones.IllegalValueException;
 import ObjCartas.CartaConstruccion;
 
+import java.util.List;
+
+import static Base.Tablero.CAPACIDAD_SISTEMA_SOLAR;
+
 public class Jugador {
     private String nombre;
-    private Planeta[] planetas;
-    private CartaConstruccion[] construcciones;
+    private Planeta[] planetas = new Planeta[CAPACIDAD_SISTEMA_SOLAR];
+    private List<CartaConstruccion> MazoConstrucciones;
     private int oro = 3;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setNewCartaConstruccion(CartaConstruccion construccion){
-
+    /**
+     * Insterta en el mazo de construccion del jugador una carta
+     * @param construccion Carta de Construcción añadida
+     */
+    public void newCartaConstruccion(CartaConstruccion construccion){
+        MazoConstrucciones.add(construccion);
     }
 
     /**
-     *
+     *Método que devuelve el nombre del {@link Jugador jugador}
      * @return El nombre del jugador
      */
     public String getNombre() {

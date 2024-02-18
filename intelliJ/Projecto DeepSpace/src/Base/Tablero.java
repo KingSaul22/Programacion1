@@ -76,7 +76,16 @@ public class Tablero {
 
         for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++)
             if (sistemaSolar[i].getConquistador() == jugadores[posicion])
-                cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].getNombre());
+                cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].toString());
+
+        return cadenaPlanetas.toString();
+    }
+
+    public String getPlanetasTablero() {
+        StringBuilder cadenaPlanetas = new StringBuilder("\nLista de planetas en el Sistema Solar: ");
+
+        for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++)
+            cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].toString());
 
         return cadenaPlanetas.toString();
     }
@@ -93,17 +102,29 @@ public class Tablero {
         if (jugadores[posJugador] != sistemaSolar[posPlaneta].getConquistador()) {
             throw new ExceptionCompraCarta("El planeta seleccionado no te pertenece");
         }
-
         sistemaSolar[posPlaneta].nuevaNaveOrbital(nave);
     }
 
-    public void ordenarJugadores(int[] posiciones) {
-        Jugador aux;
+    public void establecerOrdenJugadores(int[] posiciones) {
+        Jugador[] posicionReal = new Jugador[jugadores.length];
+        for (int i = 0; i < jugadores.length; i++) posicionReal[i] = jugadores[posiciones[i]];
+        jugadores = posicionReal;
+    }
+
+    public void generarPlanetas() {
+        for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++) {
+            sistemaSolar[i] = new Planeta("Planeta " + (i + 1));
+        }
+    }
+
+    public void primerPlaneta() {
+        int planeta;
         for (int i = 0; i < jugadores.length; i++) {
-            if (i != posiciones[i]) {
-                aux = jugadores[i];
-                jugadores[i] = jugadores[posiciones[i]];
-                jugadores[posiciones[i]] = aux;
+            planeta = (int) (Math.random() * CAPACIDAD_SISTEMA_SOLAR);
+            if (sistemaSolar[planeta].getConquistador() == null) {
+                sistemaSolar[planeta].setConquistador(jugadores[i]);
+            } else {
+                i--;
             }
         }
     }

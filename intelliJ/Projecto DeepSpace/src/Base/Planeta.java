@@ -9,6 +9,9 @@ import ObjCartas.CartaNave;
 
 import javax.swing.plaf.PanelUI;
 
+/**
+ * Clase Planeta
+ */
 public class Planeta implements Atacable {
     private final int NUM_MAX_MINAS = 10;
     private final int MAX_NAVES_ORBITALES = 100;
@@ -23,6 +26,9 @@ public class Planeta implements Atacable {
     private String nombre;
     private Jugador conquistador = null;
 
+    public Planeta(String nombre) {
+        this.nombre = nombre;
+    }
 
     public String getNombre() {
         return nombre;
@@ -87,7 +93,7 @@ public class Planeta implements Atacable {
     }
 
     /**
-     * Método que añade materiales al planeta
+     * Método que añade materiales al {@link Planeta planeta}.
      *
      * @param material material que se añadirá al planeta
      */

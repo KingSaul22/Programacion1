@@ -1,5 +1,7 @@
 package Base;
 
+import Enums.TMateriales;
+import Excepciones.ExceptionCompraCarta;
 import Excepciones.IllegalPlayerName;
 import ObjCartas.CartaNave;
 import ObjCartas.CartaNaveAtaque;
@@ -8,7 +10,9 @@ import ObjCartas.CartaNaveTransporte;
 
 public class Tablero {
     private final int CAPACIDAD_MAZO_NAVES = 4;
-    private CartaNave[] MazoNaves = new CartaNave[CAPACIDAD_MAZO_NAVES];
+    public static final int CAPACIDAD_SISTEMA_SOLAR = 10;
+    private CartaNave[] mazoNaves = new CartaNave[CAPACIDAD_MAZO_NAVES];
+    private Planeta[] sistemaSolar = new Planeta[CAPACIDAD_SISTEMA_SOLAR];
     private int navesGeneradas = 0;
     private Jugador[] jugadores;
 
@@ -22,10 +26,32 @@ public class Tablero {
         for (byte i = 0; i < CAPACIDAD_MAZO_NAVES; i++) {
             tipoNave = (byte) (Math.random() * 3);
             switch (tipoNave) {
-                case 0 -> MazoNaves[i] = new CartaNaveAtaque("Ataque" + ++navesGeneradas);
-                case 1 -> MazoNaves[i] = new CartaNaveTransporte("Ataque" + ++navesGeneradas);
-                case 2 -> MazoNaves[i] = new CartaNaveCarga("Ataque" + ++navesGeneradas);
+                case 0 -> mazoNaves[i] = new CartaNaveAtaque("Ataque" + ++navesGeneradas);
+                case 1 -> mazoNaves[i] = new CartaNaveTransporte("Transporte" + ++navesGeneradas);
+                case 2 -> mazoNaves[i] = new CartaNaveCarga("Carga" + ++navesGeneradas);
             }
+        }
+    }
+
+    public String getMazoNaves() {
+        StringBuilder naves = new StringBuilder();
+        for (int i = 0; i < CAPACIDAD_MAZO_NAVES; i++)
+            naves.append("\n  ").append(i + 1).append(". ").append(mazoNaves[i].getNombre())
+                    .append(" (").append(mazoNaves[i].getPrecio()).append(" oro)");
+
+        return naves.toString();
+    }
+
+    public CartaNave getCartaNave(int posCarta) {
+        return mazoNaves[posCarta];
+    }
+
+    public void retirarCartaMazoNaves(int posCarta) {
+        byte tipoNave = (byte) (Math.random() * 3);
+        switch (tipoNave) {
+            case 0 -> mazoNaves[posCarta] = new CartaNaveAtaque("Ataque" + ++navesGeneradas);
+            case 1 -> mazoNaves[posCarta] = new CartaNaveTransporte("Transporte" + ++navesGeneradas);
+            case 2 -> mazoNaves[posCarta] = new CartaNaveCarga("Carga" + ++navesGeneradas);
         }
     }
 
@@ -37,6 +63,47 @@ public class Tablero {
             if (jugadores[i] == null) {
                 jugadores[i] = jugador;
                 break;
+            }
+        }
+    }
+
+    public Jugador getJugadorPosicion(int posicion) {
+        return jugadores[posicion];
+    }
+
+    public String getPlanetasJugador(int posicion) {
+        StringBuilder cadenaPlanetas = new StringBuilder("\nLista de planetas poseidos por el jugador: ").append(jugadores[posicion].getNombre());
+
+        for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++)
+            if (sistemaSolar[i].getConquistador() == jugadores[posicion])
+                cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].getNombre());
+
+        return cadenaPlanetas.toString();
+    }
+
+    public void masMaterial(TMateriales material, int posPlaneta, int posJugador) throws ExceptionCompraCarta {
+        if (jugadores[posJugador] != sistemaSolar[posPlaneta].getConquistador()) {
+            throw new ExceptionCompraCarta("El planeta seleccionado no te pertenece");
+        }
+
+        sistemaSolar[posPlaneta].masMaterial(material);
+    }
+
+    public void nuevaNaveOrbital(CartaNave nave, int posPlaneta, int posJugador) throws ExceptionCompraCarta {
+        if (jugadores[posJugador] != sistemaSolar[posPlaneta].getConquistador()) {
+            throw new ExceptionCompraCarta("El planeta seleccionado no te pertenece");
+        }
+
+        sistemaSolar[posPlaneta].nuevaNaveOrbital(nave);
+    }
+
+    public void ordenarJugadores(int[] posiciones) {
+        Jugador aux;
+        for (int i = 0; i < jugadores.length; i++) {
+            if (i != posiciones[i]) {
+                aux = jugadores[i];
+                jugadores[i] = jugadores[posiciones[i]];
+                jugadores[posiciones[i]] = aux;
             }
         }
     }

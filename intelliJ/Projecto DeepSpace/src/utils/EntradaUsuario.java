@@ -1,5 +1,7 @@
 package utils;
 
+import Excepciones.IllegalPlayerName;
+
 import java.util.Scanner;
 
 import static java.lang.Character.isDigit;
@@ -36,7 +38,7 @@ public class EntradaUsuario {
         return enteroIntroducido;
     }
 
-    public static String getNombreLongitudMinMax(String mensaje, int caracterMinimo, int caracterMaximo) {
+    /*public static String getNombreLongitudMinMax(String mensaje, int caracterMinimo, int caracterMaximo) {
         System.out.print(mensaje + ": ");
 
         String cadena = null;
@@ -59,34 +61,51 @@ public class EntradaUsuario {
         }
 
         return cadena.substring(0, 1).toUpperCase() + cadena.substring(1);
+    }*/
+
+    public static String getNombreLongitudMinMax(String mensaje, int caracterMinimo, int caracterMaximo) throws IllegalPlayerName {
+        System.out.print(mensaje + ": ");
+
+        String cadena = sc.nextLine().trim().toLowerCase();
+        soloLetrasNumeros(cadena);
+
+        if (cadena.length() < caracterMinimo) throw new IllegalPlayerName(
+                "El nombre introducido tiene una longitud inferior a " + caracterMinimo + " caracteres");
+
+        if (cadena.length() > caracterMaximo) throw new IllegalPlayerName(
+                "El nombre introducido tiene una longitud superior a " + caracterMaximo + " caracteres");
+
+
+        return cadena.substring(0, 1).toUpperCase() + cadena.substring(1);
     }
 
     public static String getNombreLongMinMaxRecursiva(String mensaje, int caracterMinimo, int caracterMaximo) {
         System.out.print(mensaje + ": ");
         String cadena = sc.nextLine().trim();
 
-        if (cadena.length() < caracterMinimo || cadena.length() > caracterMaximo || !soloLetrasNumeros(cadena)) {
-            if (cadena.length() < caracterMinimo) {
-                System.out.println("El nombre introducido tiene una longitud inferior a " + caracterMinimo + " caracteres");
-            }
-            if (cadena.length() > caracterMaximo) {
-                System.out.println("El nombre introducido tiene una longitud superior a " + caracterMaximo + " caracteres");
-            }
-            System.out.println();
+        if (cadena.length() < caracterMinimo) {
+            System.out.println("El nombre introducido tiene una longitud inferior a " + caracterMinimo + " caracteres");
+            cadena = getNombreLongMinMaxRecursiva(mensaje, caracterMinimo, caracterMaximo);
+        } else if (cadena.length() > caracterMaximo) {
+            System.out.println("El nombre introducido tiene una longitud superior a " + caracterMaximo + " caracteres");
+            cadena = getNombreLongMinMaxRecursiva(mensaje, caracterMinimo, caracterMaximo);
+        }
+
+        try {
+            soloLetrasNumeros(cadena);
+        } catch (IllegalPlayerName e) {
+            System.out.println(e.getMessage());
             cadena = getNombreLongMinMaxRecursiva(mensaje, caracterMinimo, caracterMaximo);
         }
 
         return cadena.substring(0, 1).toUpperCase() + cadena.substring(1);
-    }
+    } //La recursividad no tiene un uso factible en este caso.
 
-    private static boolean soloLetrasNumeros(String cadena) {
+    private static void soloLetrasNumeros(String cadena) throws IllegalPlayerName {
         for (int i = 0; i < cadena.length(); i++) {
-            if (!isLetter(cadena.charAt(i)) && !isDigit(cadena.charAt(i))) {
-                System.out.println("La cadena proporcionada debe componerse exclusivamente por letras y números");
-                return false;
-            }
+            if (!isLetter(cadena.charAt(i)) && !isDigit(cadena.charAt(i))) throw new IllegalPlayerName(
+                    "La cadena proporcionada debe componerse exclusivamente por letras y números");
         }
-        return true;
     }
 
     /*

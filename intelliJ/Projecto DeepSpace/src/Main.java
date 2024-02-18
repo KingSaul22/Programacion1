@@ -8,8 +8,6 @@ import Excepciones.IllegalValueException;
 import ObjCartas.CartaNave;
 import utils.EntradaUsuario;
 
-import java.util.Random;
-
 import static Base.Tablero.CAPACIDAD_SISTEMA_SOLAR;
 
 public class Main {
@@ -18,11 +16,113 @@ public class Main {
     private static Tablero tablero;
     private static int numJugadores;
     private static Dado dadoA, dadoB, dadoC;
-    private static int turno = 0;
+    private static final int RONDA_MAXIMA = 20;
+    private static int accion = 0, turno = 0, ronda = 0;
 
     public static void main(String[] args) {
         generarDadosDefault();
         inicializarTablero();
+        int opcion;
+        do {
+            if (accion == 2) {
+                accion = 0;
+                if (turno == numJugadores - 1) {
+                    ronda++;
+                    turno = 0;
+                } else {
+                    turno++;
+                }
+            }
+
+            System.out.println("\nRonda actual: " + ronda + "/" + RONDA_MAXIMA);
+            System.out.println("Juega: " + tablero.getJugadorPosicion(turno).getNombre());
+            imprimirMenu();
+            opcion = EntradaUsuario.getEnteroMinMax("Selección", 1, 12);
+
+            switch (opcion) {
+                case 12:
+                    accion = 2;
+                    System.out.println("Saltas tu turno");
+                    break;
+                case 1:
+                    comprarNave();
+                    break;
+                case 2:
+                    comprarConstruccion();
+                    break;
+                case 3:
+                    if (tablero.getJugadorPosicion(turno).getOro() == 0) {
+                        System.out.println("No se dispone de los fondos necesarios");
+                    } else {
+                        comprarMaterial();
+                    }
+                    break;
+                case 4:
+                    construir();
+                    break;
+                case 5:
+                    moverNave();
+                    break;
+                case 6:
+                    atacar();
+                    break;
+                case 7:
+                    transportarCarga();
+                    break;
+                case 8:
+                    transportarPersonas();
+                    break;
+                case 9:
+                    mejorarNave();
+                    break;
+                case 10:
+                    reparar();
+                    break;
+                case 11:
+                    System.out.println(tablero.getPlanetasTablero());
+            }
+
+
+        } while (!endGame());
+    }
+
+    private static void reparar() {
+    }
+
+    private static void mejorarNave() {
+    }
+
+    private static void transportarPersonas() {
+    }
+
+    private static void transportarCarga() {
+    }
+
+    private static void atacar() {
+    }
+
+    private static void moverNave() {
+        //TODO: Mover naves, la interfaz Atacador puede moverse a planetas ajenos
+    }
+
+    private static void construir() {
+        //TODO: Excepcion con mazo vacio
+    }
+
+    /**
+     * Método que comprueba que el juego ha finalizado
+     * <p>
+     * Se finalizará el juego si solo queda un jugador con planetas o se ha alcanzado el número de rondas máximo.
+     *
+     * @return True cuando se acaba el juego
+     */
+    private static boolean endGame() {
+        int jugadoresVivos = numJugadores;
+        for (int i = 0; i < numJugadores; i++) {
+            if (tablero.getPlanetasJugador(i).isEmpty()) numJugadores--;
+        }
+
+        return numJugadores == 1 || ronda == RONDA_MAXIMA;
     }
 
     private static void inicializarTablero() {
@@ -32,9 +132,8 @@ public class Main {
         tablero.establecerOrdenJugadores(ordenJugadores());
         tablero.generarPlanetas();
         System.out.println(tablero.getPlanetasTablero());
-        System.out.println("Asignando un planeta de manera aleatoria a cada jugador.");
+        System.out.println("\nAsignando un planeta de manera aleatoria a cada jugador.");
         tablero.primerPlaneta();
-
     }
 
     private static void generarJugadores() {
@@ -51,6 +150,7 @@ public class Main {
     }
 
     private static int[] ordenJugadores() {
+        //TODO: Corregir fallo con 3 y 4 jugadores método ordenJugadores()
         int[] resultadoDadoB = new int[numJugadores];
         int[] indicesJugadores = new int[numJugadores];
         int aux;
@@ -79,13 +179,13 @@ public class Main {
 
 
         int contRepetido = 0;
+        boolean ok;
         for (int i = 0; i < numJugadores - 1; i++) {
             if (resultadoDadoB[i] == resultadoDadoB[i + 1] && !jugadoresFijos[i]) {
                 for (int j = i; j < numJugadores; j++) {
                     if (resultadoDadoB[i] != resultadoDadoB[j]) break;
                     contRepetido++;
                 }
-                boolean ok = false;
                 do {
                     for (int j = i; j < contRepetido; j++) {
                         resultadoDadoB[j] = dadoB.lanzar();
@@ -148,7 +248,7 @@ public class Main {
             if (opcion != 0) {
                 CartaNave nave = tablero.getCartaNave(opcion - 1);
                 try {
-                    tablero.getJugadorPosicion(turno / 2).gastarOro(nave.getPrecio());
+                    tablero.getJugadorPosicion(turno).gastarOro(nave.getPrecio());
                 } catch (IllegalValueException e) {
                     System.out.println(e.getMessage());
                     continue;
@@ -156,13 +256,13 @@ public class Main {
                 tablero.retirarCartaMazoNaves(opcion);
 
                 System.out.println("Seleccione el planeta al que asignará la nave");
-                String tusPlanetas = tablero.getPlanetasJugador(turno / 2);
+                String tusPlanetas = tablero.getPlanetasJugador(turno);
                 int planeta;
                 do {
                     System.out.println(tusPlanetas);
                     planeta = EntradaUsuario.getEnteroMinMax("\nIntroduce el número de tu planeta", 0, CAPACIDAD_SISTEMA_SOLAR);
                     try {
-                        tablero.nuevaNaveOrbital(nave, planeta, turno / 2);
+                        tablero.nuevaNaveOrbital(nave, planeta, turno);
                         ok = true;
                     } catch (ExceptionCompraCarta e) {
                         System.out.println(e.getMessage());
@@ -170,8 +270,14 @@ public class Main {
                 } while (!ok);
             }
         } while (opcion != 0 && !ok);
+
+        if (opcion != 0) accion++;
     }
-    
+
+    private static void comprarConstruccion() {
+        //TODO: Crear método para comprar cartas de construcción
+    }
+
     private static void comprarMaterial() {
         System.out.println("\nA continuación se le dará una unidad de un material aleatorio");
         byte opcion = (byte) (Math.random() * 4 + 1);
@@ -185,10 +291,10 @@ public class Main {
         }
         if (opcion == 4) {
             System.out.println("\nSe ha añadido uno de oro a tus fondos");
-            tablero.getJugadorPosicion(turno / 2).conseguirOro(1);
+            tablero.getJugadorPosicion(turno).conseguirOro(1);
         } else {
             System.out.println("Dispones de 1 unidad de " + material.toString() + " que debes asignar a un planeta");
-            String tusPlanetas = tablero.getPlanetasJugador(turno / 2);
+            String tusPlanetas = tablero.getPlanetasJugador(turno);
             int planeta;
             boolean ok = false;
             do {
@@ -196,13 +302,15 @@ public class Main {
                 planeta = EntradaUsuario.getEnteroMinMax("\nIntroduce el número de tu planeta", 1, CAPACIDAD_SISTEMA_SOLAR);
 
                 try {
-                    tablero.masMaterial(material, planeta, turno / 2);
+                    tablero.masMaterial(material, planeta, turno);
                     ok = true;
                 } catch (ExceptionCompraCarta e) {
                     System.out.println(e.getMessage());
                 }
             } while (!ok);
         }
+
+        accion++;
     }
 
     private static void generarDadosDefault() {

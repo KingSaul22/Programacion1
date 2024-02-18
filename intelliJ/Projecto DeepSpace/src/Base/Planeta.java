@@ -56,7 +56,7 @@ public class Planeta implements Atacable {
         if (navesOrbitales == 100) throw new ExceptionCompraCarta("El planeta elegido no tiene espacio para orbitar");
 
         for (int i = 0; i < MAX_NAVES_ORBITALES; i++) {
-            if (mazoCavesOrbitales[i] == null){
+            if (mazoCavesOrbitales[i] == null) {
                 mazoCavesOrbitales[i] = nave;
                 navesOrbitales++;
                 break;
@@ -107,25 +107,26 @@ public class Planeta implements Atacable {
 
     @Override
     public String toString() {
-        return "\nEl planeta " + nombre + ", " +
-                (conquistador == null ? "se mantiene independiente." : ("ha sido conquistado por " + conquistador.getNombre() + ".")) +
-                "\nSu número de habitantes es de " + habitantes +
-                "\nEl planeta cuenta con las siguientes materias primas:\n  Unidades de piedra: " + numPiedra +
-                "\n  Unidades de hierro: " + numHierro + "\n  Unidades de combustible: " + numCombustible +
-                "\nEl planeta dispone de las siguientes minas:\n" + imprimirMinas() +
-                (escudo == null ? ("\nEl paneta no dispone de escudo.") :
-                        ("El planeta dispone de un escudo con " + escudo.getDefensa() + " puntos de defensa."))
-                ;
+        StringBuilder cadena = new StringBuilder("\n  El ").append(nombre).append(", ")
+                .append(conquistador == null ? "se mantiene independiente." : "ha sido conquistado por " + conquistador.getNombre() + ".")
+                .append("\n  Su número de habitantes es de ").append(habitantes)
+                .append("\n  El planeta cuenta con las siguientes materias primas:\n    Unidades de piedra: ")
+                .append(numPiedra).append("\n    Unidades de hierro: ").append(numHierro)
+                .append("\n    Unidades de combustible: ")
+                .append(numCombustible).append(MINAS[0] == null ? "\n  Este planeta no tiene minas" : imprimirMinas())
+                .append(escudo == null ? "\n  El paneta no dispone de escudo." : "  El planeta dispone de un escudo con " + escudo.getDefensa() + " puntos de defensa.");
+
+        return cadena.toString();
     }
 
     private String imprimirMinas() {
-        StringBuilder minas = new StringBuilder();
+        StringBuilder minas = new StringBuilder("\n  El planeta dispone de las siguientes minas:\n");
 
         for (int i = 0; i < NUM_MAX_MINAS; i++) {
             if (MINAS[i] == null) break;
 
-            minas.append("\n  La mina número ").append(i).append(" es de tipo ").append(MINAS[i].getMateriaExtraida())
-                    .append(".\n  Extrae por turno una cantidad de ").append(MINAS[i].getMinadoTurno()).append(" unidades.\n")
+            minas.append("\n    La mina número ").append(i).append(" es de tipo ").append(MINAS[i].getMateriaExtraida())
+                    .append(".\n    Extrae por turno una cantidad de ").append(MINAS[i].getMinadoTurno()).append(" unidades.\n")
             ;
         }
 

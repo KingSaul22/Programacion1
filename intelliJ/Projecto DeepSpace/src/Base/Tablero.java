@@ -57,12 +57,12 @@ public class Tablero {
 
     public void newPlayer(Jugador jugador) throws IllegalPlayerName {
         for (byte i = 0; i < jugadores.length; i++) {
-            if (jugadores[i].getNombre().equals(jugador.getNombre())) {
-                throw new IllegalPlayerName("El nombre del jugador ya está ocupado");
-            }
             if (jugadores[i] == null) {
                 jugadores[i] = jugador;
                 break;
+            }
+            if (jugadores[i].getNombre().equals(jugador.getNombre())) {
+                throw new IllegalPlayerName("El nombre del jugador ya está ocupado");
             }
         }
     }
@@ -72,20 +72,22 @@ public class Tablero {
     }
 
     public String getPlanetasJugador(int posicion) {
-        StringBuilder cadenaPlanetas = new StringBuilder("\nLista de planetas poseidos por el jugador: ").append(jugadores[posicion].getNombre());
+        String auxCadena = "\nLista de planetas poseidos por el jugador: " + jugadores[posicion].getNombre();
+        StringBuilder cadenaPlanetas = new StringBuilder(auxCadena);
 
         for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++)
             if (sistemaSolar[i].getConquistador() == jugadores[posicion])
                 cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].toString());
 
+        if (auxCadena.contentEquals(cadenaPlanetas)) cadenaPlanetas = new StringBuilder();
         return cadenaPlanetas.toString();
     }
 
     public String getPlanetasTablero() {
-        StringBuilder cadenaPlanetas = new StringBuilder("\nLista de planetas en el Sistema Solar: ");
+        StringBuilder cadenaPlanetas = new StringBuilder("\nLista de planetas en el Sistema Solar:\n");
 
         for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++)
-            cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].toString());
+            cadenaPlanetas.append("\n").append(i).append(".").append(sistemaSolar[i].toString()).append("\n");
 
         return cadenaPlanetas.toString();
     }
@@ -113,7 +115,7 @@ public class Tablero {
 
     public void generarPlanetas() {
         for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++) {
-            sistemaSolar[i] = new Planeta("Planeta " + (i + 1));
+            sistemaSolar[i] = new Planeta("Planeta " + (i));
         }
     }
 

@@ -9,7 +9,6 @@ import static Base.Tablero.CAPACIDAD_SISTEMA_SOLAR;
 
 public class Jugador {
     private String nombre;
-    private Planeta[] planetas = new Planeta[CAPACIDAD_SISTEMA_SOLAR];
     private List<CartaConstruccion> MazoConstrucciones;
     private int oro = 3;
 
@@ -50,5 +49,9 @@ public class Jugador {
      */
     public void conseguirOro(int ganancia) {
         oro += ganancia;
+    }
+
+    public int getOro() {
+        return oro;
     }
 }

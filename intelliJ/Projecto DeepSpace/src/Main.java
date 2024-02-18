@@ -8,6 +8,8 @@ import Excepciones.IllegalValueException;
 import ObjCartas.CartaNave;
 import utils.EntradaUsuario;
 
+import java.util.Random;
+
 import static Base.Tablero.CAPACIDAD_SISTEMA_SOLAR;
 
 public class Main {
@@ -20,14 +22,18 @@ public class Main {
 
     public static void main(String[] args) {
         generarDadosDefault();
-        generarTablero();
+        inicializarTablero();
     }
 
-    private static void generarTablero() {
+    private static void inicializarTablero() {
         numJugadores = EntradaUsuario.getEnteroMinMax("Introduzca el número de jugadores [2-4]\nSelección", 2, 4);
         tablero = new Tablero(numJugadores);
         generarJugadores();
-        tablero.ordenarJugadores(ordenJugadores());
+        tablero.establecerOrdenJugadores(ordenJugadores());
+        tablero.generarPlanetas();
+        System.out.println(tablero.getPlanetasTablero());
+        System.out.println("Asignando un planeta de manera aleatoria a cada jugador.");
+        tablero.primerPlaneta();
 
     }
 
@@ -53,9 +59,9 @@ public class Main {
             indicesJugadores[i] = i;
         }
 
-        for (int i = 1; i< numJugadores; i++){
-            for (int j = 0; j< numJugadores; j++){
-                if (resultadoDadoB[j] < resultadoDadoB[i]){
+        for (int i = 1; i < numJugadores; i++) {
+            for (int j = 0; j < numJugadores; j++) {
+                if (resultadoDadoB[j] < resultadoDadoB[i]) {
                     aux = resultadoDadoB[i];
                     resultadoDadoB[i] = resultadoDadoB[j];
                     resultadoDadoB[j] = aux;
@@ -63,6 +69,70 @@ public class Main {
                     indicesJugadores[i] = indicesJugadores[j];
                     indicesJugadores[j] = aux;
                 }
+            }
+        }
+
+        boolean[] jugadoresFijos = new boolean[numJugadores];
+        if (resultadoDadoB[0] == resultadoDadoB[1]) jugadoresFijos[0] = true;
+        if (resultadoDadoB[numJugadores - 1] == resultadoDadoB[numJugadores - 2])
+            jugadoresFijos[numJugadores - 1] = true;
+
+
+        int contRepetido = 0;
+        for (int i = 0; i < numJugadores - 1; i++) {
+            if (resultadoDadoB[i] == resultadoDadoB[i + 1] && !jugadoresFijos[i]) {
+                for (int j = i; j < numJugadores; j++) {
+                    if (resultadoDadoB[i] != resultadoDadoB[j]) break;
+                    contRepetido++;
+                }
+                boolean ok = false;
+                do {
+                    for (int j = i; j < contRepetido; j++) {
+                        resultadoDadoB[j] = dadoB.lanzar();
+                    }
+                    for (int k = i; k < i + contRepetido; k++) {
+                        if (!jugadoresFijos[k]) {
+                            for (int m = 0; m < numJugadores && !jugadoresFijos[m]; m++) {
+                                if (resultadoDadoB[m] < resultadoDadoB[k]) {
+                                    aux = resultadoDadoB[k];
+                                    resultadoDadoB[k] = resultadoDadoB[m];
+                                    resultadoDadoB[m] = aux;
+                                    aux = indicesJugadores[k];
+                                    indicesJugadores[k] = indicesJugadores[m];
+                                    indicesJugadores[m] = aux;
+                                }
+                            }
+                        }
+                    }
+
+                    int contRepetB = 0;
+                    for (int j = i; j < i + contRepetido - 1; j++) {
+                        if (resultadoDadoB[j] != resultadoDadoB[j + 1] && !jugadoresFijos[j]) {
+                            if (j != 0) {
+                                if (!jugadoresFijos[j - 1] && resultadoDadoB[j] != resultadoDadoB[j - 1]) {
+                                    jugadoresFijos[j] = true;
+                                }
+                            } else {
+                                jugadoresFijos[j] = true;
+                            }
+                        }
+                    }
+
+                    ok = true;
+                    for (int j = i; j < i + contRepetido - 1; j++) {
+                        if (!jugadoresFijos[j]) {
+                            ok = false;
+                            break;
+                        }
+                    }
+
+
+                } while (!ok);
+
+                for (int j = i; j < i + contRepetido; j++) jugadoresFijos[j] = true;
+
+            } else {
+                jugadoresFijos[i] = true;
             }
         }
 
@@ -101,10 +171,7 @@ public class Main {
             }
         } while (opcion != 0 && !ok);
     }
-
-    /**
-     *
-     */
+    
     private static void comprarMaterial() {
         System.out.println("\nA continuación se le dará una unidad de un material aleatorio");
         byte opcion = (byte) (Math.random() * 4 + 1);

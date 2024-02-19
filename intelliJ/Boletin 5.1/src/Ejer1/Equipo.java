@@ -27,11 +27,12 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "El equipo " + nombre + ", ha reclutado a los siguientes alumnos:\n" + getDatosAlumnos();
+        return "\nEl equipo " + nombre + getDatosAlumnos();
     }
 
     private String getDatosAlumnos() {
-        StringBuilder cadena = new StringBuilder();
+        String base = ", ha reclutado a los siguientes alumnos:\n";
+        StringBuilder cadena = new StringBuilder(base);
 
         for (Alumno alumno : alumnos) {
             cadena.append("  ").append(alumno.toString()).append("\n");
@@ -42,8 +43,11 @@ public class Equipo {
             cadena.append("  ").append(iterador.next().toString()).append("\n");
         }*/
 
-        return cadena.isEmpty() ? "  Ningún alumno pertenece a este equipo" : cadena.toString();
+        return base.contentEquals(cadena) ? ", no ha reclutado a ningun alumno." : cadena.toString();
     }
 
 
+    public String getNombre() {
+        return nombre;
+    }
 }

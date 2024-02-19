@@ -1,7 +1,7 @@
 package Ejer1;
 
 public class AlumnoException extends Exception{
-    public AlumnoException(String message) {
+    public AlumnoException(java.lang.String message) {
         super(message);
     }
 }

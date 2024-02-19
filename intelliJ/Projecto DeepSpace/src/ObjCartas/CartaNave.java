@@ -1,12 +1,12 @@
 package ObjCartas;
 
-import Excepciones.IllegalValueException;
 import Interfaces.Atacable;
+import Interfaces.Mejorable;
 
-public abstract class CartaNave extends Carta implements Atacable{
+public abstract class CartaNave extends Carta implements Atacable, Mejorable {
     private int puntosDefensa;
 
-    public CartaNave(String nombre, int precio){
+    public CartaNave(String nombre, int precio) {
         super(nombre, precio);
     }
 
@@ -17,8 +17,9 @@ public abstract class CartaNave extends Carta implements Atacable{
     @Override
     public int getPuntosDefensa() {
         return puntosDefensa;
-    }    @Override
+    }
 
+    @Override
     public void serAtacado(int damage) {
         if (puntosDefensa > damage) {
             puntosDefensa -= damage;

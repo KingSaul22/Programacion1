@@ -150,7 +150,6 @@ public class Main {
     }
 
     private static int[] ordenJugadores() {
-        //TODO: Corregir fallo con 3 y 4 jugadores método ordenJugadores()
         int[] resultadoDadoB = new int[numJugadores];
         int[] indicesJugadores = new int[numJugadores];
         int aux;
@@ -229,7 +228,7 @@ public class Main {
 
                 } while (!ok);
 
-                for (int j = i; j < i + contRepetido; j++) jugadoresFijos[j] = true;
+                for (int j = i; j < i + contRepetido - 1; j++) jugadoresFijos[j] = true;
 
             } else {
                 jugadoresFijos[i] = true;
@@ -338,7 +337,7 @@ public class Main {
                   8. Transportar personas
                   9. Mejorar una nave
                  10. Reparar
-                 11. Mostrar la información de los planetas
+                 11. Mostrar la información de todo el Sistema Solar
                  12. Pasar turno"""
         );
     }

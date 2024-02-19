@@ -6,6 +6,7 @@ import Interfaces.Transportador;
 public class CartaNaveCarga extends CartaNave implements Transportador {
     private static final int PRECIO_NAVE_CARGA = 3;
     private final int PUNTOS_DEFENSA = 4;
+    private int capacidadCarga;
     public CartaNaveCarga(String nombre){
         super(nombre, PRECIO_NAVE_CARGA);
         setPuntosDefensa(PUNTOS_DEFENSA);
@@ -14,5 +15,10 @@ public class CartaNaveCarga extends CartaNave implements Transportador {
     @Override
     public void transportar() {
 
+    }
+
+    @Override
+    public void mejorar() {
+        capacidadCarga *= 2;
     }
 }

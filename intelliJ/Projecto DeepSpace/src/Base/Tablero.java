@@ -72,12 +72,12 @@ public class Tablero {
     }
 
     public String getPlanetasJugador(int posicion) {
-        String auxCadena = "\nLista de planetas poseidos por el jugador: " + jugadores[posicion].getNombre();
+        String auxCadena = "\nLista de planetas poseidos por el jugador: " + jugadores[posicion].getNombre() + "\n";
         StringBuilder cadenaPlanetas = new StringBuilder(auxCadena);
 
         for (int i = 0; i < CAPACIDAD_SISTEMA_SOLAR; i++)
             if (sistemaSolar[i].getConquistador() == jugadores[posicion])
-                cadenaPlanetas.append("\n  ").append(i).append(" ").append(sistemaSolar[i].toString());
+                cadenaPlanetas.append("\n").append(i).append(".").append(sistemaSolar[i].toString()).append("\n");
 
         if (auxCadena.contentEquals(cadenaPlanetas)) cadenaPlanetas = new StringBuilder();
         return cadenaPlanetas.toString();

@@ -239,7 +239,7 @@ public class Main {
     }
 
     private static void comprarNave() {
-        int opcion = 0;
+        int opcion;
         boolean ok = false;
         do {
             System.out.println("\nSeleccione la carta del mazo de naves:" + tablero.getMazoNaves() + "\n  0. Cancelar");
@@ -274,6 +274,12 @@ public class Main {
     }
 
     private static void comprarConstruccion() {
+
+
+
+
+
+        
         //TODO: Crear método para comprar cartas de construcción
     }
 
@@ -292,7 +298,7 @@ public class Main {
             System.out.println("\nSe ha añadido uno de oro a tus fondos");
             tablero.getJugadorPosicion(turno).conseguirOro(1);
         } else {
-            System.out.println("Dispones de 1 unidad de " + material.toString() + " que debes asignar a un planeta");
+            System.out.println("Dispones de 1 unidad de " + material.toString().toLowerCase() + " que debes asignar a un planeta");
             String tusPlanetas = tablero.getPlanetasJugador(turno);
             int planeta;
             boolean ok = false;

@@ -25,6 +25,31 @@ public class Equipo {
         return alumnos.contains(alumno) ? alumno : null;
     }
 
+    public Equipo unionEquipo(Equipo equipoB) throws AlumnoException {
+        Equipo union = new Equipo(nombre + " U " + equipoB.nombre);
+        union.alumnos.addAll(alumnos);
+        union.alumnos.addAll(equipoB.alumnos);
+
+        return union;
+    }
+
+    public Equipo interseccionEquipo(Equipo equipoB) throws AlumnoException {
+        Equipo union = new Equipo(nombre + " I " + equipoB.nombre);
+
+        union.alumnos.addAll(alumnos);
+        union.alumnos.retainAll(equipoB.alumnos);
+
+        /*for (Alumno a : equipoB.alumnos){
+            if (alumnos.contains(a)) union.addAlumno(a);
+        }*/
+
+        return union;
+    }
+
+    public Set<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
     @Override
     public String toString() {
         return "\nEl equipo " + nombre + getDatosAlumnos();

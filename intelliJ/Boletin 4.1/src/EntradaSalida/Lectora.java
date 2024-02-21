@@ -42,7 +42,7 @@ public class Lectora {
         boolean enRango = false;
         while (!enRango) {
             try {
-                System.out.println(mensaje);
+                System.out.print(mensaje + ": ");
                 opcionIntroducido = Integer.parseInt(sc.nextLine());
                 if (opcionIntroducido > nunMin && opcionIntroducido < numMax) {
                     enRango = true;

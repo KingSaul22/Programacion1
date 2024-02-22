@@ -97,6 +97,22 @@ public class Lectora {
         return enteroPositivo;
     }
 
+    public static int leerEntero(String mensaje) {
+        int entero = 0;
+        boolean ok = false;
+        while (!ok) {
+            System.out.println(mensaje);
+            try {
+                entero = Integer.parseInt(sc.nextLine());
+                ok = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Tienes que introducir un número.");
+            }
+        }
+
+        return entero;
+    }
+
     public static double leerDoublePositivo(String mensaje) {
         double enteroPositivo = 0;
         boolean ok = false;
@@ -206,5 +222,4 @@ public class Lectora {
 
         return opciones[opcionElegida - 1];
     }
-
 }

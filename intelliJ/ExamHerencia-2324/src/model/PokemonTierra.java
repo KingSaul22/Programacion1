@@ -25,10 +25,13 @@ public class PokemonTierra extends Pokemon implements Atacable {
 
     @Override
     public void recibirDamage(int damage, WeatherCondition clima, Pokemon atacante) throws MuerteException {
+        //Aumenta defensa al recibir un ataque elctrico
         if (atacante instanceof PokemonElectrico) {
             damage -= (int) ((double) damage / 100 * resistenciaElectrica);
         }
+
         damage -= (int) ((double) damage / 100 * getNivelDefensa());
+        //En caso de que el ataque supera su salud, muere
         if (getSalud() <= damage) {
             try {
                 setSalud(0);

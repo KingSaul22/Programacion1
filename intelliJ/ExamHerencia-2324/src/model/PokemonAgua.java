@@ -28,6 +28,7 @@ public class PokemonAgua extends Pokemon implements Atacable {
     public void recibirDamage(int damage, WeatherCondition clima, Pokemon atacante) throws MuerteException {
         damage -= (int) ((double) damage / 100 * getNivelDefensa());
         if (getSalud() <= damage) {
+            //En caso de que el ataque supera su salud, muere
             try {
                 setSalud(0);
             } catch (ValorNoValidoException e) {

@@ -6,11 +6,23 @@ import exceptions.RoundStartException;
 import exceptions.ValorNoValidoException;
 import interfaces.Atacable;
 
+/**
+ * El pokemon electrico obtiene bonus por tormenta electrica o lluvia
+ */
 public class PokemonElectrico extends Pokemon implements Atacable {
     public static final int RESISTENCIA_LLUVIA_MAXIMO = 15;
     public static final int RESISTENCIA_LLUVIA_MINIMO = 10;
     private int resistenciaLluvia;
 
+    /**
+     *
+     * @param nombre
+     * @param salud salud inicial
+     * @param nivelAtaque daño base del ataque
+     * @param nivelDefensa defensa base
+     * @param resistenciaLluvia en caso de que llueva se usará para reducir el daño recibido
+     * @throws ValorNoValidoException cuando se quiera crear un pokemon con  valores inadecuados
+     */
     public PokemonElectrico(String nombre, int salud, int nivelAtaque, int nivelDefensa, int resistenciaLluvia) throws ValorNoValidoException {
         super(nombre, salud, nivelAtaque, nivelDefensa);
         setResistenciaLluvia(resistenciaLluvia);
@@ -31,6 +43,7 @@ public class PokemonElectrico extends Pokemon implements Atacable {
         }
         damage -= (int) ((double) damage / 100 * getNivelDefensa());
         if (getSalud() <= damage) {
+            //En caso de que el ataque supere a su salud, muere
             try {
                 setSalud(0);
             } catch (ValorNoValidoException e) {

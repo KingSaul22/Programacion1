@@ -79,6 +79,11 @@ public abstract class Pokemon implements Atacador {
         receptor.recibirDamage(getNivelAtaque(), clima, this);
     }
 
+    /**
+     *
+     * @param weatherCondition clima de la ronda actual
+     * @throws RoundStartException Mensaje con datos respecto a los bonus
+     */
     public void roundStart(WeatherCondition weatherCondition) throws RoundStartException{
         if (salud == 0) throw new RoundStartException("");
     }

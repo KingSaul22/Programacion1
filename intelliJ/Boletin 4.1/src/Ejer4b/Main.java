@@ -96,7 +96,7 @@ public class Main {
             nombre = Lectora.solicitarCadenaMinus("Introduzca el nombre del mago");
             hechizo = Lectora.solicitarCadenaMinus("Introduzca el nombre del hechizo");
             for (int i = 0; i < MAX_PERSONAJES; i++){
-                
+
             }
         } while (!ok);
     }

@@ -16,7 +16,7 @@ public class PokemonElectrico extends Pokemon implements Atacable {
 
     /**
      *
-     * @param nombre
+     * @param nombre nombre del pokemon
      * @param salud salud inicial
      * @param nivelAtaque daño base del ataque
      * @param nivelDefensa defensa base
@@ -40,6 +40,7 @@ public class PokemonElectrico extends Pokemon implements Atacable {
     public void recibirDamage(int damage, WeatherCondition clima, Pokemon atacante) throws MuerteException {
         if (clima == WeatherCondition.LLUVIA) {
             damage -= (int) ((double) damage / 100 * resistenciaLluvia);
+            if (damage < 0) damage = 0;
         }
         damage -= (int) ((double) damage / 100 * getNivelDefensa());
         if (getSalud() <= damage) {
@@ -75,7 +76,7 @@ public class PokemonElectrico extends Pokemon implements Atacable {
             throw new RoundStartException("El pokemon " + getNombre() + " ha activado 'Bonificación por Tormenta Electrica'");
         }
         if (weatherCondition == WeatherCondition.LLUVIA) {
-            throw new RoundStartException("El pokemon " + getNombre() + " aumenta su daño gracias a la lluvia");
+            throw new RoundStartException("El pokemon " + getNombre() + " aumenta su defensa gracias a la lluvia");
         }
     }
 }

@@ -27,6 +27,12 @@ public abstract class Pokemon implements Atacador {
     }
 
     public void setSalud(int salud) throws ValorNoValidoException {
+        /*
+        Así te ahorras la excepción y facilitas la lógica en recibirDamage()
+        if (salud < SALUD_MINIMA) salud = 0;
+        if (salud > SALUD_MAXIMA) salud = SALUD_MAXIMA;
+         */
+
         if (salud < SALUD_MINIMA || salud > SALUD_MAXIMA) {
             throw new ValorNoValidoException("El valor de salud no está dentro del rango " +
                     SALUD_MINIMA + ", " + SALUD_MAXIMA + "]");
@@ -86,5 +92,6 @@ public abstract class Pokemon implements Atacador {
      */
     public void roundStart(WeatherCondition weatherCondition) throws RoundStartException{
         if (salud == 0) throw new RoundStartException("");
+        //if (salud == 0) return; Para los hijos y hacer abstracto roundStart()
     }
 }

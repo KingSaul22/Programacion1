@@ -28,6 +28,8 @@ public class PokemonFuego extends Pokemon implements Atacable {
     public void recibirDamage(int damage, WeatherCondition clima, Pokemon atacante) throws MuerteException {
         if (atacante instanceof PokemonAgua) {
             damage -= resistenciaAgua;
+
+            if (damage < 0) damage = 0;
         }
         damage -= (int) ((double) damage / 100 * getNivelDefensa());
         if (getSalud() <= damage) {

@@ -69,7 +69,7 @@ public class Main {
 
     private static Pokemon getGanador(Pokemon[] pokemons) {
         for (Pokemon pokemon : pokemons) {
-            if (pokemon.estaVivo()) {
+            if (pokemon.estaVivo() && !(pokemon instanceof PokemonDivino)) {
                 return pokemon;
             }
         }

@@ -3,7 +3,7 @@ package Ejer3;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Mensaje {
+public class Mensaje implements Comparable<Mensaje>{
     private Persona remitente;
     private String text;
     private LocalDateTime fecha;
@@ -34,5 +34,10 @@ public class Mensaje {
                 .append(" Texto: ").append(text)
                 .append(" Fecha y hora: ").append(fecha.format(format));
         return mensaje.toString();
+    }
+
+    @Override
+    public int compareTo(Mensaje other) {
+        return other.fecha.compareTo(fecha);
     }
 }

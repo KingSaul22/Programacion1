@@ -17,11 +17,12 @@ package Kata10;
  */
 public class Main {
     public static void main(String[] args) {
-        int number = 1444;
+        int number = 14444;
 
         System.out.println(digital_root(number));
         System.out.println(digital_rootB(number));
         System.out.println(digital_rootC(number));
+        System.out.println(digital_rootD(number));
     }
 
 
@@ -36,6 +37,8 @@ public class Main {
         while (root > 9) {
             root = digital_root(root);
         }
+
+        //if (root > 9) return digital_root(root);
 
         return root;
     }
@@ -63,5 +66,9 @@ public class Main {
         }
 
         return root;
+    }
+
+    public static int digital_rootD(int n) {
+        return (n != 0 && n % 9 == 0) ? 9 : n % 9;
     }
 }

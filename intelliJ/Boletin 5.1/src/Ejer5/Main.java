@@ -18,9 +18,10 @@ public class Main {
                 case 2 -> buscarSignificado();
                 case 3 -> borrarPalabra();
                 case 4 -> buscarPalabraCadena();
-                default -> System.out.println("\n¡Gracias por usar el diccionario!");
+                default -> SC.close();
             }
         } while (opcion != 5);
+        System.out.println("\n¡Gracias por usar el diccionario!");
     }
 
     private static void nuevaPalabra() {

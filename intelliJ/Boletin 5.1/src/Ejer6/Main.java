@@ -24,7 +24,7 @@ public class Main {
                 default -> SC.close();
             }
         } while (opcion != 5);
-        System.out.println("\n¡Gracias por usar el diccionario!");
+        System.out.println("\n¡Gracias por usar el programa!");
     }
 
     private static void abrirCaja() {
@@ -48,10 +48,11 @@ public class Main {
     }
 
     private static void nuevoCliente() {
-
-        
-
-
+        try {
+            System.out.println(ALMACEN.aniadirCliente());
+        } catch (CajaException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void atenderCliente() {

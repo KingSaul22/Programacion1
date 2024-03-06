@@ -46,6 +46,10 @@ public class Caja {
         }
     }
 
+    void nuevoCliente(int numCliente) {
+        clientes.add(numCliente);
+    }
+
     int getNumClientes() {
         return clientes.size();
     }

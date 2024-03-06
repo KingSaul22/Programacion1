@@ -25,19 +25,19 @@ public class Main {
     private static <T> ArrayList<T> reverse(ArrayList<T> arrayOriginal) {
         ArrayList<T> arrayNuevo = new ArrayList<>(arrayOriginal.size());
 
-        //for (int i = arrayOriginal.size() - 1; i >= 0; i--) arrayNuevo.add(arrayOriginal.get(i));
+        for (int i = arrayOriginal.size() - 1; i >= 0; i--) arrayNuevo.add(arrayOriginal.get(i));
 
         /*int i = 0;
         for (T elemento : arrayOriginal) {
             arrayNuevo.add(arrayOriginal.get(arrayOriginal.size() - 1 + i--));
-        }*/
+        }
 
         int aux = arrayOriginal.size() - 1;
         Iterator<T> iterador = arrayOriginal.iterator();
         while (iterador.hasNext()) {
             arrayNuevo.set(aux--, iterador.next());
             //arrayNuevo.set(0, iterador.next());
-        }
+        }*/
 
         return arrayNuevo;
     }

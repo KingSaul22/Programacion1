@@ -26,6 +26,7 @@ public class Diccionario {
 
         StringBuilder significados = new StringBuilder("Significados de " + palabra + ":");
         diccionario.get(palabra).stream().forEach(a -> significados.append("\n  · ").append(a));
+        //diccionario.get(palabra).forEach(a -> significados.append("\n  · ").append(a));
 
         return significados.toString();
     }
@@ -35,14 +36,22 @@ public class Diccionario {
     }
 
     public String getPalabrasCadenaLetra(String cadena) {
-        Set<String> palabras = diccionario.keySet();
+        String cadenaBase = "Las palabras que comienzan por '" + cadena + "' son las siguientes:";
+        StringBuilder palabras = new StringBuilder(cadenaBase);
+        Set<String> palabrasDiccionario = diccionario.keySet();
 
-        //palabras.removeIf(s -> !s.contains(cadena));
-        Iterator<String> iterador = palabras.iterator();
+        //palabrasDiccionario.removeIf(s -> !s.contains(cadena));
+        Iterator<String> iterador = palabrasDiccionario.iterator();
         while (iterador.hasNext()) {
             if (!iterador.next().contains(cadena)) {
                 iterador.remove();
             }
+        }
+        new ArrayList<>(palabrasDiccionario).stream().sorted().forEach(a -> palabras.append("\n  · ").append(a));
+
+
+        if (palabras.toString().equals(cadenaBase)) {
+            return "No hay palabras que comienzen por '" + cadena + "'";
         }
 
         return palabras.toString();

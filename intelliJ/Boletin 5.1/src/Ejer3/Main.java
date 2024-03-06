@@ -35,9 +35,42 @@ public class Main {
 
         System.out.println("Sin ordenar");
         System.out.println(personas.get(0).leerMensajes());
-        System.out.println("Tras ordenar");
-        System.out.println(personas.get(0).leerMensajesOrdenados());
-        System.out.println("Tras ordenar Alfa");
-        System.out.println(personas.get(0).leerMensajesOrdenadosAlfabeti());
+        //System.out.println("Tras ordenar");
+        //System.out.println(personas.get(0).leerMensajesOrdenados());
+        //System.out.println("Tras ordenar Alfa");
+        //System.out.println(personas.get(0).leerMensajesOrdenadosAlfabeti());
+
+        try {
+            personas.get(0).borrarMensaje(10);
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            personas.get(0).borrarMensaje(1);
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Sin ordenar");
+        System.out.println(personas.get(0).leerMensajes());
+
+        try {
+            personas.get(0).borrarMensaje(-3);
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println(personas.get(0).filtrarMensajePorFrase("prueba3"));
+            System.out.println();
+            System.out.println(personas.get(0).filtrarMensajePorFraseSinFlujo("prueba3"));
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println(personas.get(0).filtrarMensajePorFrase("Cocacola"));
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

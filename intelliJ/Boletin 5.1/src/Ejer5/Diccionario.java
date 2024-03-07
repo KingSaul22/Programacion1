@@ -10,50 +10,45 @@ public class Diccionario {
     }
 
     public void nuevaPalabra(String palabra, String significado) {
-        List<String> significados = new ArrayList<>();
+        /*List<String> significados = new ArrayList<>();
         if (diccionario.get(palabra) != null) {
             significados = new ArrayList<>(diccionario.get(palabra));
         }
 
         significados.add(significado);
-        diccionario.put(palabra, significados);
+        diccionario.put(palabra, significados);*/
+
+        if (diccionario.containsKey(palabra)) {
+            diccionario.get(palabra).add(significado);
+        } else {
+            List<String> significados = new ArrayList<>();
+            significados.add(significado);
+            diccionario.put(palabra, significados);
+        }
     }
 
-    public String buscarPalabra(String palabra) throws DiccionarioException {
-        if (!diccionario.containsKey(palabra)) {
+    public List<String> getSignificadosPalabra(String palabra) throws DiccionarioException {
+        List<String> significados = diccionario.get(palabra);
+        if (significados == null) {
             throw new DiccionarioException("El diccionario no contiene la palabra " + palabra);
         }
-
-        StringBuilder significados = new StringBuilder("Significados de " + palabra + ":");
-        diccionario.get(palabra).stream().forEach(a -> significados.append("\n  · ").append(a));
-        //diccionario.get(palabra).forEach(a -> significados.append("\n  · ").append(a));
-
-        return significados.toString();
+        return significados;
     }
 
-    public void borrarPalabra(String palabra) {
-        diccionario.remove(palabra);
+    public void borrarPalabra(String palabra) throws DiccionarioException {
+        if (diccionario.remove(palabra) == null)
+            throw new DiccionarioException("La palabra introducida no existe en el diccionario");
     }
 
-    public String getPalabrasCadenaLetra(String cadena) {
-        String cadenaBase = "Las palabras que comienzan por '" + cadena + "' son las siguientes:";
-        StringBuilder palabras = new StringBuilder(cadenaBase);
-        Set<String> palabrasDiccionario = diccionario.keySet();
+    public List<String> getPalabrasCadenaLetra(String cadena) throws DiccionarioException {
+        List<String> palabras = new LinkedList<>();
+        diccionario.keySet().stream()
+                .filter(a -> a.startsWith(cadena))
+                .forEach(a -> palabras.add(0, a));
+        
+        if (palabras.isEmpty()) {
+            throw new DiccionarioException("No hay palabras que comienzen por '" + cadena + "'");        }
 
-        //palabrasDiccionario.removeIf(s -> !s.contains(cadena));
-        Iterator<String> iterador = palabrasDiccionario.iterator();
-        while (iterador.hasNext()) {
-            if (!iterador.next().contains(cadena)) {
-                iterador.remove();
-            }
-        }
-        new ArrayList<>(palabrasDiccionario).stream().sorted().forEach(a -> palabras.append("\n  · ").append(a));
-
-
-        if (palabras.toString().equals(cadenaBase)) {
-            return "No hay palabras que comienzen por '" + cadena + "'";
-        }
-
-        return palabras.toString();
+        return palabras;
     }
 }

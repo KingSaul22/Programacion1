@@ -37,7 +37,7 @@ public class Almacen {
     public String aniadirCliente() throws CajaException {
         int numCaja = cajaMasVacia();
         cajas[numCaja].nuevoCliente(++cantidadClientes);
-        return "Es usted el cliente número " + cantidadClientes + " y debe ir a la caja " + numCaja;
+        return "Es usted el cliente número " + cantidadClientes + " y debe ir a la caja " + numCaja + 1;
     }
 
     public String atenderCliente(int numCaja) throws CajaException {

@@ -1,5 +1,6 @@
 package Ejer5;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -36,20 +37,36 @@ public class Main {
 
     private static void buscarSignificado() {
         try {
-            System.out.println(DICCIONARIO.buscarPalabra(introducirCadena("Introduzca la palabra a buscar")));
+            String palabra = introducirCadena("Introduzca la palabra a buscar");
+            List<String> palabras = DICCIONARIO.getSignificadosPalabra(palabra);
+            StringBuilder significados = new StringBuilder("Significados de " + palabra + ":");
+            palabras.stream().forEach(a -> significados.append("\n  · ").append(a));
+            //palabras.forEach(a -> significados.append("\n  · ").append(a));
+            System.out.println("Significados de " + palabra + ":" + significados);
+
         } catch (DiccionarioException e) {
             System.out.println(e.getMessage());
         }
     }
 
     private static void borrarPalabra() {
-        DICCIONARIO.borrarPalabra(introducirCadena("Introduzca la palabra a borrar"));
+        try {
+            String palabra = introducirCadena("Introduzca la palabra a borrar");
+            DICCIONARIO.borrarPalabra(palabra);
+            System.out.println("La palabra '" + palabra + "' ha sido borrada del diccionario");
+        } catch (DiccionarioException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void buscarPalabraCadena() {
-        System.out.println(DICCIONARIO.getPalabrasCadenaLetra(
-                introducirCadena("Introduzca los caracteres iniciales de la palabra")
-        ));
+        try {
+            String cadena = introducirCadena("Introduzca los caracteres iniciales de la palabra");
+            StringBuilder palabras = new StringBuilder("Las palabras que comienzan por '" + cadena + "' son las siguientes:");
+
+        } catch (DiccionarioException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static String introducirCadena(String mensaje) {

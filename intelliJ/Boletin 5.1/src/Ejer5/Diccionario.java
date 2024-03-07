@@ -40,15 +40,8 @@ public class Diccionario {
             throw new DiccionarioException("La palabra introducida no existe en el diccionario");
     }
 
-    public List<String> getPalabrasCadenaLetra(String cadena) throws DiccionarioException {
-        List<String> palabras = new LinkedList<>();
-        diccionario.keySet().stream()
-                .filter(a -> a.startsWith(cadena))
-                .forEach(a -> palabras.add(0, a));
-        
-        if (palabras.isEmpty()) {
-            throw new DiccionarioException("No hay palabras que comienzen por '" + cadena + "'");        }
-
-        return palabras;
+    public List<String> getPalabrasCadenaLetra(String cadena){
+        return diccionario.keySet().stream().filter(a -> a.startsWith(cadena)).sorted().toList();
+        //return diccionario.keySet().stream().filter(a -> a.startsWith(cadena)).toList();
     }
 }

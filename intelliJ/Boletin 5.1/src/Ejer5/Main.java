@@ -60,12 +60,17 @@ public class Main {
     }
 
     private static void buscarPalabraCadena() {
-        try {
-            String cadena = introducirCadena("Introduzca los caracteres iniciales de la palabra");
-            StringBuilder palabras = new StringBuilder("Las palabras que comienzan por '" + cadena + "' son las siguientes:");
+        String cadena = introducirCadena("Introduzca los caracteres iniciales de la palabra");
+        List<String> palabrasPorCadena = DICCIONARIO.getPalabrasCadenaLetra(cadena);
 
-        } catch (DiccionarioException e) {
-            System.out.println(e.getMessage());
+        if (palabrasPorCadena.isEmpty()) {
+            System.out.println("No se encuentran palabras que empiecen por la cadena '" + cadena + "'");
+        } else {
+            StringBuilder palabras = new StringBuilder("Las palabras que comienzan por '" + cadena + "' son las siguientes:");
+            for (String s : palabrasPorCadena) {
+                palabras.append("\n  · ").append(s);
+            }
+            System.out.println(palabras);
         }
     }
 

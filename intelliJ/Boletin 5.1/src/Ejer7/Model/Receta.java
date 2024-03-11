@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
 
-public class Receta {
+public class Receta implements Comparable<Receta>{
     private String nombreReceta;
     private int tiempoPreparacion; //Medido en minutos
     private HashSet<Ingrediente> ingredientes;
@@ -66,5 +66,22 @@ public class Receta {
                 break;
             }
         }*/
+    }
+
+    public String getNombreReceta() {
+        return nombreReceta;
+    }
+
+    public int getTiempoPreparacion() {
+        return tiempoPreparacion;
+    }
+
+    public HashSet<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
+    @Override
+    public int compareTo(Receta other) {
+        return tiempoPreparacion - other.tiempoPreparacion;
     }
 }

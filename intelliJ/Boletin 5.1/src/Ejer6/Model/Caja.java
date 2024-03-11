@@ -25,6 +25,7 @@ public class Caja {
 
     /**
      * Método que cambia el estado de la caja a cerrado
+     *
      * @throws CajaException En caso de que la caja ya esté cerrada o haya clientes que atender
      */
     public void cerrar() throws CajaException {
@@ -36,6 +37,7 @@ public class Caja {
 
     /**
      * Método que cambia el estado de la caja a abierto
+     *
      * @throws CajaException En caso de que la caja ya esté abierta
      */
     public void abrir() throws CajaException {
@@ -45,6 +47,7 @@ public class Caja {
 
     /**
      * Método que libera la cabeza de la cola clientes y devuelve su número
+     *
      * @return El número del cliente
      * @throws CajaException Cuando la caja está cerrada o no tiene clientes
      */
@@ -53,13 +56,14 @@ public class Caja {
         //if (clientes.isEmpty()) throw new CajaException("La caja no tiene clientes");
         try {
             return clientes.remove();
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new CajaException("La caja no tiene clientes");
         }
     }
 
     /**
      * Método que añade un cliente a la {@link Caja#clientes cola}
+     *
      * @param numCliente El cliente en cuestiíon
      */
     void nuevoCliente(int numCliente) {
@@ -67,7 +71,13 @@ public class Caja {
     }
 
     /**
-     *
+     * @return Número de la {@link Caja caja}
+     */
+    public int getNumCaja() {
+        return numCaja;
+    }
+
+    /**
      * @return Tamaño de la {@link Caja#clientes cola de clientes}
      */
     int getNumClientes() {

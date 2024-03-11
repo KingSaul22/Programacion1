@@ -3,6 +3,7 @@ package Ejer7.Model;
 import Ejer7.Excepciones.RecetaException;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -57,5 +58,13 @@ public class Receta {
         int posPaso = pasos.indexOf(pasoExistente);
         if (posPaso == -1) throw new RecetaException("No existe ningún paso como el indicado");
         pasos.add(++posPaso, pasoNuevo);
+
+        /*Iterator<String> iterador = pasos.iterator();
+        for (int i = 0; iterador.hasNext(); i++){
+            if (iterador.next().equals(pasoExistente)) {
+                pasos.add(++i, pasoNuevo);
+                break;
+            }
+        }*/
     }
 }

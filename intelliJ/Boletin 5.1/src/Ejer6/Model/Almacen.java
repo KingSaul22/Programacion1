@@ -2,20 +2,24 @@ package Ejer6.Model;
 
 import Ejer6.Excepciones.CajaException;
 
+import java.util.stream.Stream;
+
 public class Almacen {
     private static final int NUM_DE_CAJAS = 20;
     private Caja[] cajas;
-    private int cantidadClientes = 0;
+    private int cantidadClientes;
 
     public Almacen() {
         cajas = new Caja[NUM_DE_CAJAS];
         for (int i = 0; i < NUM_DE_CAJAS; i++) {
             cajas[i] = new Caja(i + 1);
         }
+        cantidadClientes = 0;
     }
 
     /**
      * Método que compara el número de clientes entre cajas y busca la más vacía
+     *
      * @return La pocición de la caja con menos clientes.
      * @throws CajaException Cuando no hay {@link Caja cajas} abiertas.
      */
@@ -30,17 +34,30 @@ public class Almacen {
         }
         if (numCaja == -1) throw new CajaException("No hay ninguna caja abierta");
 
+        //if (Stream.of(cajas).filter(Caja::isActiva).count() == 0) {
+        /*if (Stream.of(cajas).noneMatch(Caja::isActiva)) {
+            throw new CajaException("No hay ninguna caja abierta");
+        }*/
+
+
         for (int i = numCaja + 1; i < NUM_DE_CAJAS; i++) {
             if (cajas[i].isActiva() && cajas[i].getNumClientes() < cajas[numCaja].getNumClientes()) {
                 numCaja = i;
             }
         }
 
+        /*Caja c = Stream.of(cajas).filter(Caja::isActiva)
+                .sorted((a, b) -> a.getNumClientes() - b.getNumClientes())
+                .toList().get(0);
+        c.nuevoCliente(++cantidadClientes);*/
+        //return "Es usted el cliente número " + cantidadClientes + " y debe ir a la caja " + c.getNumCaja();
+
         return numCaja;
     }
 
     /**
      * Método que asigna un cliente a una {@link Caja caja}
+     *
      * @return Una cadena que incluye el número del cliente y la caja asignada
      * @throws CajaException Propagada desde {@link Almacen#cajaMasVacia()}
      */
@@ -52,6 +69,7 @@ public class Almacen {
 
     /**
      * Método que, ha una {@link Caja caja} en cuestión, elimina la cabeza de la cola de clientes
+     *
      * @param numCaja La posición de la caja en el array + 1
      * @return Una cadena que muestra que el cliente ha sido atendido
      * @throws CajaException Propagada desde {@link Caja#clienteAtendido()}
@@ -62,6 +80,7 @@ public class Almacen {
 
     /**
      * Método que cambiará el estado de la caja a cerrado
+     *
      * @param numCaja La posición de la caja en el array + 1
      * @throws CajaException Propagada desde {@link Caja#cerrar()}
      */
@@ -71,6 +90,7 @@ public class Almacen {
 
     /**
      * Método que cambiará el estado de la caja a abierta
+     *
      * @param numCaja La posición de la caja en el array + 1
      * @throws CajaException Propagada desde {@link Caja#abrir()}
      */

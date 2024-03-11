@@ -56,7 +56,7 @@ public class Receta {
 
     public void aniadirPasoDetrasDe(String pasoNuevo, String pasoExistente) throws IngredienteException {
         int posPaso = pasos.indexOf(pasoExistente);
-        if (posPaso == -1) throw new IngredienteException("No exiisste ningún paso como el indicado");
+        if (posPaso == -1) throw new IngredienteException("No existe ningún paso como el indicado");
         pasos.add(++posPaso, pasoNuevo);
     }
 }

@@ -3,6 +3,7 @@ package Ejer7.Model;
 import Ejer7.Excepciones.IngredienteException;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -33,5 +34,23 @@ public class Receta {
         } else {
             i.get().addCantidad(ingredienteNuevo.getCantidad());
         }
+    }
+
+    public void borrarIngrediente(Ingrediente ingredienteABorrar) throws IngredienteException {
+        Optional<Ingrediente> i = ingredientes.stream()
+                .filter(a -> a.getNombre().equals(ingredienteABorrar.getNombre())).findFirst();
+
+        if (i.isEmpty()) {
+            throw new IngredienteException("El ingrediente que quieres borrar no se encuentra en la receta");
+        }
+
+        ingredientes.remove(i.get());
+        pasos.removeIf(s -> s.contains(ingredienteABorrar.getNombre()));
+        /*Iterator<String> iterador = pasos.iterator();
+        while (iterador.hasNext()) {
+            if (iterador.next().contains(ingredienteABorrar.getNombre())){
+                iterador.remove();
+            }
+        }*/
     }
 }

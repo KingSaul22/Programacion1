@@ -1,9 +1,8 @@
 package Ejer7.Model;
 
-import Ejer7.Excepciones.IngredienteException;
+import Ejer7.Excepciones.RecetaException;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -36,12 +35,12 @@ public class Receta {
         }
     }
 
-    public void borrarIngrediente(Ingrediente ingredienteABorrar) throws IngredienteException {
+    public void borrarIngrediente(Ingrediente ingredienteABorrar) throws RecetaException {
         Optional<Ingrediente> i = ingredientes.stream()
                 .filter(a -> a.getNombre().equals(ingredienteABorrar.getNombre())).findFirst();
 
         if (i.isEmpty()) {
-            throw new IngredienteException("El ingrediente que quieres borrar no se encuentra en la receta");
+            throw new RecetaException("El ingrediente que quieres borrar no se encuentra en la receta");
         }
 
         ingredientes.remove(i.get());
@@ -54,9 +53,9 @@ public class Receta {
         }*/
     }
 
-    public void aniadirPasoDetrasDe(String pasoNuevo, String pasoExistente) throws IngredienteException {
+    public void aniadirPasoDetrasDe(String pasoNuevo, String pasoExistente) throws RecetaException {
         int posPaso = pasos.indexOf(pasoExistente);
-        if (posPaso == -1) throw new IngredienteException("No existe ningún paso como el indicado");
+        if (posPaso == -1) throw new RecetaException("No existe ningún paso como el indicado");
         pasos.add(++posPaso, pasoNuevo);
     }
 }

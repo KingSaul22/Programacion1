@@ -20,6 +20,7 @@ public class Recetario {
 
     public String listadoRecetasOrdenadasAlfabeticamente() throws RecetaException {
         if (recetas.isEmpty()) throw new RecetaException("No hay recetas en el recetario");
+        //return recetas.values().stream().sorted((a, b) -> a.getNombreReceta().compareTo(b.getNombreReceta())).toList();
 
         StringBuilder cadena = new StringBuilder("El recetario contiene las siguientes recetas:");
         recetas.values().stream().sorted((a, b) -> a.getNombreReceta().compareTo(b.getNombreReceta()))
@@ -32,22 +33,24 @@ public class Recetario {
     public String listadoRecetasConIngredienteOrdenadasPorTiempoPreparacion(String ingrediente) throws RecetaException {
         if (recetas.isEmpty()) throw new RecetaException("No hay recetas en el recetario");
 
+        List<Receta> recetasConIngrediente = recetas.values().stream().filter(a -> a.necesitaIngrediente(ingrediente)).toList();
+        if (recetasConIngrediente.isEmpty()) {
+            throw new RecetaException("No hay recetas que incluyan ese ingrediente");
+        }
+
         StringBuilder cadena = new StringBuilder("Recetas que incluyen " + ingrediente + " como ingrediente:");
-        recetas.values().stream().filter(a -> a.necesitaIngrediente(ingrediente))
-                .sorted().forEach(a ->
+        recetasConIngrediente.stream().sorted().forEach(a ->
                         cadena.append("\n  · ").append(a.getNombreReceta())
                                 .append(". (").append(a.getTiempoPreparacion()).append(" min)")
                                 .append("\n    Ingredientes: ").append(getListaIngredientes(a))
-                                //.append("\n    Ingredientes: ").append(Arrays.toString(a.getIngredientes().toArray()))
-                );
+                //.append("\n    Ingredientes: ").append(Arrays.toString(a.getIngredientes().toArray()))
+        );
         return cadena.toString();
     }
 
     private String getListaIngredientes(Receta receta) {
-        StringBuilder cadena= new StringBuilder();
-        receta.getIngredientes().stream().forEach( a ->
-                cadena.append("\n    - ").append(a)
-        );
+        StringBuilder cadena = new StringBuilder();
+        receta.getIngredientes().stream().forEach(a -> cadena.append("\n    - ").append(a));
 
         return cadena.toString();
     }

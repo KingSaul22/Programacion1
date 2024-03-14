@@ -2,10 +2,7 @@ package Ejer7.Model;
 
 import Ejer7.Excepciones.RecetaException;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Optional;
+import java.util.*;
 
 public class Receta implements Comparable<Receta>{
     private String nombreReceta;
@@ -41,8 +38,12 @@ public class Receta implements Comparable<Receta>{
             throw new RecetaException("El ingrediente que quieres borrar no se encuentra en la receta");
         }
 
-        pasos.stream().filter(s -> s.contains(ingredienteABorrar.getNombre())).forEach(s -> pasos.remove(s));
-        
+        //pasos.stream().filter(s -> s.contains(ingredienteABorrar.getNombre())).forEach(s -> pasos.remove(s));
+        List<String> nuevosPasos = pasos.stream()
+                .filter(s -> !s.contains(ingredienteABorrar.getNombre())).toList();
+        pasos = new LinkedList<>(nuevosPasos);
+        //pasos.removeIf(s -> s.contains(ingredienteABorrar.getNombre()));
+
         /*Optional<Ingrediente> i = ingredientes.stream()
                 .filter(a -> a.getNombre().equals(ingredienteABorrar.getNombre())).findFirst();
 

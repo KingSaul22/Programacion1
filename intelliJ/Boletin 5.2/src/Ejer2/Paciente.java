@@ -22,6 +22,14 @@ public class Paciente implements Comparable<Paciente> {
         this.prioridad = prioridad;
     }
 
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public int getOrdenLlegada() {
+        return ordenLlegada;
+    }
+
     @Override
     public int compareTo(Paciente other) {
         /*if (prioridad != other.prioridad){

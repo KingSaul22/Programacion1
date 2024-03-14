@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51f765e4-18ea-4b8a-9446-fc194d9faf12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ejer2/Hospital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/Hospital.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejer2/HospitalException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/HospitalException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ejer2/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/Paciente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,11 +65,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710422364888</updated>
-      <workItem from="1710422365960" duration="1032000" />
+      <workItem from="1710422365960" duration="1508000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

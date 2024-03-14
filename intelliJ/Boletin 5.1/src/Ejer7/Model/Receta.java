@@ -37,7 +37,13 @@ public class Receta implements Comparable<Receta>{
     }
 
     public void borrarIngrediente(Ingrediente ingredienteABorrar) throws RecetaException {
-        Optional<Ingrediente> i = ingredientes.stream()
+        if(!ingredientes.remove(ingredienteABorrar)) {
+            throw new RecetaException("El ingrediente que quieres borrar no se encuentra en la receta");
+        }
+
+        pasos.stream().filter(s -> s.contains(ingredienteABorrar.getNombre())).forEach(s -> pasos.remove(s));
+        
+        /*Optional<Ingrediente> i = ingredientes.stream()
                 .filter(a -> a.getNombre().equals(ingredienteABorrar.getNombre())).findFirst();
 
         if (i.isEmpty()) {
@@ -45,7 +51,7 @@ public class Receta implements Comparable<Receta>{
         }
 
         ingredientes.remove(i.get());
-        pasos.removeIf(s -> s.contains(ingredienteABorrar.getNombre()));
+        pasos.removeIf(s -> s.contains(ingredienteABorrar.getNombre()));*/
         /*Iterator<String> iterador = pasos.iterator();
         while (iterador.hasNext()) {
             if (iterador.next().contains(ingredienteABorrar.getNombre())){

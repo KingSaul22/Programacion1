@@ -12,8 +12,7 @@ public class Recetario {
     }
 
     public void aniadirReceta(Receta recetaNueva) throws RecetaException {
-
-        if (recetas.get(recetaNueva.getNombreReceta()) != null) {
+        if (recetas.containsKey(recetaNueva.getNombreReceta())) {
             throw new RecetaException("La receta indicada ya se encuentra en el recetario");
         }
         recetas.put(recetaNueva.getNombreReceta(), recetaNueva);

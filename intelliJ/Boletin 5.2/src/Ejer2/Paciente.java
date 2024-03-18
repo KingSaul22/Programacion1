@@ -30,6 +30,10 @@ public class Paciente implements Comparable<Paciente> {
         return ordenLlegada;
     }
 
+    public int getEdad() {
+        return edad;
+    }
+
     @Override
     public int compareTo(Paciente other) {
         /*if (prioridad != other.prioridad){

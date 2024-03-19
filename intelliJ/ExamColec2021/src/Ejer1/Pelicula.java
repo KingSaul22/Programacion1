@@ -1,4 +1,4 @@
-package colecciones.ejercicio1;
+package Ejer1;
 import java.util.ArrayList;
 import java.util.HashSet;
 

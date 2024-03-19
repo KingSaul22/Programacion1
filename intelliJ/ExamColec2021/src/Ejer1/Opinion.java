@@ -1,4 +1,4 @@
-package colecciones.ejercicio1;
+package Ejer1;
 
 public class Opinion {
 	private int valoracion;

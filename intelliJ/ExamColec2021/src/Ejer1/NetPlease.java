@@ -1,4 +1,4 @@
-package colecciones.ejercicio1;
+package Ejer1;
 import java.util.HashMap;
 
 public class NetPlease {

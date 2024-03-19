@@ -3,6 +3,7 @@ package Ejer1;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class PeliculasDeUnTema {
 
@@ -40,8 +41,13 @@ public class PeliculasDeUnTema {
     }
 
     public void annadirOpinionAPelicula(String tituloPelicula, Opinion opinion) throws NetPleaseException {
+        Optional<Pelicula> optionalPelicula = listaPeliculasDeUnTema.stream()
+                .filter(a -> a.getTitulo().equals(tituloPelicula)).findFirst();
 
+        if (optionalPelicula.isEmpty()) throw new NetPleaseException("No hay peliculas con ese titulo");
 
+        Pelicula peliculaAOpinar = optionalPelicula.get();
+        peliculaAOpinar.annadirOpinion(opinion);
     }
 
     public List<Pelicula> listadoDePeliculasOrdenadasPorMediaDeOpiniones() {

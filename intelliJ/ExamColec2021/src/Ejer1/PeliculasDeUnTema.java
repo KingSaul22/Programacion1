@@ -1,4 +1,5 @@
 package Ejer1;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +18,12 @@ public class PeliculasDeUnTema {
 	}
 	
 	public void addPelicula (Pelicula pelicula)  throws NetPleaseException{
-		
+		if (pelicula == null || listaPeliculasDeUnTema.contains(pelicula)){
+			throw new NetPleaseException("Error, la pelicula no es valida. Asegurese de que no se haya introducido ya");
+		}
+		if (LocalDate.now().getYear() < pelicula.getAnnoEstreno()) {
+			throw new NetPleaseException("El año de estreno es invalido");
+		}
 	
 		 listaPeliculasDeUnTema.add(pelicula);
 	}

@@ -81,3 +81,24 @@ public class Pelicula {
     }
 
 }
+
+/*
+¿Crees que la elección de un LinkedList de Películas, un ArrayList de Opiniones
+ y un HashSet de actores es la adecuada? Justifica con argumentos la respuesta.
+
+
+A) LinkedList -- Películas
+    Existen métodos para el borrado de peliculas concretas por lo que, si se usara un ArrayList,
+    el borrado implicaria mover todas las peliculas en posiciones mayores al borrado lo cual no es eficiente.
+
+B) ArrayList -- Opiniones
+    Los métodos relacionados con las opiniones no implican borrado sino simplemente buscar la media.
+    Para ello necesitamos recorrer la lista cada vez que necesitemos ese valor, por lo que
+    es mucho más eficiente usar un arrayList que un LinkedList.
+
+C) HashSet -- Actores
+    Un actor no se puede duplicar por lo que tiene sentido que sea un HashSet; ademas,
+    como no tiene ningún atributo ademas de su nombre y no nos importa su orden,
+    sino que simplemento nos sinteresa añadir actores y comprobar si ya están incluidos,
+    un HashSet nos facilitará la tarea.
+*/

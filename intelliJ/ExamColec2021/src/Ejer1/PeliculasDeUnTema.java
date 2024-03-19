@@ -32,7 +32,7 @@ public class PeliculasDeUnTema {
 
     public void borrarLasPeliculasDeUnAnno(int anno) throws NetPleaseException {
         List<Pelicula> peliculasConAnno = listaPeliculasDeUnTema.stream()
-                .filter(a -> a.getAnnoEstreno()  == anno).toList();
+                .filter(a -> a.getAnnoEstreno() == anno).toList();
 
         if (peliculasConAnno.isEmpty()) throw new NetPleaseException("No hay peliculas con ese año");
 
@@ -51,14 +51,13 @@ public class PeliculasDeUnTema {
     }
 
     public List<Pelicula> listadoDePeliculasOrdenadasPorMediaDeOpiniones() {
-        return null;
-
+        return listaPeliculasDeUnTema.stream()
+                .sorted((a, b) -> Double.compare(b.mediaDeOpiniones(), a.mediaDeOpiniones())).toList();
     }
 
 
     public List<Pelicula> listaPeliculasDondeIntervieneUnActor(String actor) {
-
-        return null;
+        return listaPeliculasDeUnTema.stream().filter(a -> a.getCadenaActores().contains(actor)).toList();
     }
 
     public Pelicula buscarPeliculaPorTitulo(String titulo) {

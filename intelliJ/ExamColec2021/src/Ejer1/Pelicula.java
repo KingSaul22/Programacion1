@@ -46,6 +46,10 @@ public class Pelicula {
         this.annoEstreno = annoEstreno;
     }
 
+    public HashSet<String> getCadenaActores() {
+        return actores;
+    }
+
     @Override
     public String toString() {
         return "Pelicula [titulo=" + titulo + ", annoEstreno=" + annoEstreno + "]" + " Media de opiniones " + mediaDeOpiniones();

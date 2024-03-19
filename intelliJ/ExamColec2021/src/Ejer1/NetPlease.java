@@ -1,6 +1,7 @@
 package Ejer1;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 public class NetPlease {
 
@@ -27,9 +28,8 @@ public class NetPlease {
     public void addPelicula(String tema, Pelicula pelicula) throws NetPleaseException {
         PeliculasDeUnTema listaPeliculasDeUnTema = mapPeliculas.get(tema);
 
-        if (listaPeliculasDeUnTema == null) {
-            throw new NetPleaseException("No existe el tema " + tema);
-        }
+        if (listaPeliculasDeUnTema == null) throw new NetPleaseException("No existe el tema " + tema);
+
         listaPeliculasDeUnTema.addPelicula(pelicula);
     }
 
@@ -41,15 +41,23 @@ public class NetPlease {
     }
 
     public void borrarPeliculaDeUnTema(String tema, String titulo) throws NetPleaseException {
-
-
+        PeliculasDeUnTema pelisConTema = mapPeliculas.get(tema);
+        if (pelisConTema == null) throw new NetPleaseException("No existen peliculas con ese tema");
+        pelisConTema.borrar(titulo);
     }
 
 
     public String temaDePelicula(String titulo) throws NetPleaseException {
+        PeliculasDeUnTema peliculasConTitulo;
+        try {
+            peliculasConTitulo = mapPeliculas.values().stream()
+                    .filter(a -> a.buscarPeliculaPorTitulo(titulo) != null)
+                    .findFirst().orElseThrow();
+        } catch (NoSuchElementException e) {
+            throw new NetPleaseException("No hay una pelicula con ese titulo");
+        }
 
-
-        return null;
+        return peliculasConTitulo.getTema();
     }
 
 

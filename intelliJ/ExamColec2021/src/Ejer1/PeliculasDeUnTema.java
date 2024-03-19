@@ -61,13 +61,12 @@ public class PeliculasDeUnTema {
     }
 
     public Pelicula buscarPeliculaPorTitulo(String titulo) {
-
-        return null;
+        return listaPeliculasDeUnTema.stream().filter(a -> a.getTitulo().equals(titulo)).findFirst().orElse(null);
     }
 
-    public boolean borrar(String titulo) {
-        return false;
-
+    public void borrar(String titulo) throws NetPleaseException{
+        if (!listaPeliculasDeUnTema.remove(titulo) || listaPeliculasDeUnTema.isEmpty())
+            throw new NetPleaseException("No hay una pelicula con ese titulo");
     }
 
     @Override

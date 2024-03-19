@@ -1,18 +1,19 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static Scanner sc;
-    private static HashMap<String, Long> listaContactos;
+    private static LinkedList<Pelicula> listaPeliculas = new LinkedList<>();
 
     public static void main(String[] args) {
 
-        List<String> pasos = new LinkedList<>();
-        pasos.add("hola");
-        pasos.add("holas");
-        pasos.add("ola");
-        pasos.add(3, "pepe");
+        listaPeliculas.add(new Pelicula("Saul"));
+
+        Optional<Pelicula> optionalPelicula = listaPeliculas.stream().filter(a -> a.getTitulo().equals("Saul")).findFirst();
+
+        if (optionalPelicula.isEmpty()) System.out.println("No hay peliculas con ese titulo");
+        Pelicula pelicula = optionalPelicula.get();
+
+        pelicula.annadirOpinion("Cocacola");
+        System.out.println(listaPeliculas.element());
     }
 }

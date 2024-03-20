@@ -3,6 +3,7 @@ package Model;
 import Enum.TDemarcacion;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class Jugador {
@@ -31,6 +32,10 @@ public class Jugador {
 
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
+    }
+
+    public int getEdadAnio() {
+        return Period.between(LocalDate.now(), fechaNacimiento).getYears();
     }
 
     public String getPaisNacimiento() {

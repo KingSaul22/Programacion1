@@ -3,6 +3,7 @@ package Model;
 import Excepciones.LigaException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Liga {
     private List<Equipo> equipos;
@@ -39,11 +40,11 @@ public class Liga {
             throw new LigaException("Los dos equipos deben estar inscritos");
         }
 
-        Set<Jugador> jugadores = new HashSet<>(e1.getJugadores());
-        jugadores.retainAll(e2.getJugadores());
+        Set<Jugador> jugadoresComun = new HashSet<>(e1.getJugadores());
+        jugadoresComun.retainAll(e2.getJugadores());
 
-        return jugadores.stream().toList();
-
+        //return jugadoresComun.stream().toList();
+        return new ArrayList<>(jugadoresComun);
         /*List<Jugador> jugadoresComunes = new LinkedList<>(e1.getJugadores());
         jugadoresComunes.addAll(e2.getJugadores());
 
@@ -51,7 +52,11 @@ public class Liga {
     }
 
     public double mediaEdad() throws LigaException {
-
+        try {
+            return todosLosJugadores().stream().mapToInt(Jugador::getEdadAnio).average().orElseThrow();
+        } catch (NoSuchElementException e) {
+            throw new LigaException("No hay jugadores inscritos");
+        }
     }
 
     public List<Jugador> jugadoresOrdenadosEdad() {
@@ -63,7 +68,13 @@ public class Liga {
     }
 
     private Set<Jugador> todosLosJugadores() {
+        /*Set<Jugador> jugadores = new HashSet<>();
+        for (Equipo conj : equipos) {
+            jugadores.addAll(conj.getJugadores());
+        }
+        return jugadores;*/
 
+        return equipos.stream().flatMap(e -> e.getJugadores().stream()).collect(Collectors.toSet());
     }
 
     @Override

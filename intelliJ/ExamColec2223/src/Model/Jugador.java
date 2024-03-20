@@ -35,7 +35,7 @@ public class Jugador {
     }
 
     public int getEdadAnio() {
-        return Period.between(LocalDate.now(), fechaNacimiento).getYears();
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
 
     public String getPaisNacimiento() {

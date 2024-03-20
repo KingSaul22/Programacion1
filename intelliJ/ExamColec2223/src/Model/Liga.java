@@ -52,6 +52,7 @@ public class Liga {
     }
 
     public double mediaEdad() throws LigaException {
+        //return todosLosJugadores().stream().mapToInt(Jugador::getEdadAnio).average().orElseThrow(LigaException::new);
         try {
             return todosLosJugadores().stream().mapToInt(Jugador::getEdadAnio).average().orElseThrow();
         } catch (NoSuchElementException e) {
@@ -60,11 +61,12 @@ public class Liga {
     }
 
     public List<Jugador> jugadoresOrdenadosEdad() {
-
+        return todosLosJugadores().stream().sorted((b, a) ->
+                a.getFechaNacimiento().compareTo(b.getFechaNacimiento())).toList();
     }
 
     public List<Jugador> jugadoresOrdenadosNombre() {
-
+        return todosLosJugadores().stream().sorted((a, b) -> a.getNombre().compareTo(b.getNombre())).toList();
     }
 
     private Set<Jugador> todosLosJugadores() {

@@ -52,12 +52,13 @@ public class Liga {
     }
 
     public double mediaEdad() throws LigaException {
-        //return todosLosJugadores().stream().mapToInt(Jugador::getEdadAnio).average().orElseThrow(LigaException::new);
-        try {
+        return todosLosJugadores().stream().mapToInt(Jugador::getEdadAnio)
+                .average().orElseThrow(() -> new LigaException("No hay jugadores inscritos"));
+        /*try {
             return todosLosJugadores().stream().mapToInt(Jugador::getEdadAnio).average().orElseThrow();
         } catch (NoSuchElementException e) {
             throw new LigaException("No hay jugadores inscritos");
-        }
+        }*/
     }
 
     public List<Jugador> jugadoresOrdenadosEdad() {

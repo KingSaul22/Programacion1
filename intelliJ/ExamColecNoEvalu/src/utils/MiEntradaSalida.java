@@ -34,10 +34,10 @@ public class MiEntradaSalida {
         int numLeido;
         do {
             numLeido = Integer.parseInt(tc.nextLine());
-            if (numLeido < 0) {
+            if (numLeido <= 0) {
                 System.out.println("Introduce un nuevo número positivo");
             }
-        } while(numLeido < 0);
+        } while(numLeido <= 0);
 
         return numLeido;
     }
@@ -50,10 +50,10 @@ public class MiEntradaSalida {
         double numLeido;
         do {
             numLeido = Double.parseDouble(tc.nextLine());
-            if (numLeido < 0) {
+            if (numLeido <= 0) {
                 System.out.println("Introduce un nuevo número positivo");
             }
-        } while(numLeido < 0);
+        } while(numLeido <= 0);
 
         return numLeido;
     }

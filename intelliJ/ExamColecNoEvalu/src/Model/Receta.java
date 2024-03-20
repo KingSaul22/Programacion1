@@ -1,24 +1,24 @@
 package Model;
 
-import Excepciones.RestauranteException;
-
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Plato {
+public class Receta {
     private String nombre;
     private double duracionMin;
     private List<String> pasos;
     private Map<String, Integer> ingredientes;
 
-    public Plato(String nombre, double duracionMin) {
+    public Receta(String nombre, double duracionMin) {
         this.nombre = nombre;
         this.duracionMin = duracionMin;
+        this.pasos = new LinkedList<>();
+        this.ingredientes = new HashMap<>();
     }
 
-    public void addPaso(String paso) throws RestauranteException {
-        if (paso.isBlank()) throw new RestauranteException("No se ha introducido un paso valido");
-
+    public void addPaso(String paso) {
         pasos.add(paso);
     }
 

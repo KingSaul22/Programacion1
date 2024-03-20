@@ -10,7 +10,7 @@ public class MiEntradaSalida {
     }
 
     public static int leerEnteroDeRango(String mensaje, int min, int max) {
-        System.out.println(mensaje + ": ");
+        System.out.print(mensaje + ": ");
 
         int numLeido;
         do {
@@ -18,7 +18,7 @@ public class MiEntradaSalida {
             if (numLeido < min || numLeido > max) {
                 System.out.printf("Introduce un valor entre %d y %d, por favor: ", min, max);
             }
-        } while(numLeido < min || numLeido > max);
+        } while (numLeido < min || numLeido > max);
 
         return numLeido;
     }
@@ -37,11 +37,10 @@ public class MiEntradaSalida {
             if (numLeido <= 0) {
                 System.out.println("Introduce un nuevo número positivo");
             }
-        } while(numLeido <= 0);
+        } while (numLeido <= 0);
 
         return numLeido;
     }
-
 
 
     public static double leerDoublePositivo(String mensaje) {
@@ -53,7 +52,7 @@ public class MiEntradaSalida {
             if (numLeido <= 0) {
                 System.out.println("Introduce un nuevo número positivo");
             }
-        } while(numLeido <= 0);
+        } while (numLeido <= 0);
 
         return numLeido;
     }
@@ -64,7 +63,7 @@ public class MiEntradaSalida {
         char sn;
         do {
             sn = tc.nextLine().toUpperCase().charAt(0);
-        } while(sn != 'S' && sn != 'N');
+        } while (sn != 'S' && sn != 'N');
 
         return sn;
     }
@@ -75,7 +74,7 @@ public class MiEntradaSalida {
 
         do {
             cadena = tc.nextLine();
-        } while(cadena.isEmpty());
+        } while (cadena.isEmpty());
 
         return cadena;
     }
@@ -83,7 +82,7 @@ public class MiEntradaSalida {
     public static boolean primo(int a) {
         boolean primo = true;
 
-        for(int i = 2; i <= a / 2; ++i) {
+        for (int i = 2; i <= a / 2; ++i) {
             if (a % i == 0) {
                 System.out.printf("El número %d es divisor de %d. ", i, a);
                 primo = false;

@@ -1,9 +1,7 @@
 package Model;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Receta {
     private String nombre;
@@ -18,6 +16,14 @@ public class Receta {
         this.ingredientes = new HashMap<>();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Map<String, Integer> getIngredientes() {
+        return ingredientes;
+    }
+
     public void addPaso(String paso) {
         pasos.add(paso);
     }
@@ -25,5 +31,46 @@ public class Receta {
     public void addIngrediente(String nombre, int cantidad) {
         Integer cantidadPrevia = ingredientes.putIfAbsent(nombre, cantidad);
         if (cantidadPrevia != null) ingredientes.replace(nombre, cantidadPrevia + cantidad);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("\n\nInformación sobre la receta '").append(nombre)
+                .append("'. (").append(duracionMin).append(" min)")
+                .append("\nPasos: ").append(getPasosFormat())
+                .append("\nIngredientes: ").append(getIngredientesFormat());
+
+        return sb.toString();
+    }
+
+    private String getPasosFormat() {
+        if (pasos.isEmpty()) return "**No hay pasos establecidos para esta receta**";
+
+        StringBuilder cadena = new StringBuilder();
+        int numPaso = 0;
+
+        for (String paso : pasos) cadena.append("\n  ").append(++numPaso).append(". ").append(paso);
+
+        return cadena.toString();
+    }
+
+    private String getIngredientesFormat() {
+        if (ingredientes.isEmpty()) return "**No hay ingredientes establecidos para esta receta**";
+
+        StringBuilder cadena = new StringBuilder();
+        /*int numIn = 0;
+
+        for (Map.Entry<String, Integer> entrada : ingredientes.entrySet()) {
+            cadena.append("\n  ").append(++numIn).append(". ").append(entrada.getKey())
+                    .append(". (").append(entrada.getValue()).append(")");
+        }*/
+
+        AtomicInteger cont = new AtomicInteger();
+        ingredientes.entrySet().stream().sorted((a, b) -> b.getValue() - a.getValue()).forEach(a ->
+                cadena.append("\n  ").append(cont.incrementAndGet()).append(". ").append(a.getKey())
+                        .append(". (").append(a.getValue()).append(")")
+        );
+
+        return cadena.toString();
     }
 }

@@ -1,5 +1,7 @@
 package Model;
 
+import Excepciones.LigaException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +17,10 @@ public class Liga {
     }
 
     public void addEquipo(Equipo e) throws LigaException {
+        if (e.getJugadores().isEmpty()) throw new LigaException("El equipo que quieres añadir no tiene jugadores");
+        if (equipos.contains(e)) throw new LigaException("El equipo ya estaba añadido");
 
+        equipos.add(e);
     }
 
     public void eliminaEquipo(Equipo e) throws LigaException {

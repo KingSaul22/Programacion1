@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Equipo {
@@ -22,6 +23,14 @@ public class Equipo {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipo equipo = (Equipo) o;
+        return Objects.equals(nombre, equipo.nombre);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(nombre).append(": ").append(System.lineSeparator());
         for (Jugador j : jugadores) {
@@ -30,6 +39,4 @@ public class Equipo {
 
         return sb.toString();
     }
-
-
 }

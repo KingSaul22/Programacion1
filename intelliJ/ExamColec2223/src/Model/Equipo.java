@@ -15,7 +15,11 @@ public class Equipo {
     }
 
     public void addJugador(Jugador j) {
+        jugadores.add(j);
+    }
 
+    public void addJugadores(Set<Jugador> eq2) {
+        jugadores.addAll(eq2);
     }
 
     public Set<Jugador> getJugadores() {

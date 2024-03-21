@@ -24,6 +24,10 @@ public class Receta {
         return ingredientes;
     }
 
+    public List<String> getPasos() {
+        return pasos;
+    }
+
     public void addPaso(String paso) {
         pasos.add(paso);
     }

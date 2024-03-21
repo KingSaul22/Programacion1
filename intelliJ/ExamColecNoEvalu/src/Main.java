@@ -69,7 +69,7 @@ public class Main {
         int option;
         do {
             imprimirSelector();
-            option = MiEntradaSalida.leerEnteroDeRango("Selección", 1, 7);
+            option = MiEntradaSalida.leerEnteroDeRango("Selección", 1, 8);
             switch (option) {
                 case 1://Añadir Receta
                     r.incluirReceta(nuevaReceta());
@@ -86,10 +86,11 @@ public class Main {
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 3://Recetas disponibles
+                case 3://Buscar receta
                     try {
                         Receta receta = r.getRecetaConcreta(MiEntradaSalida.leerCadena("Introduzca el nombre de la receta"));
-                        System.out.println(receta);
+                        boolean alfab = MiEntradaSalida.leerSN("¿Orden Alfabético? (s/n)") == 'S';
+                        System.out.println(receta.imiprimirConOrden(alfab));
                     } catch (RestauranteException e) {
                         System.out.println(e.getMessage());
                     }
@@ -121,9 +122,12 @@ public class Main {
                             MiEntradaSalida.leerCadena("Introduzca el nombre del ingrediente"),
                             MiEntradaSalida.leerEnteroPositivo("Introduzca la cantidad comprada")
                     );
+                    break;
+                case 7://Añadir Pedido
+
             }
 
-        } while (option != 7);
+        } while (option != 8);
         System.out.println("Buenas noches, hasta mañana");
     }
 
@@ -162,6 +166,8 @@ public class Main {
                   4. Eliminar un Paso
                   5. Recetas posibles
                   6. Comprar Ingrediente
-                  7. Salir""");
+                  7. Añadir plato del cliente
+                  8. Consumir plato
+                  9. Salir""");
     }
 }

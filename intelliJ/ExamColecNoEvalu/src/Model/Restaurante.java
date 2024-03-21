@@ -34,11 +34,16 @@ public class Restaurante {
         return menu.get(nombre);
     }
 
-    public boolean recetaDisponible(String nombre) throws RestauranteException {
-        Receta plato = menu.get(nombre);
-        if (plato == null) throw new RestauranteException("No hay recetas con ese nombre");
+    public void pedidoPlato(String nombre) throws RestauranteException {
+        cocina.encolarPlato(getRecetaConcreta(nombre));
+    }
 
-        return recetaDisponible(plato);
+    public Receta servirPlato() throws RestauranteException {
+        return cocina.cocinarPlato();
+    }
+
+    public boolean recetaDisponible(String nombre) throws RestauranteException {
+        return recetaDisponible(getRecetaConcreta(nombre));
     }
 
     public boolean recetaDisponible(Receta plato) {
@@ -49,7 +54,7 @@ public class Restaurante {
         cocina.addIngrediente(nombre, cantidad);
     }
 
-    public void eliminarPaso() {
-
-    }
+    /*public void eliminarPaso() {
+        //TODO
+    }*/
 }

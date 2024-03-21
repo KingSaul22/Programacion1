@@ -39,10 +39,14 @@ public class Receta {
 
     @Override
     public String toString() {
+        return imiprimirConOrden(false);
+    }
+
+    public String imiprimirConOrden(boolean alfab) {
         StringBuilder sb = new StringBuilder("\n\nInformación sobre la receta '").append(nombre)
                 .append("'. (").append(duracionMin).append(" min)")
                 .append("\nPasos: ").append(getPasosFormat())
-                .append("\nIngredientes: ").append(getIngredientesFormat());
+                .append("\nIngredientes: ").append(getIngredientesFormat(alfab));
 
         return sb.toString();
     }
@@ -58,7 +62,7 @@ public class Receta {
         return cadena.toString();
     }
 
-    private String getIngredientesFormat() {
+    private String getIngredientesFormat(boolean alfab) {
         if (ingredientes.isEmpty()) return "**No hay ingredientes establecidos para esta receta**";
 
         StringBuilder cadena = new StringBuilder();
@@ -70,10 +74,11 @@ public class Receta {
         }*/
 
         AtomicInteger cont = new AtomicInteger();
-        ingredientes.entrySet().stream().sorted((a, b) -> b.getValue() - a.getValue()).forEach(a ->
-                cadena.append("\n  ").append(cont.incrementAndGet()).append(". ").append(a.getKey())
-                        .append(". (").append(a.getValue()).append(")")
-        );
+        ingredientes.entrySet().stream().sorted((a, b) ->
+                        alfab ? a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue())
+                .forEach(a -> cadena.append("\n  ").append(cont.incrementAndGet()).append(". ")
+                        .append(a.getKey()).append(". (").append(a.getValue()).append(")")
+                );
 
         return cadena.toString();
     }

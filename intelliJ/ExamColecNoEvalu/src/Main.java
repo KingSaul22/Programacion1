@@ -69,7 +69,7 @@ public class Main {
         int option;
         do {
             imprimirSelector();
-            option = MiEntradaSalida.leerEnteroDeRango("Selección", 1, 8);
+            option = MiEntradaSalida.leerEnteroDeRango("Selección", 1, 9);
             switch (option) {
                 case 1://Añadir Receta
                     r.incluirReceta(nuevaReceta());
@@ -123,11 +123,15 @@ public class Main {
                             MiEntradaSalida.leerEnteroPositivo("Introduzca la cantidad comprada")
                     );
                     break;
-                case 7://Añadir Pedido
+                case 7://Recoger Pedido
 
+                    break;
+                case 8://Entregar Pedido
+
+                    break;
             }
 
-        } while (option != 8);
+        } while (option != 9);
         System.out.println("Buenas noches, hasta mañana");
     }
 

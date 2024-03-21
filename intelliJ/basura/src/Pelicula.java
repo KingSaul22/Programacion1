@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Pelicula {
+public abstract class Pelicula {
     private String titulo;
     private ArrayList<String> opiniones;
 

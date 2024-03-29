@@ -53,8 +53,4 @@ public class Restaurante {
     public void masIngrediente(String nombre, int cantidad) {
         cocina.addIngrediente(nombre, cantidad);
     }
-
-    /*public void eliminarPaso() {
-        //TODO
-    }*/
 }

@@ -52,13 +52,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         /*
-         * OJO, IMPORTANTE: Si hubiese que controlar excepciones no est� hecho aqu�
+         * OJO, IMPORTANTE: Si hubiese que controlar excepciones no está hecho aquí
          */
         boolean fin = false;
         while (!fin) {
             try {
                 System.out.println(menu());
-                System.out.print("\n�Qu� desea hacer?: ");
+                System.out.print("\n¿Qué desea hacer?: ");
                 int op = Integer.parseInt(sc.nextLine());
 
                 switch (op) {
@@ -86,7 +86,7 @@ public class Main {
                         m1.intercambiar(cromoParaCambiar, cromoDelOtro);
 
                         /*
-                         * Aqu� habr�a que "restar" ese cromo del mazo 2, pero obviaremos esto para
+                         * Aquí habrá que "restar" ese cromo del mazo 2, pero obviaremos esto para
                          * facilitar el problema
                          */
 
@@ -116,10 +116,11 @@ public class Main {
                         m1.ordenar().stream().forEach(System.out::println);
                         break;
                     case 9:
-                        m1.equipoCompleto().stream().forEach(System.out::println);
+                        //m1.equipoCompleto().stream().forEach(System.out::println);
+                        m1.equipoCompleto().forEach(a -> System.out.println(a.getNombre()));
                         break;
                     case 10:
-                        System.out.println("Que tenga un buen d�a.");
+                        System.out.println("Que tenga un buen día.");
                         fin = true;
                         break;
                     default:
@@ -131,21 +132,22 @@ public class Main {
         }
 
         sc.close();
-
-
     }
 
     private static String menu() {
-        return "\n(1) A�adir nuevo cromo"
-                + "\n(2) Intercambiar dos cromos"
-                + "\n(3) Mezclar con otro mazo"
-                + "\n(4) Contar cromos diferentes"
-                + "\n(5) Mostrar los cromos de un equipo dado"
-                + "\n(6) Calcular la altura media"
-                + "\n(7) Mostrar lista de cromos"
-                + "\n(8) Mostrar los cromos ordenados"
-                + "\n(9** Extra) Mostrar equipos completos"
-                + "\n(10) Salir";
+        return """
+                                
+                (1) Añadir nuevo cromo
+                (2) Intercambiar dos cromos
+                (3) Mezclar con otro mazo
+                (4) Contar cromos diferentes
+                (5) Mostrar los cromos de un equipo dado
+                (6) Calcular la altura media
+                (7) Mostrar lista de cromos
+                (8) Mostrar los cromos ordenados
+                (9** Extra) Mostrar equipos completos
+                (10) Salir
+                """;
     }
 
     private static void mostrarCromos() {
@@ -157,14 +159,13 @@ public class Main {
     }
 
     /**
-     * TODO: recorrer todos los cromos de la lista "todos" y devolver aqu�l cromo
-     * cuyo nombre coincide con el pasado por par�metro
+     * Filtramos todos los cromos de la lista "todos" y devolvemos aquél cromo
+     * cuyo nombre coincide con el pasado por parámetro
      *
      * @param nombre el nombre del cromo buscado
-     * @return El cromo correspondiente
+     * @return El cromo correspondiente o null en caso de no encontrarlo
      */
     private static Cromo get(String nombre) {
-
+        return todos.stream().filter(a -> a.getNombre().equals(nombre)).findFirst().orElse(null);
     }
-
 }

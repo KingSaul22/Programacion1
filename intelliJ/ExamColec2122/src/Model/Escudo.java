@@ -20,4 +20,8 @@ public class Escudo extends Cromo {
     public String getNombre() {
         return equipo;
     }
+
+    public int getNumJugadores() {
+        return numJugadores;
+    }
 }

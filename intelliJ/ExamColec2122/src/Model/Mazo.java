@@ -2,10 +2,8 @@ package Model;
 
 import Excepciones.MazoException;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Mazo {
     private Map<Cromo, Integer> mazo;
@@ -67,12 +65,38 @@ public class Mazo {
     }
 
     public List<Cromo> ordenar() {
-        return getLista().stream().sorted((a, b) ->
-                        a.getClass() == b.getClass() ? a.getNombre().compareTo(b.getNombre())
-                                                     : ((a instanceof Escudo) ? -1 : 1))
+        return getLista().stream().sorted((a, b) -> a.getClass() == b.getClass() ?
+                        a.getNombre().compareTo(b.getNombre()) : ((a instanceof Escudo) ? -1 : 1))
                 .toList();
     }
 
     public List<Cromo> equipoCompleto() {
+        /*List<Cromo> equiposCompletos = new ArrayList<>();
+
+        for (Cromo escudo : mazo.keySet().stream().filter(a -> a instanceof Escudo).toList()) {
+            List<Cromo> equipo = new ArrayList<>();
+            mazo.keySet().stream()
+                    .filter(a -> a instanceof Jugador)
+                    .filter(a -> a.getEquipo().equals(escudo.getEquipo()))
+                    .forEach(equipo::add);
+
+            if (equipo.size() == ((Escudo) escudo).getNumJugadores()) {
+                equiposCompletos.add(escudo);
+                equiposCompletos.addAll(equipo);
+            }
+        }
+
+        return equiposCompletos;*/
+
+        return mazo.keySet().stream().filter(a -> a instanceof Escudo).flatMap(escudo -> {
+                    List<Cromo> equipo = new ArrayList<>();
+                    equipo.add(escudo);
+                    equipo.addAll(mazo.keySet().stream().filter(j -> j instanceof Jugador)
+                            .filter(j -> j.getEquipo().equals(escudo.getEquipo()))
+                            .toList());
+
+                    return equipo.size() - 1 == ((Escudo) escudo).getNumJugadores() ? equipo.stream() : Stream.empty();
+                })
+                .toList();
     }
 }

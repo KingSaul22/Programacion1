@@ -25,4 +25,12 @@ public class Jugador extends Cromo {
     public int getAltura() {
         return altura;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Jugador: ").append(nombre)
+                .append("\n  · Equipo: ").append(equipo)
+                .append("\n  · Altura: ").append(altura);
+        return sb.toString();
+    }
 }

@@ -24,4 +24,12 @@ public class Escudo extends Cromo {
     public int getNumJugadores() {
         return numJugadores;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Escudo: ").append(equipo)
+                .append("\n  · Fundación: ").append(annoFundacion)
+                .append("\n  · Tamaño del equipo: ").append(numJugadores);
+        return sb.toString();
+    }
 }

@@ -116,8 +116,8 @@ public class Main {
                         m1.ordenar().stream().forEach(System.out::println);
                         break;
                     case 9:
-                        //m1.equipoCompleto().stream().forEach(System.out::println);
-                        m1.equipoCompleto().forEach(a -> System.out.println(a.getNombre()));
+                        m1.equipoCompleto().stream().forEach(System.out::println);
+                        //m1.equipoCompleto().forEach(a -> System.out.println(a.getNombre()));
                         break;
                     case 10:
                         System.out.println("Que tenga un buen día.");

@@ -61,7 +61,20 @@ public class Mazo {
     }
 
     public List<Cromo> getLista() {
-        return mazo.keySet().stream().toList();
+        //Sin repetidos
+        //return new LinkedList<>(mazo.keySet());
+        //return mazo.keySet().stream().toList();
+
+        //Con repetidos
+        return mazo.entrySet().stream().flatMap(entry -> {
+                    Cromo[] cromos = new Cromo[entry.getValue()];
+                    for (int i = 0; i < entry.getValue(); i++) {
+                        cromos[i] = entry.getKey();
+                    }
+
+                    return Stream.of(cromos);
+                }
+        ).toList();
     }
 
     public List<Cromo> ordenar() {
@@ -89,14 +102,36 @@ public class Mazo {
         return equiposCompletos;*/
 
         return mazo.keySet().stream().filter(a -> a instanceof Escudo).flatMap(escudo -> {
+                    List<Cromo> equipo = new ArrayList<>(cromosDeUnEquipo(escudo.getEquipo()));
+                    equipo.add(escudo);
+                    equipo.addAll(cromosDeUnEquipo(escudo.getEquipo()));
+                    return equipo.size() - 1 == ((Escudo) escudo).getNumJugadores() ? equipo.stream() : Stream.empty();
+                })
+                .toList();
+    }
+
+    public List<String> nombreEquipoCompleto() {
+        /*return mazo.keySet().stream().filter(a -> a instanceof Escudo).flatMap(escudo -> {
                     List<Cromo> equipo = new ArrayList<>();
                     equipo.add(escudo);
                     equipo.addAll(mazo.keySet().stream().filter(j -> j instanceof Jugador)
                             .filter(j -> j.getEquipo().equals(escudo.getEquipo()))
                             .toList());
 
-                    return equipo.size() - 1 == ((Escudo) escudo).getNumJugadores() ? equipo.stream() : Stream.empty();
+                    return equipo.size() - 1 == ((Escudo) escudo).getNumJugadores() ?
+                            Stream.of(escudo.getEquipo()) : Stream.empty();
                 })
                 .toList();
+        */
+
+        /*return mazo.keySet().stream().filter(a -> a instanceof Escudo).filter(escudo -> {
+            long numJug = mazo.keySet().stream().filter(a -> a.getEquipo().equals(escudo.getEquipo())).count();
+            return ((Escudo) escudo).getNumJugadores() == --numJug;
+        }).flatMap(a -> Stream.of(a.getEquipo())).toList();
+        */
+
+        return mazo.keySet().stream().filter(a -> a instanceof Escudo)
+                .filter(a -> cromosDeUnEquipo(a.getEquipo()).size() - 1 == ((Escudo) a).getNumJugadores())
+                .map(Cromo::getEquipo).toList();
     }
 }

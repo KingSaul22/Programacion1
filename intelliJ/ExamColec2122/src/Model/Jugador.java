@@ -2,7 +2,7 @@ package Model;
 
 public class Jugador extends Cromo {
     private String nombre;
-    private String equipo; //TODO[DUDA]: ¿Por qué no Equipo equipo ?
+    private String equipo;
     private int altura;
 
     public Jugador(String id, String nombre, String equipo, int altura) {

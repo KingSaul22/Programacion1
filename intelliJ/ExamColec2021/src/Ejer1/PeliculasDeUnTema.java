@@ -1,6 +1,7 @@
 package Ejer1;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +13,7 @@ public class PeliculasDeUnTema {
 
     public PeliculasDeUnTema(String tema) {
         this.tema = tema;
-        listaPeliculasDeUnTema = new LinkedList<Pelicula>();
+        listaPeliculasDeUnTema = new LinkedList<>();
     }
 
     public String getTema() {
@@ -31,13 +32,26 @@ public class PeliculasDeUnTema {
     }
 
     public void borrarLasPeliculasDeUnAnno(int anno) throws NetPleaseException {
-        List<Pelicula> peliculasConAnno = listaPeliculasDeUnTema.stream()
+        /*List<Pelicula> peliculasConAnno = listaPeliculasDeUnTema.stream()
                 .filter(a -> a.getAnnoEstreno() == anno).toList();
 
         if (peliculasConAnno.isEmpty()) throw new NetPleaseException("No hay peliculas con ese año");
 
         peliculasConAnno.forEach(a -> listaPeliculasDeUnTema.remove(a));
-        //peliculasConAnno.stream().forEach(a -> listaPeliculasDeUnTema.remove(a));
+        */
+
+        /*Iterator<Pelicula> it = listaPeliculasDeUnTema.iterator();
+        while (it.hasNext()) {
+            if (it.next().getAnnoEstreno() == anno) it.remove();
+        }*/
+        //TODO: Continuar en clase
+        if (!listaPeliculasDeUnTema.removeIf(pelicula -> pelicula.getAnnoEstreno() == anno)) {
+            throw new NetPleaseException("No hay peliculas con ese año");
+        }
+
+        /*listaPeliculasDeUnTema.stream().filter(a -> a.getAnnoEstreno() == anno)
+                .forEach(a -> listaPeliculasDeUnTema.remove(a));
+        */
     }
 
     public void annadirOpinionAPelicula(String tituloPelicula, Opinion opinion) throws NetPleaseException {

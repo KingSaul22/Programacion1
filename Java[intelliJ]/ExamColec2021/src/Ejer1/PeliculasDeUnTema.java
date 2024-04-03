@@ -44,7 +44,7 @@ public class PeliculasDeUnTema {
         while (it.hasNext()) {
             if (it.next().getAnnoEstreno() == anno) it.remove();
         }*/
-        //TODO: Continuar en clase
+        
         if (!listaPeliculasDeUnTema.removeIf(pelicula -> pelicula.getAnnoEstreno() == anno)) {
             throw new NetPleaseException("No hay peliculas con ese año");
         }
@@ -55,13 +55,20 @@ public class PeliculasDeUnTema {
     }
 
     public void annadirOpinionAPelicula(String tituloPelicula, Opinion opinion) throws NetPleaseException {
-        Optional<Pelicula> optionalPelicula = listaPeliculasDeUnTema.stream()
-                .filter(a -> a.getTitulo().equals(tituloPelicula)).findFirst();
+        Pelicula pelicula = listaPeliculasDeUnTema.stream().filter(a -> a.getTitulo().equals(tituloPelicula))
+                .findAny().orElseThrow(() -> new NetPleaseException("No hay peliculas con ese titulo"));
 
-        if (optionalPelicula.isEmpty()) throw new NetPleaseException("No hay peliculas con ese titulo");
+        pelicula.annadirOpinion(opinion);
 
-        Pelicula peliculaAOpinar = optionalPelicula.get();
-        peliculaAOpinar.annadirOpinion(opinion);
+
+        /*listaPeliculasDeUnTema.stream().filter(a -> a.getTitulo().equals(tituloPelicula))
+                .findAny().orElseThrow(() -> new NetPleaseException("No hay peliculas con ese titulo"))
+                .annadirOpinion(opinion);*/
+
+
+        /*Pelicula peli = buscarPeliculaPorTitulo(tituloPelicula);
+        if (peli == null) throw new NetPleaseException("o hay peliculas con ese titulo");
+        peli.annadirOpinion(opinion);*/
     }
 
     public List<Pelicula> listadoDePeliculasOrdenadasPorMediaDeOpiniones() {

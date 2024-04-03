@@ -74,7 +74,7 @@ public class PeliculasDeUnTema {
     public List<Pelicula> listadoDePeliculasOrdenadasPorMediaDeOpiniones() {
         return listaPeliculasDeUnTema.stream()
                 .sorted((a, b) -> Double.compare(b.mediaDeOpiniones(), a.mediaDeOpiniones())).toList();
-        
+
 
         /*listaPeliculasDeUnTema.sort((a, b) -> Double.compare(b.mediaDeOpiniones(), a.mediaDeOpiniones()));
         return listaPeliculasDeUnTema;*/
@@ -82,7 +82,8 @@ public class PeliculasDeUnTema {
 
 
     public List<Pelicula> listaPeliculasDondeIntervieneUnActor(String actor) {
-        return listaPeliculasDeUnTema.stream().filter(a -> a.getCadenaActores().contains(actor)).toList();
+        //return listaPeliculasDeUnTema.stream().filter(a -> a.getCadenaActores().contains(actor)).toList();
+        return listaPeliculasDeUnTema.stream().filter(a -> a.intervieneActor(actor)).toList();
     }
 
     public Pelicula buscarPeliculaPorTitulo(String titulo) {

@@ -50,6 +50,10 @@ public class Pelicula {
         return actores;
     }
 
+    public boolean intervieneActor(String actor) {
+        return actores.contains(actor);
+    }
+
     @Override
     public String toString() {
         return "Pelicula [titulo=" + titulo + ", annoEstreno=" + annoEstreno + "]" + " Media de opiniones " + mediaDeOpiniones();

@@ -44,7 +44,7 @@ public class PeliculasDeUnTema {
         while (it.hasNext()) {
             if (it.next().getAnnoEstreno() == anno) it.remove();
         }*/
-        
+
         if (!listaPeliculasDeUnTema.removeIf(pelicula -> pelicula.getAnnoEstreno() == anno)) {
             throw new NetPleaseException("No hay peliculas con ese año");
         }
@@ -74,6 +74,10 @@ public class PeliculasDeUnTema {
     public List<Pelicula> listadoDePeliculasOrdenadasPorMediaDeOpiniones() {
         return listaPeliculasDeUnTema.stream()
                 .sorted((a, b) -> Double.compare(b.mediaDeOpiniones(), a.mediaDeOpiniones())).toList();
+        
+
+        /*listaPeliculasDeUnTema.sort((a, b) -> Double.compare(b.mediaDeOpiniones(), a.mediaDeOpiniones()));
+        return listaPeliculasDeUnTema;*/
     }
 
 

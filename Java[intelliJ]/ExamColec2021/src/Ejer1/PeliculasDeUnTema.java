@@ -91,8 +91,12 @@ public class PeliculasDeUnTema {
     }
 
     public void borrar(String titulo) throws NetPleaseException {
-        if (!listaPeliculasDeUnTema.remove(titulo) || listaPeliculasDeUnTema.isEmpty())
-            throw new NetPleaseException("No hay una pelicula con ese titulo");
+        if (listaPeliculasDeUnTema.isEmpty()) throw new NetPleaseException("No hay una pelicula en este tema");
+        if (!listaPeliculasDeUnTema.remove(titulo)) throw new NetPleaseException("No hay una pelicula con ese titulo");
+    }
+
+    public boolean borrarB(String titulo) {
+        return listaPeliculasDeUnTema.removeIf(a -> a.getTitulo().equals(titulo));
     }
 
     @Override

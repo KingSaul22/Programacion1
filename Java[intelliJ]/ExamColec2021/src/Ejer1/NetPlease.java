@@ -43,7 +43,9 @@ public class NetPlease {
     public void borrarPeliculaDeUnTema(String tema, String titulo) throws NetPleaseException {
         PeliculasDeUnTema pelisConTema = mapPeliculas.get(tema);
         if (pelisConTema == null) throw new NetPleaseException("No existen peliculas con ese tema");
-        pelisConTema.borrar(titulo);
+        //pelisConTema.borrar(titulo);
+
+        if (!pelisConTema.borrarB(tema)) throw new NetPleaseException("No existia una pelicula con ese titulo");
     }
 
 

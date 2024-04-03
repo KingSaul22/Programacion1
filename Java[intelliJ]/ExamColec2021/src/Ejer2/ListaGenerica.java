@@ -4,67 +4,83 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 
-public class ListaGenerica<T> {
+public class ListaGenerica<T extends Comparable<? super T>> {
 
-	private LinkedList<T> lista;
+    private LinkedList<T> lista;
 
-	public ListaGenerica() {
-		lista = new LinkedList<T>();
-	}
+    public ListaGenerica() {
+        lista = new LinkedList<T>();
+    }
 
-	public void annadirElemento(T elemento) {
-		lista.add(elemento);
-	}
+    public void annadirElemento(T elemento) {
+        lista.add(elemento);
+    }
 
 
-	/**
-	 * Método que crea una ListaGenerica a la que se le irá añadiendo los elementos de esta propia lista;
-	 * desde la posición 0, hasta el elementoBuscado.
-	 * @param elementoBuscado Elemento generico que marca el fin de la copia (incluido)
-	 * @return Una copia de una Lista Generica que incluye hasta el elementoBuscado
-	 */
-	public ListaGenerica<T> listaHastaElemento( T elementoBuscado) {
-		ListaGenerica<T> nuevaLista = new ListaGenerica<>();
+    /**
+     * Método que crea una ListaGenerica a la que se le irá añadiendo los elementos de esta propia lista;
+     * desde la posición 0, hasta el elementoBuscado.
+     *
+     * @param elementoBuscado Elemento generico que marca el fin de la copia (incluido)
+     * @return Una copia de una Lista Generica que incluye hasta el elementoBuscado
+     */
+    public ListaGenerica<T> listaHastaElemento(T elementoBuscado) {
+        ListaGenerica<T> nuevaLista = new ListaGenerica<>();
 
-		boolean encontrado = false;
-		Iterator<T> it = lista.iterator();
-		while(it.hasNext()) {
-			var ob = it.next();
-			nuevaLista.annadirElemento(ob);
-			if (ob == elementoBuscado) {
-				encontrado = true;
-				break;
-			}
-		}
+        /*Iterator<T> it = lista.iterator();
+        while (it.hasNext()) {
+            var ob = it.next();
+            nuevaLista.annadirElemento(ob);
+            if (ob == elementoBuscado) {
+                return nuevaLista;
+            }
+        }*/
 
-		return encontrado ? nuevaLista : null;
-	}
+        for (T elem : lista) {
+            nuevaLista.annadirElemento(elem);
+            if (elem.equals(elementoBuscado)) {
+                return nuevaLista;
+            }
+        }
 
-	/**
-	 * Método que crea una ListaGenerica a la que se le irá añadiendo los elementos de esta propia lista;
-	 * desde la posición 0, hasta el elementoBuscado sin incluirlo.
-	 * @param elementoBuscado Elemento generico que marca el fin de la copia (excluido)
-	 * @return Una copia de una Lista Generica que incluye hasta el elemento previo al elementoBuscado
-	 */
-	public ListaGenerica<T> elementosMenores( T elementoBuscado) {
-		ListaGenerica<T> nuevaLista = new ListaGenerica<>();
+        return null;
+    }
 
-		boolean encontrado = false;
-		Iterator<T> it = lista.iterator();
-		while(it.hasNext()) {
-			var ob = it.next();
-			if (ob == elementoBuscado) {
-				encontrado = true;
-				break;
-			}
-			nuevaLista.annadirElemento(ob);
-		}
+    /**
+     * Método que crea una ListaGenerica a la que se le irá añadiendo los elementos de esta propia lista;
+     * que sean menores al elementoBuscado
+     *
+     * @param elementoBuscado Elemento generico que marca el pivote de la copia (excluido)
+     * @return Una copia de una Lista Generica que incluye los elementos menores al elementoBuscado
+     */
+    public ListaGenerica<T> elementosMenores(T elementoBuscado) {
+        ListaGenerica<T> nuevaLista = new ListaGenerica<>();
 
-		return encontrado ? nuevaLista : null;
-	}
+        /*boolean encontrado = false;
+        Iterator<T> it = lista.iterator();
+        while (it.hasNext()) {
+            var ob = it.next();
+            if (ob == elementoBuscado) {
+                encontrado = true;
+            } else if (ob.compareTo(elementoBuscado) < 0) {
+                nuevaLista.annadirElemento(ob);
+            }
+        }
 
-	@Override
-	public String toString() {
-		return "ListaGenerica=" + lista ;
-	}
+        return encontrado ? nuevaLista : null;*/
+
+
+        for (T elem : lista) {
+            if (elem.compareTo(elementoBuscado) < 0) {
+                nuevaLista.annadirElemento(elem);
+            }
+        }
+
+        return nuevaLista.lista.isEmpty() ? null : nuevaLista;
+    }
+
+    @Override
+    public String toString() {
+        return "ListaGenerica=" + lista;
+    }
 }

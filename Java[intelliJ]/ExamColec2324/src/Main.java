@@ -23,16 +23,18 @@ public class Main {
             tA.addCategoria("Ostras");
             tA.addCategoria("Ostras");
         } catch (TiendaException e) {
-            System.out.println("Mal");
+            System.out.println("Debo salir");
+            System.out.println(e.getMessage());
         }
+
             List<Categoria> lista = new ArrayList<>();
             lista.add(cA);
         try {
             tA.addProducto(a, lista);
+            tA.addProducto(b, lista);
         } catch (TiendaException e) {
-            System.out.println("Muy mal");
+            System.out.println("No debo salir");
+            System.out.println(e.getMessage());
         }
-
-
     }
 }

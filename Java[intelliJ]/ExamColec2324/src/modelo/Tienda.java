@@ -28,6 +28,12 @@ public class Tienda {
      * @throws TiendaException en caso de que ya exista la categoria
      */
     public void addCategoria(String nombre) throws TiendaException {
+        /*
+        if (!categorias.add(new Categoria(nombre))) {
+            throw new TiendaException("Ya existe esa categoria");
+        }
+        */
+
         Categoria nueva = new Categoria(nombre);
         for (Categoria categoria : categorias) {
             if (categoria.equals(nueva)) throw new TiendaException("Ya existe esa categoria");
@@ -44,6 +50,13 @@ public class Tienda {
      * @throws TiendaException en caso de que no exista alguna categoria
      */
     public void addProducto(Producto p, List<Categoria> categorias) throws TiendaException {
+        /*
+        if (!this.categorias.containsAll(categorias)) throw new TiendaException("No todas las categorias existen");
+
+        this.categorias.stream().filter(categorias::contains).forEach(a -> a.annadirProducto(p));
+        */
+
+
         for (Categoria otraCategoria : categorias)  {
             if (!haveCategoria(otraCategoria)) throw new TiendaException("No todas las categorias existen");
         }

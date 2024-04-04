@@ -26,6 +26,7 @@ public class Categoria {
      * @param p {@link Producto Producto} a añadir
      */
     public void annadirProducto(Producto p) {
+        //productos.add(p);
         if (!haveProducto(p)) productos.add(p);
     }
 
@@ -48,6 +49,8 @@ public class Categoria {
      * el {@link Producto producto} indicado por parametro
      */
     public boolean haveProducto(Producto p) {
+        //return productos.contains(p);
+
         for (Producto producto : productos){
             if (p.equals(producto)) return true;
         }

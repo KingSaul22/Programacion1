@@ -28,13 +28,15 @@ public class Producto {
      * @param stock Número que se desea colocar como {@link Producto#stock stock}
      */
     public void setStock(int stock) {
-        /*if (stock <= 0) {
+        /*
+        if (stock <= 0) {
             this.stock = 0;
         } else {
             this.stock = stock;
-        }*/
+        }
 
         //this.stock = stock <= 0 ? 0 : stock;
+        */
 
         //El método max devuelve el númereo más grande.
         //En el caso de que introduzcan un número menor o igual que 0, se devuelve 0.

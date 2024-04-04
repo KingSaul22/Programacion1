@@ -28,23 +28,32 @@ public class Tienda {
      * @throws TiendaException en caso de que ya exista la categoria
      */
     public void addCategoria(String nombre) throws TiendaException {
-        if (!categorias.add(new Categoria(nombre))) {
-            throw new TiendaException("Ya existe esa categoria");
+        Categoria nueva = new Categoria(nombre);
+        for (Categoria categoria : categorias) {
+            if (categoria.equals(nueva)) throw new TiendaException("Ya existe esa categoria");
         }
+        categorias.add(nueva);
     }
 
     /**
      * Añade un producto a una lista de categorías. Se añadirá a aquellas categorías en las que todavía no exista. En
      * aquellas donde ya exista, no se hará nada.
      *
-     * @param p          {@link Producto Producto} a añadir
+     * @param p {@link Producto Producto} a añadir
      * @param categorias Todas las {@link Categoria categorias} donde se incluirá el {@link Producto producto}
      * @throws TiendaException en caso de que no exista alguna categoria
      */
     public void addProducto(Producto p, List<Categoria> categorias) throws TiendaException {
-        if (!this.categorias.containsAll(categorias)) throw new TiendaException("No todas las categorias existen");
+        for (Categoria otraCategoria : categorias)  {
+            if (!haveCategoria(otraCategoria)) throw new TiendaException("No todas las categorias existen");
+        }
 
-        this.categorias.stream().filter(categorias::contains).forEach(a -> a.annadirProducto(p));
+        this.categorias.stream().filter(a -> {
+            for (Categoria categoria : categorias) {
+                if (categoria.equals(a)) return true;
+            }
+            return false;
+        }).forEach(a -> a.annadirProducto(p));
     }
 
     /**
@@ -108,5 +117,19 @@ public class Tienda {
         return getTodosLosProductosOrdenadosPorPrecio().stream()
                 .filter(a -> LocalDate.now().isBefore(a.getFechaIncorporacion().plusYears(1)))
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Se asegura de uqe la categoria este creada
+     *
+     * @param otra Categoria a buscar
+     * @return true en el caso de encontrar la categoria a buscar
+     */
+    private boolean haveCategoria(Categoria otra) {
+        for (Categoria categoria : categorias) {
+            if (otra.equals(categoria)) return true;
+        }
+
+        return false;
     }
 }

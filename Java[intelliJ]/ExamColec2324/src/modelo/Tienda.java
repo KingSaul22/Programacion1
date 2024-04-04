@@ -24,8 +24,8 @@ public class Tienda {
     /**
      * Añade una nueva categoría. En caso de que exista, lanza una excepción
      *
-     * @param nombre
-     * @throws TiendaException
+     * @param nombre de la categoria
+     * @throws TiendaException en caso de que ya exista la categoria
      */
     public void addCategoria(String nombre) throws TiendaException {
         if (!categorias.add(new Categoria(nombre))) {
@@ -37,8 +37,9 @@ public class Tienda {
      * Añade un producto a una lista de categorías. Se añadirá a aquellas categorías en las que todavía no exista. En
      * aquellas donde ya exista, no se hará nada.
      *
-     * @param p
-     * @param categorias
+     * @param p          {@link Producto Producto} a añadir
+     * @param categorias Todas las {@link Categoria categorias} donde se incluirá el {@link Producto producto}
+     * @throws TiendaException en caso de que no exista alguna categoria
      */
     public void addProducto(Producto p, List<Categoria> categorias) throws TiendaException {
         if (!this.categorias.containsAll(categorias)) throw new TiendaException("No todas las categorias existen");
@@ -49,17 +50,18 @@ public class Tienda {
     /**
      * Devuelve un conjunto con aquellas categorías que contienen algún producto sin stock
      *
-     * @return
+     * @return un {@link Set Set} de {@link Producto productos} cuyo stock sea 0
      */
     public Set<Categoria> categoriasConProductosSinStock() {
-        return categorias.stream().filter(Categoria::sinStock).collect(Collectors.toSet());
+        return categorias.stream().filter(Categoria::haveProductoSinStock).collect(Collectors.toSet());
     }
 
     /**
-     * Devuelve un conjunto con las categorías a las que pertenece un producto determinado
+     * Devuelve un conjunto con las {@link Categoria categorías}
+     * a las que pertenece un {@link Producto producto} determinado
      *
-     * @param p
-     * @return
+     * @param p {@link Producto producto} que buscaremos en las categorias
+     * @return Las {@link Categoria categorias} que tengan el {@link Producto producto indicado}
      */
     public Set<Categoria> categoriasDeProducto(Producto p) {
         return categorias.stream().filter(a -> !a.haveProducto(p)).collect(Collectors.toSet());
@@ -68,24 +70,24 @@ public class Tienda {
     /**
      * Devuelve un listado con todos los productos de la tienda (sin repetir) ordenados por precio de mayor a menor
      *
-     * @return
+     * @return Lista de todos los {@link Producto productos} ordenados por {@link Producto#getPrecio() precio}
      */
     public List<Producto> getTodosLosProductosOrdenadosPorPrecio() {
         return categorias.stream().flatMap(a -> a.getProductos().stream())
-                .sorted((a, b) -> Double.compare(b.getPrecio(), a.getPrecio()))
-                .collect(Collectors.toSet()).stream().toList();
+                .collect(Collectors.toSet()).stream()
+                .sorted((a, b) -> Double.compare(b.getPrecio(), a.getPrecio())).toList();
                 /*
                 Una nota de la API menciona que en Stream.distinct()
                 no hay garantias de estabilidad en streams no ordenados.
-                .distinct().toList();
+                categorias.stream().flatMap([...]).distinct().sorted([...]).toList();
                 */
     }
 
     /**
      * Elimina un producto de todas las categorías donde aparezca.
      *
-     * @param p
-     * @return true si el producto aparecía en alguna categoría
+     * @param p {@link Producto Producto} a eliminar
+     * @return true si el producto a sido eliminado en al menos una categoría
      */
     public boolean eliminaProducto(Producto p) {
         boolean eliminado = false;
@@ -96,9 +98,11 @@ public class Tienda {
     }
 
     /**
-     * Devuelve un conjunto con aquellos productos que han sido añadido en el último año (a partir de la fecha actual)
+     * Devuelve un conjunto con aquellos {@link Producto productos} que han sido añadidos en el último año
+     * (a partir de la {@link LocalDate#now() fecha actual})
      *
-     * @return
+     * @return Un {@link Set Set} de {@link Producto productos} con una
+     * {@link Producto#getFechaIncorporacion() fecha} de antiguedad superior a hace un año
      */
     public Set<Producto> productosUltimoAnno() {
         return getTodosLosProductosOrdenadosPorPrecio().stream()

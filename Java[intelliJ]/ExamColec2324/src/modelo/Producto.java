@@ -18,7 +18,27 @@ public class Producto {
         this.descripcion = descripcion;
         this.precio = precio;
         this.fechaIncorporacion = LocalDate.now();
-        this.stock = stock;
+        setStock(stock);
+    }
+
+    /**
+     * Este método asegura que no se pueda introducir números negativos.
+     * En dicho caso se asignara {@link Producto#stock stock} a 0, no se lanzará una excepción.
+     *
+     * @param stock Número que se desea colocar como {@link Producto#stock stock}
+     */
+    public void setStock(int stock) {
+        /*if (stock <= 0) {
+            this.stock = 0;
+        } else {
+            this.stock = stock;
+        }*/
+
+        //this.stock = stock <= 0 ? 0 : stock;
+
+        //El método max devuelve el númereo más grande.
+        //En el caso de que introduzcan un número menor o igual que 0, se devuelve 0.
+        this.stock = Math.max(stock, 0);
     }
 
     public String getMarca() {
@@ -45,6 +65,15 @@ public class Producto {
         return stock;
     }
 
+    /**
+     * Método que sobrecarga el método {@link Object#equals(Object) equals} y
+     * compara ambos {@link Producto productos} en base a su {@link Producto#marca marca}
+     * y su {@link Producto#modelo modelo}
+     *
+     * @param other Objeto a comparar
+     * @return True en el caso de que ambos sean {@link Producto productos} y tengan
+     * misma {@link Producto#marca marca} y mismo {@link Producto#modelo modelo}
+     */
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;

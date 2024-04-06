@@ -45,11 +45,27 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(longestMountainPass(new int[]{22, 10}, 20));
+        System.out.println(longestMountainPass(new int[]{}, 0));
+        System.out.println("Expected: 0, 0\n");
+
+        System.out.println(longestMountainPass(new int[]{10, 10, 10}, 0));
+        System.out.println("Expected: 3, 0\n");
+
+        System.out.println(longestMountainPass(new int[]{1, 2, 3, 4, 5}, 0));
+        System.out.println("Expected: 1, 0\n");
+
+        System.out.println(longestMountainPass(new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 3}, 1));
+        System.out.println("Expected: 10, 0\n");
+
+        System.out.println(longestMountainPass(new int[]{9, 1, 2, 3, 4, 5, 6, 9}, 7));
+        System.out.println("Expected: 7, 0\n");
+
+        System.out.println(longestMountainPass(new int[]{1, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 7));
+        System.out.println("Expected: 9, 1\n");
     }
 
     public static Result longestMountainPass(int[] mountains, int E) {
-        int maxLength = 0, startIdx = 0, numMountains = 0;
+        /*int maxLength = mountains.length, startIdx = 0, numMountains = 0;
         int finalE = E;
         int[] impossible = Arrays.stream(mountains).filter(a -> a > finalE).sorted().toArray();
         if (impossible.length == mountains.length) return new Result(maxLength, startIdx);
@@ -70,11 +86,48 @@ public class Main {
 
                 break;
             }
+        }*/
+
+        int maxLength = numMountains(mountains, 0, E)[1], startIdx = 0;
+        int numMountains = numMountains(mountains, startIdx, E)[0];
+
+        for (int i = 1; i < mountains.length && numMountains <= mountains.length - startIdx; i++) {
+            int[] stats = numMountains(mountains, i, E);
+            if (numMountains < stats[0]) {
+                numMountains = stats[0];
+                startIdx = i;
+                maxLength = stats[1];
+            }
         }
+
 
         return new Result(maxLength, startIdx);
     }
 
+    /**
+     * @param mountains Montañas a pasar
+     * @param startIdx  Se inicia desde esta montaña hacia la derecha
+     * @param E         Energia
+     * @return Montañas que salta && altura máxima de la montaña
+     */
+    private static int[] numMountains(int[] mountains, int startIdx, int E) {
+        int count = 0, max = mountains[startIdx];
+        for (int i = startIdx + 1; i < mountains.length; i++) {
+            if (mountains[i] > E) break;
+
+            count++;
+            //E -= mountains[i];
+            E -= Math.max(mountains[i] - mountains[i - 1], 0);
+
+            if (mountains[i] > max) max = mountains[i];
+        }
+        return new int[]{count, max};
+    }
+
+    /**
+     * maxLength
+     * startIdx
+     */
     public static class Result {
         private int maxLength;
         private int startIdx;

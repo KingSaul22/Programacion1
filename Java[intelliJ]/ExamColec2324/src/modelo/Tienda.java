@@ -86,7 +86,7 @@ public class Tienda {
      * @return Las {@link Categoria categorias} que tengan el {@link Producto producto indicado}
      */
     public Set<Categoria> categoriasDeProducto(Producto p) {
-        return categorias.stream().filter(a -> !a.haveProducto(p)).collect(Collectors.toSet());
+        return categorias.stream().filter(a -> a.haveProducto(p)).collect(Collectors.toSet());
     }
 
     /**
@@ -127,8 +127,9 @@ public class Tienda {
      * {@link Producto#getFechaIncorporacion() fecha} de antiguedad superior a hace un año
      */
     public Set<Producto> productosUltimoAnno() {
+        LocalDate limite = LocalDate.now().minusYears(1);
         return getTodosLosProductosOrdenadosPorPrecio().stream()
-                .filter(a -> LocalDate.now().isBefore(a.getFechaIncorporacion().plusYears(1)))
+                .filter(a -> limite.isBefore(a.getFechaIncorporacion()))
                 .collect(Collectors.toSet());
     }
 

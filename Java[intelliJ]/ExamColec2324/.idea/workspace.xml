@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="921a7644-6f27-4a50-8870-256d749de144" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/modelo/Tienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Tienda.java" afterDir="false" />
-    </list>
+    <list default="true" id="921a7644-6f27-4a50-8870-256d749de144" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Projectos/Programacion1/Java[intelliJ]/ExamColec2324",
+    "last_opened_file_path": "C:/Projectos/Programacion1/Java[intelliJ]/Boletin 6.1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,7 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712236985969</updated>
       <workItem from="1712236987006" duration="1678000" />
-      <workItem from="1712733096686" duration="375000" />
+      <workItem from="1712733096686" duration="774000" />
     </task>
     <servers />
   </component>

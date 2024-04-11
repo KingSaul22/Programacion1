@@ -113,7 +113,7 @@ public class Main {
     private static int[] numMountains(int[] mountains, int startIdx, int E) {
         int count = 0, max = mountains[startIdx];
         for (int i = startIdx + 1; i < mountains.length; i++) {
-            if (mountains[i] > E) break;
+            if (mountains[i] > E + mountains[i - 1]) break;
 
             count++;
             //E -= mountains[i];

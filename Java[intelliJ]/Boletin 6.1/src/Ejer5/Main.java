@@ -3,6 +3,9 @@ package Ejer5;
 import utils.MiEntradaSalida;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
@@ -70,21 +73,24 @@ public class Main {
 
     private static void borrarFichero() {
         String nombre = MiEntradaSalida.leerCadena("Introducir el nombre del fichero");
-        File ficheroTexto = new File(".\\Resources\\Ejer5\\" + nombre);
+        Path ficheroTexto = Paths.get(".\\Resources\\Ejer5\\" + nombre);
 
         if (!nombre.endsWith(".txt")) {
             System.out.println("la extensión del archivo no esta soportada. Solo se admiten ficheros '.txt'");
             return;
         }
 
-        if (!ficheroTexto.isFile()) {
+        if (!ficheroTexto.toFile().isFile()) {
             System.out.println("El archivo con el nombre indicado no es un fichero o no existe.");
         } else {
-            if (ficheroTexto.delete()) {
+            try {
+                Files.delete(ficheroTexto);
                 System.out.println("El fichero ha sido borrado");
-            } else {
+            } catch (IOException e) {
                 System.out.println("El fichero no se ha borrado");
+                throw new RuntimeException(e);
             }
+
         }
     }
 
@@ -96,7 +102,8 @@ public class Main {
             System.out.println("No existe ningún directorio con ese nombre");
         } else {
             File[] listFiles = directorio.listFiles(path -> path.isFile() && path.getName().endsWith(".txt"));
-            if (listFiles != null) {
+            //Nunca será nulo ya que se comprueba previamente que sea un directorio
+            if (listFiles.length != 0) {
                 System.out.println("Archivos dentro de la carpeta " + nombre);
                 for (File file : listFiles) {
                     System.out.println("  " + file.getName());
@@ -105,6 +112,25 @@ public class Main {
                 System.out.println("No hay archivos dentro de la carpeta " + nombre);
             }
         }
+    }
+
+    private static void mostrarFicherosDeCarpetaB() {
+        String nombre = MiEntradaSalida.leerCadena("Introducir el nombre del directorio");
+        Path directorio = Paths.get(".\\Resources\\Ejer5\\" + nombre);
+
+        if (!Files.isDirectory(directorio)) {
+            System.out.println("No existe ningún directorio con ese nombre");
+            return;
+        }
+
+        try {
+            //Files.newDirectoryStream(directorio, path -> path.toFile().isFile() && path.toFile().getName().endsWith(".txt"));
+            Files.list(directorio).forEach(System.out::println);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     private static void mostrarMenu() {

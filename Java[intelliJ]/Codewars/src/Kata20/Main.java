@@ -61,10 +61,11 @@ public class Main {
         System.out.println("Expected: 7, 0\n");
 
         System.out.println(longestMountainPass(new int[]{1, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 7));
-        System.out.println("Expected: 9, 1\n");
+        System.out.println("Espected: 9, 1\n");
     }
 
     public static Result longestMountainPass(int[] mountains, int E) {
+        if (mountains.length == 0) return new Result(0, 0);
         /*int maxLength = mountains.length, startIdx = 0, numMountains = 0;
         int finalE = E;
         int[] impossible = Arrays.stream(mountains).filter(a -> a > finalE).sorted().toArray();
@@ -137,12 +138,17 @@ public class Main {
             this.startIdx = startIdx;
         }
 
-        @Override
+       /* @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder();
             sb.append("maxLength: ").append(maxLength)
                     .append("\nstartIdx: ").append(startIdx);
             return sb.toString();
+        }*/
+
+        @Override
+        public String toString() {
+            return "Resulta: " + maxLength + ", " + startIdx;
         }
     }
 }

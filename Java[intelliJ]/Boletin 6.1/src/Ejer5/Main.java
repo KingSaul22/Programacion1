@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -123,9 +124,9 @@ public class Main {
             return;
         }
 
-        try {
+        try (Stream<Path> directorios = Files.list(directorio)) {
             //Files.newDirectoryStream(directorio, path -> path.toFile().isFile() && path.toFile().getName().endsWith(".txt"));
-            Files.list(directorio).forEach(System.out::println);
+            directorios.forEach(System.out::println);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

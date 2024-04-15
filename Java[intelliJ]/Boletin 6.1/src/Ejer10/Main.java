@@ -3,6 +3,7 @@ package Ejer10;
 import utils.MiEntradaSalida;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,20 +22,24 @@ public class Main {
                     .forEach(a -> {
                         a = a.substring(2);
                         Path out = Paths.get(".\\Resources\\Ejer10\\" + a);
-                        if (Files.isRegularFile(out)) {
-                            System.out.println("Ya existe el fichero " + a);
-                        } else if (Files.exists(out)) {
-                            System.out.println("El nombre " + a + " ya existe");
-                        } else {
-                            try {
-                                Files.createFile(out);
-                                System.out.println("Se ha creado el fichero " + a);
-                            } catch (UnsupportedOperationException e) {
-                                System.out.println("Operacion no soportada");
-                            } catch (IOException e) {
-                                System.out.println(e.getMessage());
-                            }
+                        /*if (Files.exists(out)) {
+                            System.out.println("Ya existe un fichero o directorio con el nombre " + a);
+                        } else {*/
+                        try {
+                            Files.createFile(out);
+                            System.out.println("Se ha creado el fichero " + a);
+                        } catch (FileAlreadyExistsException e) {
+                            System.out.println("El fichero ya existe");
+                            System.out.println(e.getMessage());
+                        } catch (UnsupportedOperationException e) {
+                            System.out.println("Operacion no soportada");
+                        } catch (SecurityException e) {
+                            System.out.println("No se tienen los permisos necesarios para crear el fichero " + a);
+                            System.out.println(e.getMessage());
+                        } catch (IOException e) {
+                            System.out.println(e.getMessage());
                         }
+                        //}
                     });
         } catch (SecurityException | IOException e) {
             System.out.println(e.getMessage());

@@ -37,10 +37,11 @@ public class Main {
                             getValidDirectorio(),
                             MiEntradaSalida.leerCadena("Introduzca el nombre del fichero a buscar")
                     ).forEach(a -> {
+                        System.out.print(a.toAbsolutePath());
                         try {
-                            System.out.println(a.getFileName() + " (" + Files.size(a) / 1024.0 + " KB)");
+                            System.out.println(" (" + Files.size(a) / 1024.0 + " KB)");
                         } catch (IOException e) {
-                            System.out.println(a.getFileName() + " (Peso no detectado)");
+                            System.out.println(" (Peso no detectado)");
                         }
                     });
             }
@@ -197,12 +198,20 @@ public class Main {
 
     private static List<Path> buscarRecursivoArchivoDesdeDirectorio(Path directorio, String nombre) {
         try (Stream<Path> ficheros = Files.list(directorio)) {
-            return ficheros.flatMap(a -> {
+            return ficheros.sorted((a, b) -> {
+                if (Files.isRegularFile(a) && Files.isDirectory(b)) {
+                    return -1;
+                } else if (Files.isRegularFile(b) && Files.isDirectory(a)) {
+                    return 1;
+                }
+                return a.toString().compareTo(b.toString());
+            }).flatMap(a -> {
                 if (Files.isDirectory(a)) {
                     return buscarRecursivoArchivoDesdeDirectorio(a, nombre).stream();
-                } else {
+                } else if (a.endsWith(Paths.get(nombre))) {
                     return Stream.of(a);
                 }
+                return Stream.empty();
             }).toList();
             /*
             ficheros.filter(a -> a.getFileName().toString().equals(nombre))
@@ -226,7 +235,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
         return new ArrayList<>();
-    }
+    }//TODO: Files.WalkFileTree
 
     private static Path getValidDirectorio() {
         String name = MiEntradaSalida.leerCadena("Introduzca el nombre del directorio a mostrar");
@@ -243,7 +252,7 @@ public class Main {
 
     private static void mostrarMenu() {
         System.out.println("""
-                
+                                
                 1. Listar Directorio
                 2. Listar Directorio y buscar ficheros que comiencen por una palabra
                 3. Listar archivos con cierta extensión de un directorio

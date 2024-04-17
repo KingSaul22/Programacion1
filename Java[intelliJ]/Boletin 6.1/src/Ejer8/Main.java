@@ -23,9 +23,9 @@ public class Main {
         String[] valoresCadena = cadena.split(" ");
 
         if (valoresCadena.length != 4) return false;
-        if (!valoresCadena[0].toLowerCase().matches("[a-z]") || valoresCadena[0].length() < 2) return false;
-        if (!valoresCadena[1].toLowerCase().matches("[a-z]") || valoresCadena[1].length() < 2) return false;
-        if (!valoresCadena[2].toLowerCase().matches("[a-z]") || valoresCadena[2].length() < 2) return false;
+        if (!valoresCadena[0].toLowerCase().matches("^[a-z]{2,}$")) return false;
+        if (!valoresCadena[1].toLowerCase().matches("^[a-z]{2,}$")) return false;
+        if (!valoresCadena[2].toLowerCase().matches("^[a-z]{2,}$")) return false;
         return Integer.parseInt(valoresCadena[3]) >= 1 && Integer.parseInt(valoresCadena[3]) <= 99;
     }
 }

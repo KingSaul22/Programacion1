@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="82a8766e-72b1-4354-b28e-37429b13dd26" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejer7/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer7/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +29,12 @@
     &quot;assignee&quot;: &quot;KingSaul22&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KingSaul22/Programacion1",
-    "accountId": "40d2fb3e-2967-42d2-937b-e45eb8ad3a5e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KingSaul22/Programacion1&quot;,
+    &quot;accountId&quot;: &quot;40d2fb3e-2967-42d2-937b-e45eb8ad3a5e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -74,6 +75,7 @@
       <updated>1713193041748</updated>
       <workItem from="1713193042767" duration="991000" />
       <workItem from="1713252773786" duration="3198000" />
+      <workItem from="1713338507340" duration="4323000" />
     </task>
     <servers />
   </component>

@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="82a8766e-72b1-4354-b28e-37429b13dd26" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejer7/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer7/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejer8/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer8/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejer9/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer9/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,20 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Programacion1/Java[intelliJ]/Boletin 6.1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projects/Programacion1/Java[intelliJ]/Boletin 6.1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -76,6 +78,9 @@
       <workItem from="1713193042767" duration="991000" />
       <workItem from="1713252773786" duration="3198000" />
       <workItem from="1713338507340" duration="4323000" />
+      <workItem from="1713424065213" duration="102000" />
+      <workItem from="1713424374850" duration="186000" />
+      <workItem from="1713437523409" duration="6595000" />
     </task>
     <servers />
   </component>

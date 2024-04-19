@@ -28,8 +28,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/KingSaul22/Programacion1.git",
-    "accountId": "f69b6c71-5207-4f3d-9a39-be274fd8dd4e"
+    "url": "https://github.com/KingSaul22/Programacion1",
+    "accountId": "40d2fb3e-2967-42d2-937b-e45eb8ad3a5e"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -78,6 +78,7 @@
       <workItem from="1713424374850" duration="186000" />
       <workItem from="1713437523409" duration="6595000" />
       <workItem from="1713449477249" duration="16000" />
+      <workItem from="1713520432038" duration="237000" />
     </task>
     <servers />
   </component>

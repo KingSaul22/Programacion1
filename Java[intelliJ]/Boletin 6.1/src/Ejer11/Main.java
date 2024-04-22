@@ -8,10 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+
+    }
+
+    private static void crearFicherosDesdeFicheroB() {
+        Pattern p = Pattern.compile("^(\\p{Lu}{2,})\\s(\\p{Lu}{2,})\\s(\\p{Lu}{2,})\\s([^\\\\/:\\*\\?\"<>|]{2,})$");
 
     }
 
@@ -52,7 +58,7 @@ public class Main {
     }
 
     private static boolean isValidNombre(String nombre) {
-        return nombre.matches("^[A-Z]{2,} [A-Z]{2,} [A-Z]{2,} [1-4][A-Z]{2,4}$");
+        return nombre.matches("^(\\p{Lu}{2,}\\s){3}[1-4][A-Z]{2,4}$");
     }
 
     private static Path getValidFichero() {

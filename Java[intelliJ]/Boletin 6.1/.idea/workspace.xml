@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="82a8766e-72b1-4354-b28e-37429b13dd26" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Ejer10/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Ejer10/prueba.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ejer10/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer10/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejer11/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer11/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,11 +84,22 @@
       <workItem from="1713437523409" duration="6595000" />
       <workItem from="1713449477249" duration="16000" />
       <workItem from="1713520432038" duration="237000" />
-      <workItem from="1713767934414" duration="4857000" />
+      <workItem from="1713767934414" duration="8484000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Ejer10/Main.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

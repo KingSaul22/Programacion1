@@ -42,6 +42,7 @@ public class Main {
                     System.out.println("La imagen " + (i + 1) + " no tiene texto alternativo");
                 }
             }
+            System.out.println();
 
             for (int i = 0; i < listDiv.getLength(); i++) {
                 Element div = (Element) listDiv.item(i);
@@ -61,22 +62,22 @@ public class Main {
 
             System.out.println("Solo las noticias, excluye las Otras Noticias\n".toUpperCase());
 
-            Node base = null;
-            for (int i = 0; i < listDiv.getLength(); i++) {
-                Element div = (Element) listDiv.item(i);
-                if (div.getAttribute("class").equals("cuerpo")) {
-                    base = div;
+            Element divBase = null;
+            NodeList base = raiz.getElementsByTagName("div");
+            for (int i = 0; i < base.getLength(); i++) {
+                Element div = (Element) base.item(i);
+                if (div.hasAttribute("id") && div.getAttribute("id").equals("cuerpo")) {
+                    divBase = div;
                     break;
                 }
             }
-            
-            NodeList listChildBody = base.getChildNodes().item(0).getChildNodes();
-            for (int i = 0; i < listChildBody.getLength(); i++) {
-                Node nodo = listChildBody.item(i);
-                //if (!(nodo instanceof Element)) continue;
-                //Element div = (Element) nodo;
-                if (!(nodo instanceof Element div)) continue;
-                if (div.getTagName().equals("div") && div.getAttribute("class").equals("noticia")) {
+
+
+            assert divBase != null;
+            NodeList listDivTrue = divBase.getChildNodes();
+            for (int i = 0; i < listDivTrue.getLength(); i++) {
+                if (!(listDivTrue.item(i) instanceof Element div)) continue;
+                if (div.getAttribute("class").equals("noticia")) {
                     System.out.printf("""
                                     Titular:
                                       %s
@@ -89,6 +90,7 @@ public class Main {
                 }
             }
 
+
         } catch (ParserConfigurationException e) {
             System.out.println("Fallo de configuracion en el Parser");
             System.out.println(e.getMessage());
@@ -96,6 +98,9 @@ public class Main {
             System.out.println("Error de lectura");
             System.out.println(e.getMessage());
         } catch (SAXException e) {
+            System.out.println(e.getMessage());
+        } catch (AssertionError e) {
+            System.out.println("La lista estaba vacia");
             System.out.println(e.getMessage());
         }
     }

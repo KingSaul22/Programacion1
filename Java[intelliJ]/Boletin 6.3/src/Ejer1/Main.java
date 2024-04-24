@@ -50,15 +50,44 @@ public class Main {
                                     Titular:
                                       %s
                                     Texto alternativo de la imagen:
-                                      %s""",
+                                      %s
+                                    
+                                    """,
                             div.getElementsByTagName("h2").item(0).getTextContent(),
                             ((Element) div.getElementsByTagName("img").item(0)).getAttribute("alt"));
                 }
-                System.out.println();
             }
 
 
-            //TODO: Sin revisar otrasNoticias
+            System.out.println("Solo las noticias, excluye las Otras Noticias\n".toUpperCase());
+
+            Node base = null;
+            for (int i = 0; i < listDiv.getLength(); i++) {
+                Element div = (Element) listDiv.item(i);
+                if (div.getAttribute("class").equals("cuerpo")) {
+                    base = div;
+                    break;
+                }
+            }
+            
+            NodeList listChildBody = base.getChildNodes().item(0).getChildNodes();
+            for (int i = 0; i < listChildBody.getLength(); i++) {
+                Node nodo = listChildBody.item(i);
+                //if (!(nodo instanceof Element)) continue;
+                //Element div = (Element) nodo;
+                if (!(nodo instanceof Element div)) continue;
+                if (div.getTagName().equals("div") && div.getAttribute("class").equals("noticia")) {
+                    System.out.printf("""
+                                    Titular:
+                                      %s
+                                    Texto alternativo de la imagen:
+                                      %s
+                                    
+                                    """,
+                            div.getElementsByTagName("h2").item(0).getTextContent(),
+                            ((Element) div.getElementsByTagName("img").item(0)).getAttribute("alt"));
+                }
+            }
 
         } catch (ParserConfigurationException e) {
             System.out.println("Fallo de configuracion en el Parser");

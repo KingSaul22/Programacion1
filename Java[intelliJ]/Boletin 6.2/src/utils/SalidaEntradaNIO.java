@@ -46,7 +46,11 @@ public class SalidaEntradaNIO {
         }
     }
 
-    private static boolean validarDirectorio(Path directorio) {
+    public static boolean validarDirectorio(Path directorio) {
         return Files.isDirectory(directorio);
+    }
+
+    public static boolean validarFichero(Path fichero) {
+        return Files.isRegularFile(fichero);
     }
 }

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class SalidaEntradaNIO {
 
     public static Path getValidFichero(String base) {
-        String name = MiEntradaSalida.leerCadena("Introduzca el nombre del fichero con las matriculas");
+        String name = MiEntradaSalida.leerCadena("Introduzca el nombre del fichero a buscar");
         Path outPath = Paths.get(base + name);
 
         while (!Files.isRegularFile(outPath)) {

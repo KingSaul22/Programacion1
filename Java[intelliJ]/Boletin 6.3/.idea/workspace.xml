@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f637f67-2bca-4d6b-ac41-1b4ebee517dc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejer1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejer1/web1.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/web1.html" afterDir="false" />
-    </list>
+    <list default="true" id="3f637f67-2bca-4d6b-ac41-1b4ebee517dc" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +73,7 @@
       <updated>1713964385033</updated>
       <workItem from="1713964386075" duration="5114000" />
       <workItem from="1714026378104" duration="1229000" />
-      <workItem from="1714039042547" duration="5510000" />
+      <workItem from="1714039042547" duration="5709000" />
     </task>
     <servers />
   </component>

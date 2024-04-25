@@ -72,10 +72,14 @@ public class Main {
                 }
             }
 
-
-            assert divBase != null;
+            //assert divBase != null;
+            if (divBase == null) throw new AssertionError();
             NodeList listDivTrue = divBase.getChildNodes();
             for (int i = 0; i < listDivTrue.getLength(); i++) {
+                /*
+                if (!(listDivTrue.item(i) instanceof Element)) continue;
+                Element div = (Element) listDivTrue.item(i);
+                */
                 if (!(listDivTrue.item(i) instanceof Element div)) continue;
                 if (div.getAttribute("class").equals("noticia")) {
                     System.out.printf("""
@@ -90,6 +94,40 @@ public class Main {
                 }
             }
 
+            System.out.println("\nLista de las opciones del menu principal:");
+            Element menuPrincipal = null;
+            for (int i = 0; i < listDiv.getLength(); i++) {
+                Element div = (Element) listDiv.item(i);
+                if (div.getAttribute("id").equals("menu-principal")) {
+                    menuPrincipal = div;
+                    break;
+                }
+            }
+
+            if (menuPrincipal == null) throw new AssertionError();
+            NodeList opcionesMenu = menuPrincipal.getElementsByTagName("li");
+            for (int i = 0; i < opcionesMenu.getLength(); i++) {
+                System.out.println("Opción " + (i + 1) + ": " + opcionesMenu.item(i).getTextContent());
+            }
+
+
+            System.out.println("\nÚLTIMO APARTADO:\n");
+            for (int i = 0; i < listDiv.getLength(); i++) {
+                Element div = (Element) listDiv.item(i);
+                //if (div.getAttribute("class").matches("^(.*\\s)?noticia(\\s.*)?$")) {
+                if (div.getAttribute("class").matches("\\b(noticia)\\b")) {
+                    System.out.printf("""
+                                    Titular:
+                                      %s
+                                    Texto bajo el titular:
+                                      %s
+                                    
+                                    """,
+                            div.getElementsByTagName("h2").item(0).getTextContent(),
+                            div.getElementsByTagName("p").item(0).getTextContent());
+                }
+            }
+
 
         } catch (ParserConfigurationException e) {
             System.out.println("Fallo de configuracion en el Parser");
@@ -100,7 +138,7 @@ public class Main {
         } catch (SAXException e) {
             System.out.println(e.getMessage());
         } catch (AssertionError e) {
-            System.out.println("La lista estaba vacia");
+            System.out.println("La lista estaba vacia o era null");
             System.out.println(e.getMessage());
         }
     }

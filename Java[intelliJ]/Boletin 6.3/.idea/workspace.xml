@@ -6,11 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3f637f67-2bca-4d6b-ac41-1b4ebee517dc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejer1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejer1/web1.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer2/web1.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -21,12 +30,12 @@
     &quot;assignee&quot;: &quot;KingSaul22&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KingSaul22/Programacion1",
-    "accountId": "40d2fb3e-2967-42d2-937b-e45eb8ad3a5e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KingSaul22/Programacion1&quot;,
+    &quot;accountId&quot;: &quot;40d2fb3e-2967-42d2-937b-e45eb8ad3a5e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -68,10 +77,21 @@
       <updated>1713964385033</updated>
       <workItem from="1713964386075" duration="5114000" />
       <workItem from="1714026378104" duration="1229000" />
+      <workItem from="1714039042547" duration="5510000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

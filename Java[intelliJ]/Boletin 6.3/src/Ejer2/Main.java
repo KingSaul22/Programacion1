@@ -1,4 +1,4 @@
-package Ejer1;
+package Ejer2;
 
 
 import org.w3c.dom.*;
@@ -8,15 +8,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse("./src/Ejer1/web1.html");
+            Document doc = db.parse("./src/Ejer2/web1.html");
             Element raiz = doc.getDocumentElement();
             Element titulo = (Element) raiz.getElementsByTagName("title").item(0);
             System.out.println(titulo.getTextContent());

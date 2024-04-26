@@ -44,6 +44,14 @@ public class Main {
                 }
             }
 
+
+            //PARTE TRES
+            System.out.println("\nAgregación del atributo id");
+            for (int i = 0; i < platos.getLength(); i++) {
+                Element plato = (Element) platos.item(i);
+                plato.setAttribute("id", String.valueOf(i + 1));
+            }
+
         } catch (IllegalArgumentException e) {
             System.out.println("No se reconoce el fichero asignado\n" + e.getMessage());
         } catch (ParserConfigurationException e) {

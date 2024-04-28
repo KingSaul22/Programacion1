@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<breakfast_menu>
+	<food>
+		<name>Tostada con tomate y café</name>
+		<price>1,70€</price>
+		<description>
+			Tostada de pan de antequera con el mejor café
+		</description>
+		<calories>450</calories>
+	</food>
+	<food>
+		<name>Tostada con aceite y jamón más café</name>
+		<price>3.00€</price>
+		<description>
+			Nuestro mejor pan con jamón ibérico cortado a mano.
+		</description>
+		<calories>700</calories>
+	</food>
+	<food>
+		<name>Gofre con sirope</name>
+		<price>2.95€</price>
+		<description>
+			Delicioso gofre belga recubierto con sirope de chocolate,
+			fresa o caramelo
+		</description>
+		<calories>900</calories>
+	</food>
+	<food>
+		<name>Desayuno supreme</name>
+		<price>5.50€</price>
+		<description>
+			Media tostada con jamón ibérico, café o té, zumo de
+			naranja y un pan brioche recién salido del horno
+		</description>
+		<calories>600</calories>
+	</food>
+	<food>
+		<name>Desayuno inglés</name>
+		<price>7,50€</price>
+		<description>
+			Dos huevos fritos, bacon o salchicha, pan tostado y un
+			buen cuenco de alubias. ¡Como si estuvieses en Londres!
+		</description>
+		<calories>950</calories>
+	</food>
+</breakfast_menu>

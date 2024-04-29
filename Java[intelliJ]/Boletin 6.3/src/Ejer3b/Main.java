@@ -2,6 +2,7 @@ package Ejer3b;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -16,12 +17,14 @@ import java.io.IOException;
 
 public class Main {
     private static Document doc;
+    private static Node raiz;
 
     public static void main(String[] args) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             doc = db.parse(".\\src\\Ejer3b\\desayuno.xml");
+            raiz = doc.getDocumentElement();
         } catch (IllegalArgumentException e) {
             System.out.println("No se reconoce el fichero asignado\n" + e.getMessage());
         } catch (ParserConfigurationException e) {
@@ -133,10 +136,9 @@ public class Main {
         int lastId = getLastIntIdFood();
         plato.setAttribute("id", String.valueOf(++lastId));
         platos.item(platos.getLength() - 1).appendChild(plato);
-        //TODO: Guardar Nuevo Plato
 
         File outFile = new File(".\\src\\Ejer3b\\desayunoB.xml");
-        doc.getElementsByTagName("food").item(0).getParentNode().appendChild(plato);
+        raiz.appendChild(plato);
 
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -168,7 +170,7 @@ public class Main {
         for (int i = 0; i < platos.getLength(); i++) {
             Element plato = (Element) platos.item(i);
             if (Integer.parseInt(plato.getElementsByTagName("calories").item(0).getTextContent()) > 500) {
-                plato.getParentNode().removeChild(plato);
+                raiz.removeChild(plato);
                 i--;
             }
         }

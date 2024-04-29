@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<breakfast_menu>
+    	
+    <food id="1">
+        		
+        <name>Tostada con tomate y café</name>
+        		
+        <price>1,70€</price>
+        		
+        <description>
+			Tostada de pan de antequera con el mejor café
+		</description>
+        		
+        <calories>450</calories>
+        	
+    </food>
+    	
+	
+	
+	
+
+    <food id="6">
+        <name>Churros Bermudo</name>
+        <price>1.5€</price>
+        <description>Unos deliciosos churros, hechos con todo el amor del profesor a sus alumnos</description>
+        <calories>500</calories>
+    </food>
+</breakfast_menu>

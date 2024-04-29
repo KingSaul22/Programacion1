@@ -55,23 +55,6 @@ public class Main {
         copyDesayunosSaludables(true);
     }
 
-    private static void aniadirPlato(Element plato) {
-        String nameBase = plato.getElementsByTagName("name").item(0).getTextContent();
-        NodeList platos = doc.getElementsByTagName("food");
-        for (int i = 0; i < platos.getLength(); i++) {
-            Element nPlato = (Element) platos.item(i);
-            if (nPlato.getElementsByTagName("name").item(0).getTextContent().equals(nameBase)) {
-                System.out.println("Ya existe un plato con el nombre " + nameBase);
-                return;
-            }
-        }
-
-        int lastId = getLastIntIdFood();
-        plato.setAttribute("id", String.valueOf(++lastId));
-        platos.item(platos.getLength() - 1).appendChild(plato);
-        //TODO: Guardar Nuevo Plato
-    }
-
     private static void getDesayunosRangoPrecio(double min, double max) {
         NodeList platos = doc.getElementsByTagName("food");
         if (platos == null) return;
@@ -134,6 +117,43 @@ public class Main {
         plato.appendChild(caloriasPlato);
 
         return plato;
+    }
+
+    private static void aniadirPlato(Element plato) {
+        String nameBase = plato.getElementsByTagName("name").item(0).getTextContent();
+        NodeList platos = doc.getElementsByTagName("food");
+        for (int i = 0; i < platos.getLength(); i++) {
+            Element nPlato = (Element) platos.item(i);
+            if (nPlato.getElementsByTagName("name").item(0).getTextContent().equals(nameBase)) {
+                System.out.println("Ya existe un plato con el nombre " + nameBase);
+                return;
+            }
+        }
+
+        int lastId = getLastIntIdFood();
+        plato.setAttribute("id", String.valueOf(++lastId));
+        platos.item(platos.getLength() - 1).appendChild(plato);
+        //TODO: Guardar Nuevo Plato
+
+        File outFile = new File(".\\src\\Ejer3b\\desayunoB.xml");
+        doc.getElementsByTagName("food").item(0).getParentNode().appendChild(plato);
+
+        try {
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            StreamResult streamResult = new StreamResult(outFile);
+
+            DOMSource source = new DOMSource(doc);
+
+            transformer.transform(source, streamResult);
+            System.out.println("Se ha guardado con exito el nuevo palto");
+        } catch (TransformerConfigurationException e) {
+            System.out.println("Error de configuración del transformer\n" + e.getMessage());
+        } catch (TransformerException e) {
+            System.out.println("Error al transformar\n" + e.getMessage());
+        }
     }
 
     private static void copyDesayunosSaludables(final boolean sobreEscribir) {

@@ -82,7 +82,7 @@ public class Main {
 
     private static void copyCapitulosMasPalabras(final int MIN_PALABRAS) {
         File outFile = new File("./src/Ejer2/simpsonsB.xml");
-        Pattern pt = Pattern.compile("\\b\\p{L}+\\b", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+        Pattern pt = Pattern.compile("\\b(\\p{L}+)\\b", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
         NodeList capitulos = doc.getElementsByTagName("capitulo");
         for (int i = 0; i < capitulos.getLength(); i++) {
@@ -91,11 +91,12 @@ public class Main {
             String sinopsis = capitulo.getElementsByTagName("sinopsis").item(0).getTextContent();
 
             Matcher m = pt.matcher(sinopsis);
-            while (m.find()) {
+            /*while (m.find()) {
                 palabras++;
             }
 
-            if (palabras <= MIN_PALABRAS) {
+            if (palabras <= MIN_PALABRAS) {*/
+            if (m.groupCount() <= MIN_PALABRAS) {
                 capitulo.getParentNode().removeChild(capitulo);
                 i--;
             }

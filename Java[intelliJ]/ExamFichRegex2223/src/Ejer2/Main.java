@@ -97,6 +97,7 @@ public class Main {
 
             if (palabras <= MIN_PALABRAS) {
                 capitulo.getParentNode().removeChild(capitulo);
+                i--;
             }
         }
 

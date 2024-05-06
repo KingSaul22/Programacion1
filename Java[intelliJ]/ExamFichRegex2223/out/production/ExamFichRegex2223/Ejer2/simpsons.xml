@@ -1,0 +1,32 @@
+<simpsons>
+    <capitulo temporada="1" episodio="1">
+        <nombre>Especial de Navidad de los Simpson</nombre>
+        <sinopsis>Los Simpson deciden adoptar un perro callejero para Navidad, al que llaman Pequeño Ayudante de Santa, pero pronto se dan cuenta de que mantenerlo no es tan fácil como pensaban.</sinopsis>
+        <fecha_emision>17 de diciembre de 1989</fecha_emision>
+    </capitulo>
+    <capitulo temporada="2" episodio="1">
+        <nombre>Bart, el genio</nombre>
+        <sinopsis>Tras hacer trampa en un test de inteligencia, Bart es enviado a una escuela para superdotados. Mientras tanto, Homer recibe un ascenso en la planta nuclear.</sinopsis>
+        <fecha_emision>11 de octubre de 1990</fecha_emision>
+    </capitulo>
+    <capitulo temporada="3" episodio="12">
+        <nombre>El último deseo de Selma</nombre>
+        <sinopsis>Selma decide tener un bebé y, después de que las adopciones no salgan bien, se casa con un hombre llamado Troy McClure. Sin embargo, pronto descubre que su matrimonio no es lo que ella esperaba.</sinopsis>
+        <fecha_emision>9 de diciembre de 1991</fecha_emision>
+    </capitulo>
+    <capitulo temporada="4" episodio="12">
+        <nombre>El heredero de Burns</nombre>
+        <sinopsis>Después de que Mr. Burns sufra un ataque al corazón, decide buscar un heredero para su fortuna. Bart y Lisa creen que tienen una oportunidad, pero sus planes se complican cuando se descubre un oscuro secreto sobre el pasado de Burns.</sinopsis>
+        <fecha_emision>17 de enero de 1993</fecha_emision>
+    </capitulo>
+    <capitulo temporada="5" episodio="2">
+        <nombre>Cape Feare</nombre>
+        <sinopsis>La familia Simpson se muda a una nueva casa para escapar de Sideshow Bob, un payaso vengativo que ha jurado matar a Bart. Sin embargo, Bob logra encontrarlos y comienza un aterrador juego del gato y el ratón.</sinopsis>
+        <fecha_emision>7 de octubre de 1993</fecha_emision>
+    </capitulo>
+    <capitulo temporada="6" episodio="25">
+        <nombre>¿Quién disparó al Sr. Burns? Parte 1</nombre>
+        <sinopsis>Después de que el Sr. Burns bloquee el sol de Springfield, la ciudad se sume en la oscuridad y la desesperación. Cuando Burns es encontrado en el suelo con un disparo, todos en Springfield se convierten en sospechosos.</sinopsis>
+        <fecha_emision>21 de mayo de 1995</fecha_emision>
+    </capitulo>
+</simpsons>

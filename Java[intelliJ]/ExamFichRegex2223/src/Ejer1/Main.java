@@ -2,9 +2,9 @@ package Ejer1;
 
 import utils.EntradaSalidaNIO;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Main {
@@ -16,25 +16,33 @@ public class Main {
 
     private static void copiarFicherosDirectorios(Path dirIn, Path dirOut) {
         final int MIN_BYTES = 1024;
-        final String CABECERA = "copiar";
+        final String PRIMERA_PALABRA = "copiar";
         final String EXTENSION = ".txt";
-        Pattern pt = Pattern.compile("^[cC][oO][pP][iI][aA][rR].*\\.txt$");
 
         try (Stream<Path> lineas = Files.list(dirIn)) {
             lineas.filter(path -> {
                         try {
-                            return Files.isRegularFile(path) && Files.size(path) > MIN_BYTES;
+                            return Files.isRegularFile(path) &&
+                                    Files.size(path) > MIN_BYTES &&
+                                    path.getFileName().toString().endsWith(EXTENSION);
                         } catch (IOException e) {
                             return false;
                         }
                     })
-                    .filter(path -> pt.matcher(path.getFileName().toString()).matches())
-                    .forEach(path -> {
-                        System.out.println(path);
-                        try {
-                            Files.copy(path, dirOut.resolve(path.getFileName().toString()));
+                    .filter(path -> {
+                        try (BufferedReader br = Files.newBufferedReader(path)) {
+                            return br.readLine().toLowerCase().startsWith(PRIMERA_PALABRA);
                         } catch (IOException e) {
-                            System.out.println("Error inesperado al copiar el archivo " + path.getFileName().toString());
+                            return false;
+                        }
+                    })
+                    .forEach(path -> {
+                        System.out.print("Fichero a copiar: " + path);
+                        try {
+                            Files.copy(path, dirOut.resolve(path.getFileName()));
+                            System.out.println(" // Completado");
+                        } catch (IOException e) {
+                            System.out.println("\nError inesperado al copiar el archivo " + path.getFileName().toString());
                         }
                     });
 

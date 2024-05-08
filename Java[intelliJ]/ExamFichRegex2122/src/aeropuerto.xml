@@ -2,7 +2,7 @@
     <vuelo>
         <id>12345678</id>
         <codigo>VUELO123</codigo>
-        <compania>Aerolíneas Europeas</compania>
+        <compania>European Airways</compania>
         <hora_salida>08:00</hora_salida>
         <destino>París</destino>
     </vuelo>

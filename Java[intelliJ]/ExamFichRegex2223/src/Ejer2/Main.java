@@ -86,17 +86,18 @@ public class Main {
 
         NodeList capitulos = doc.getElementsByTagName("capitulo");
         for (int i = 0; i < capitulos.getLength(); i++) {
-            int palabras = 0;
+            long palabras = 0;
             Element capitulo = (Element) capitulos.item(i);
             String sinopsis = capitulo.getElementsByTagName("sinopsis").item(0).getTextContent();
 
             Matcher m = pt.matcher(sinopsis);
+            palabras = m.results().count();
             /*while (m.find()) {
                 palabras++;
-            }
+            }*/
 
-            if (palabras <= MIN_PALABRAS) {*/
-            if (m.groupCount() <= MIN_PALABRAS) {
+            if (palabras <= MIN_PALABRAS) {
+            //if (m.groupCount() <= MIN_PALABRAS) {
                 capitulo.getParentNode().removeChild(capitulo);
                 i--;
             }

@@ -130,7 +130,7 @@ public class AyudasXml {
         } catch (FactoryConfigurationError e) {
             throw new XmlException("Error al crear una instancia de DocumentBuilderFactory\n" + e.getMessage());
         } catch (ParserConfigurationException e) {
-            throw new XmlException("Error de configuración del parser\n" + e.getMessage())
+            throw new XmlException("Error de configuración del parser\n" + e.getMessage());
         }
     }
 }

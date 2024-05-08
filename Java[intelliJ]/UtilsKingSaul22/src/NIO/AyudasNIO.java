@@ -222,7 +222,11 @@ public class AyudasNIO {
             if (Files.isDirectory(p)) {
                 contenido.add(p + " (directorio)");
             } else if (Files.isRegularFile(p)) {
-                contenido.add(p + " (fichero)");
+                try {
+                    contenido.add(p + " (fichero - " + Files.size(p) / 1024.0 + " KB)");
+                } catch (IOException e) {
+                    contenido.add(p + " (fichero - peso no detectado)");
+                }
             } else {
                 contenido.add(p + " (otro)");
             }

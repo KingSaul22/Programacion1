@@ -1,0 +1,58 @@
+<vuelos>
+    <vuelo>
+        <id>12345678</id>
+        <codigo>VUELO123</codigo>
+        <compania>Aerolíneas Europeas</compania>
+        <hora_salida>08:00</hora_salida>
+        <destino>París</destino>
+    </vuelo>
+    <vuelo>
+        <id>31234567</id>
+        <codigo>VUELO456</codigo>
+        <compania>American Airways</compania>
+        <hora_salida>10:30</hora_salida>
+        <destino>New York</destino>
+    </vuelo>
+    <vuelo>
+        <id>25456789</id>
+        <codigo>VUELO789</codigo>
+        <compania>Asia Air</compania>
+        <hora_salida>14:45</hora_salida>
+        <destino>Tokio</destino>
+    </vuelo>
+    <vuelo>
+        <id>15567890</id>
+        <codigo>VUELO246</codigo>
+        <compania>European Airways</compania>
+        <hora_salida>12:15</hora_salida>
+        <destino>Londres</destino>
+    </vuelo>
+    <vuelo>
+        <id>36678901</id>
+        <codigo>VUELO789</codigo>
+        <compania>North American Airlines</compania>
+        <hora_salida>16:20</hora_salida>
+        <destino>Los Angeles</destino>
+    </vuelo>
+    <vuelo>
+        <id>37789012</id>
+        <codigo>VUELO135</codigo>
+        <compania>South American Airways</compania>
+        <hora_salida>09:45</hora_salida>
+        <destino>Rio de Janeiro</destino>
+    </vuelo>
+    <vuelo>
+        <id>18890123</id>
+        <codigo>VUELO579</codigo>
+        <compania>Oceanic Airlines</compania>
+        <hora_salida>13:30</hora_salida>
+        <destino>Sídney</destino>
+    </vuelo>
+    <vuelo>
+        <id>49901234</id>
+        <codigo>VUELO246</codigo>
+        <compania>African Airways</compania>
+        <hora_salida>11:00</hora_salida>
+        <destino>Johannesburgo</destino>
+    </vuelo>
+</vuelos>

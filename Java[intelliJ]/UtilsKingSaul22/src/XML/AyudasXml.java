@@ -4,6 +4,7 @@ import Exceptions.XmlException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -118,10 +119,33 @@ public class AyudasXml {
     }
 
     /**
+     * Se buscará al último nodo con el atributo a buscar y se devolverá su valor.
+     * La busqueda se realizara unicamente entre los hijos directos del nodo indicado.
+     *
+     * @param node El nodo al que se le revisarán los hijos
+     * @param attr El nombre del atributo a buscar
+     * @return El valor del atributo del último nodo que tenga el atributo
+     */
+    public static String getLastValueAttr(Node node, String attr) {
+        NodeList listChildren = node.getChildNodes();
+        for (int i = listChildren.getLength() - 1; i >= 0; i--) {
+            if (listChildren.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) listChildren.item(i);
+                if (element.hasAttribute(attr)) {
+                    return element.getAttribute(attr);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Crea un nuevo DocumentBuilder, si no existe ya uno, y lo asigna a la variable {@link AyudasXml#db db}.
+     * <p>
+     * MÉTODO PRIVADO.
      *
      * @throws XmlException Cuando hay un error relacionado con {@link DocumentBuilderFactory}
-     * o con la configuración del {@link DocumentBuilder}.
+     *                      o con la configuración del {@link DocumentBuilder}.
      */
     private static void crearDocumentBuilder() throws XmlException {
         if (db != null) return;

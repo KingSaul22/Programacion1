@@ -277,13 +277,13 @@ public class AyudasNIO {
     }
 
     /**
-     * Obtiene una lista con todos los ficheros cuyo nombre hace {@link Matcher#matches() match} con el regex especificado,
+     * Obtiene una lista con todos los ficheros regulares cuyo nombre hace {@link Matcher#matches() match} con el regex especificado,
      * pudiendo ser recursivo y devolver ocurrencias dentro de otros directorios.
      *
      * @param directorio La ruta del directorio del que se obtendrá los ficheros.
      * @param regex      La expresión regular que se usará para filtrar los ficheros. Es posible indicar simplemente el nombre del fichero a buscar.
      * @param recursive  Indica si se debe buscar dentro de otros directorios.
-     * @return Una lista de rutas a los archivos cuyo nombre sea valido.
+     * @return Una lista de rutas a los archivos regulares cuyo nombre sea valido.
      * @throws NioException Cuando el directorio no es un directorio o se produce un error al obtener su contenido.
      */
     public static List<Path> buscarFicheroRegex(Path directorio, String regex, boolean recursive) throws NioException {
@@ -292,16 +292,18 @@ public class AyudasNIO {
         Pattern pt = Pattern.compile(regex);
         if (!recursive) {
             try (Stream<Path> paths = Files.list(directorio)) {
-                return paths.filter(p -> {
-                    Matcher matcher = pt.matcher(p.getFileName().toString());
-                    return matcher.matches();
-                }).toList();
+                return paths.filter(Files::isRegularFile)
+                        .filter(p -> {
+                            Matcher matcher = pt.matcher(p.getFileName().toString());
+                            return matcher.matches();
+                        }).toList();
 
             } catch (IOException e) {
                 throw new NioException("Error al acceder al directorio\n" + e.getMessage());
             }
         } else {
             return getContenidoDirectorio(directorio, true).stream()
+                    .filter(Files::isRegularFile)
                     .filter(p -> {
                         Matcher matcher = pt.matcher(p.getFileName().toString());
                         return matcher.matches();

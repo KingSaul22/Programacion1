@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7dd7521-b8c3-4c35-8c96-bd642709b3d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Ejer4/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejer4/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boletin 6.3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Boletin 6.3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExamFichRegex2223/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ExamFichRegex2223/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExamFichRegex2324/src/ej1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ExamFichRegex2324/src/ej1/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExamFichRegex2324/src/ej2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ExamFichRegex2324/src/ej2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UtilsKingSaul22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UtilsKingSaul22/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,41 +20,42 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KingSaul22"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KingSaul22&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KingSaul22/Programacion1.git",
-    "accountId": "f69b6c71-5207-4f3d-9a39-be274fd8dd4e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KingSaul22/Programacion1.git&quot;,
+    &quot;accountId&quot;: &quot;40d2fb3e-2967-42d2-937b-e45eb8ad3a5e&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2gBOAUd8ZZqFb7eaBIY5CudBRSQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projects/Programacion1/Java[intelliJ]/ExamFichRegex2122",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Programacion1/Java[intelliJ]/ExamFichRegex2122&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,6 +73,9 @@
       <option name="presentableId" value="Default" />
       <updated>1715167360755</updated>
       <workItem from="1715167361792" duration="1943000" />
+      <workItem from="1715240298650" duration="1993000" />
+      <workItem from="1715243328418" duration="187000" />
+      <workItem from="1715253586117" duration="757000" />
     </task>
     <servers />
   </component>

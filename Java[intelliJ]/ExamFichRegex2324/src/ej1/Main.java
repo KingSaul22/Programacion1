@@ -33,7 +33,9 @@ public class Main {
     }
 
     /**
-     * @param path
+     *Guarda en un fichero todas las palabras que empiezan y terminan en vocal, ya sea con tilde o sin tilde.
+     *
+     * @param path Fichero a leer
      */
     public static void ejercicio1(Path path) {
         if (!Files.isRegularFile(path)) {
@@ -71,7 +73,9 @@ public class Main {
     }
 
     /**
-     * @param path
+     * Guarda en un fichero todos los signos de puntuación encontrados en el fichero.
+     *
+     * @param path Fichero a leer
      */
     public static void ejercicio2(Path path) {
         if (!Files.isRegularFile(path)) {
@@ -109,7 +113,10 @@ public class Main {
     }
 
     /**
-     * @param path
+     * Crea carpetas por cada letra inicial de las palabras (en mayusucula) y
+     * dentro crea ficheros para cada palabras en minusculas.
+     *
+     * @param path Fichero a leer
      */
     public static void ejercicio3(Path path) {
         if (!Files.isRegularFile(path)) {
@@ -135,7 +142,7 @@ public class Main {
                                     }
 
                                     try {
-                                        AyudasNIO.crearFichero(outPath.resolve(palabra.toLowerCase()), false);
+                                        AyudasNIO.crearFichero(outPath.resolve(palabra.toLowerCase() + ".txt"), false);
                                     } catch (NioException ignore) {
                                     }
                                 });

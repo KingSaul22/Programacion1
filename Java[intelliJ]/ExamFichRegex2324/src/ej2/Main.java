@@ -40,6 +40,7 @@ public class Main {
             System.exit(0);
         }
 
+        //CATEGORIAS VALIDAS
         HashMap<String, ArrayList<Element>> categoriasProductosValidos = productosPorCategoriaValidos(doc);
         for (String categoria : categoriasProductosValidos.keySet()) {
             Element newCateg = newDoc.createElement("categoria");
@@ -72,16 +73,7 @@ public class Main {
         for (int i = 0; i< productos.getLength(); i++) {
             Element producto = (Element) productos.item(i);
 
-            String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
-
-            ArrayList<Element> listProductos = productosNoValidos.get(categoria);
-            if (listProductos == null) {
-                listProductos = new ArrayList<>();
-                listProductos.add(producto);
-                productosNoValidos.put(categoria, listProductos);
-            } else {
-                listProductos.add(producto);
-            }
+            organizarMapaCategorias(productosNoValidos, producto);
         }
 
         ArrayList<Element> sinCategoria = productosNoValidos.get("");
@@ -120,19 +112,29 @@ public class Main {
             Element producto = (Element) productos.item(i);
             if (!validProducto(producto)) continue;
 
-            String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
-
-            ArrayList<Element> listProductos = productoCategorias.get(categoria);
-            if (listProductos == null) {
-                listProductos = new ArrayList<>();
-                listProductos.add(producto);
-                productoCategorias.put(categoria, listProductos);
-            } else {
-                listProductos.add(producto);
-            }
+            organizarMapaCategorias(productoCategorias, producto);
         }
 
         return productoCategorias;
+    }
+
+    /**
+     * Guarda en el mapa el Elemento según su categoria
+     *
+     * @param productosNoValidos Mapa donde se organizan los productos por Categorias
+     * @param producto Elemento a guardar
+     */
+    private static void organizarMapaCategorias(HashMap<String, ArrayList<Element>> productosNoValidos, Element producto) {
+        String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
+
+        ArrayList<Element> listProductos = productosNoValidos.get(categoria);
+        if (listProductos == null) {
+            listProductos = new ArrayList<>();
+            listProductos.add(producto);
+            productosNoValidos.put(categoria, listProductos);
+        } else {
+            listProductos.add(producto);
+        }
     }
 
     /**

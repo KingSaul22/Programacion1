@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<categorias>
+    <categoria nombre="Ropa de Hombre">
+        <producto>
+            <nombre>Este es un nombre muy largo que excede el límite de caracteres</nombre>
+            <precio>99.99</precio>
+            <descripcion>Descripción de un producto con un nombre demasiado largo que excede el límite permitido.</descripcion>
+        </producto>
+        <producto>
+            <nombre>Sudadera de Algodón</nombre>
+            <precio>55.00</precio>
+            <descripcion>Esta es una descripción muy corta.</descripcion>
+        </producto>
+        <producto>
+            <nombre>Chaqueta de Invierno</nombre>
+            <precio>99.00</precio>
+            <descripcion>Chaqueta acolchada resistente al frío con forro de lana y capucha desmontable. Ideal para actividades al aire libre en invierno, como esquí, snowboard o senderismo. Cuenta con múltiples bolsillos para guardar tus pertenencias y ajustadores en la cintura para un ajuste perfecto. Fabricada con materiales de alta calidad que garantizan durabilidad y comodidad.</descripcion>
+        </producto>
+    </categoria>
+    <categoria nombre="Sin categoría">
+        <producto>
+            <nombre>Chaqueta de Cuero</nombre>
+            <precio>180.00</precio>
+            <descripcion>Chaqueta de cuero clásica con estilo vintage. Perfecta para cualquier ocasión y resistente al paso del tiempo.</descripcion>
+        </producto>
+        <producto>
+            <nombre>Zapatos Deportivos</nombre>
+            <precio>210.75</precio>
+            <descripcion>Zapatos deportivos ultraligeros con tecnología de amortiguación avanzada. Diseñados para mejorar el rendimiento atlético.</descripcion>
+        </producto>
+    </categoria>
+    <categoria nombre="Ropa de Mujer">
+        <producto>
+            <nombre>Falda Plisada</nombre>
+            <precio>29.99</precio>
+            <descripcion>Falda corta plisada de verano.</descripcion>
+        </producto>
+    </categoria>
+</categorias>

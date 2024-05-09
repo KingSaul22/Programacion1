@@ -1,0 +1,86 @@
+<productos>
+    <producto>
+        <categoria>Ropa de Hombre</categoria>
+        <nombre>Camisa a rayas</nombre>
+        <precio>35.99</precio>
+        <descripcion>Camisa elegante de algodón con rayas blancas y azules, perfecta para ocasiones formales o informales.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Hombre</categoria>
+        <nombre>Pantalones Vaqueros</nombre>
+        <precio>49.95</precio>
+        <descripcion>Pantalones vaqueros de corte recto, ideales para cualquier ocasión. Hechos con denim de alta calidad.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Hombre</categoria>
+        <nombre>Calcetines Deportivos</nombre>
+        <precio>12,75</precio>
+        <descripcion>Calcetines deportivos transpirables, perfectos para correr, hacer ejercicio o simplemente para uso diario.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Mujer</categoria>
+        <nombre>Vestido Floral</nombre>
+        <precio>79.50</precio>
+        <descripcion>Vestido ligero y cómodo con estampado floral. Ideal para eventos de primavera y verano.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Mujer</categoria>
+        <nombre>Bufanda de Lana</nombre>
+        <precio>18.00</precio>
+        <descripcion>Bufanda suave y abrigada tejida con lana de alta calidad. Disponible en varios colores.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Mujer</categoria>
+        <nombre>Pantalón de Yoga</nombre>
+        <precio>29,99</precio>
+        <descripcion>Pantalón de yoga elástico y transpirable, perfecto para practicar yoga, pilates o simplemente relajarse en casa.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa Deportiva</categoria>
+        <nombre>Camiseta Técnica</nombre>
+        <precio>15.50</precio>
+        <descripcion>Camiseta técnica de secado rápido, ideal para entrenamientos intensos. Material ligero y transpirable.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa Deportiva</categoria>
+        <nombre>Mallas de Compresión</nombre>
+        <precio>22,99</precio>
+        <descripcion>Mallas de compresión que proporcionan soporte muscular y mejoran la circulación sanguínea durante el ejercicio.</descripcion>
+    </producto>
+    <producto>
+        <categoria></categoria>
+        <nombre>Chaqueta de Cuero</nombre>
+        <precio>180.00</precio>
+        <descripcion>Chaqueta de cuero clásica con estilo vintage. Perfecta para cualquier ocasión y resistente al paso del tiempo.</descripcion>
+    </producto>
+    <producto>
+        <categoria></categoria>
+        <nombre>Zapatos Deportivos</nombre>
+        <precio>210,75</precio>
+        <descripcion>Zapatos deportivos ultraligeros con tecnología de amortiguación avanzada. Diseñados para mejorar el rendimiento atlético.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Hombre</categoria>
+        <nombre>Este es un nombre muy largo que excede el límite de caracteres</nombre>
+        <precio>99.99</precio>
+        <descripcion>Descripción de un producto con un nombre demasiado largo que excede el límite permitido.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Hombre</categoria>
+        <nombre>Sudadera de Algodón</nombre>
+        <precio>55.00</precio>
+        <descripcion>Esta es una descripción muy corta.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Mujer</categoria>
+        <nombre>Falda Plisada</nombre>
+        <precio>29.99</precio>
+        <descripcion>Falda corta plisada de verano.</descripcion>
+    </producto>
+    <producto>
+        <categoria>Ropa de Hombre</categoria>
+        <nombre>Chaqueta de Invierno</nombre>
+        <precio>99.00</precio>
+        <descripcion>Chaqueta acolchada resistente al frío con forro de lana y capucha desmontable. Ideal para actividades al aire libre en invierno, como esquí, snowboard o senderismo. Cuenta con múltiples bolsillos para guardar tus pertenencias y ajustadores en la cintura para un ajuste perfecto. Fabricada con materiales de alta calidad que garantizan durabilidad y comodidad.</descripcion>
+    </producto>
+</productos>

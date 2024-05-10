@@ -31,24 +31,48 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        Document doc = null, newDoc = null;
+        Document doc = null, newDocValid = null, newDocInvalid = null;
         try {
             doc = AyudasXml.parsearRuta(BASE_PATH + "productos.xml");
-            newDoc = AyudasXml.crearDocumentoConRaiz("categorias");
+            newDocValid = AyudasXml.crearDocumentoConRaiz("categorias");
+            newDocInvalid = AyudasXml.crearDocumentoConRaiz("categorias");
         } catch (XmlException e) {
             System.out.println(e.getMessage());
             System.exit(0);
         }
 
-        //CATEGORIAS VALIDAS
-        HashMap<String, ArrayList<Element>> categoriasProductosValidos = productosPorCategoriaValidos(doc);
+        HashMap<String, ArrayList<Element>> categoriasProductos = productosPorCategorias(doc);
+        ArrayList<Element> sinCategoria = categoriasProductos.get("");
+        categoriasProductos.put("Sin Categoria", sinCategoria);
+        categoriasProductos.remove("");
+
+        HashMap<String, ArrayList<Element>> categoriasProductosValidos = new HashMap<>();
+        HashMap<String, ArrayList<Element>> categoriasProductosNoValidos = new HashMap<>();
+
+        for (String categoria : categoriasProductos.keySet()) {
+            for (Element producto : categoriasProductos.get(categoria)) {
+                if (validProducto(producto)) {
+                    organizarMapaCategorias(categoriasProductosValidos, producto);
+                } else {
+                    organizarMapaCategorias(categoriasProductosNoValidos, producto);
+                }
+            }
+        }
+
+        completarDocPorCategorias(newDocValid, categoriasProductosValidos);
+        guardarDocumento(newDocValid, "productosCategorizados.xml");
+        completarDocPorCategorias(newDocInvalid, categoriasProductosNoValidos);
+        guardarDocumento(newDocInvalid, "productosIncompletos.xml");
+
+
+        /*
         for (String categoria : categoriasProductosValidos.keySet()) {
-            Element newCateg = newDoc.createElement("categoria");
+            Element newCateg = newDocValid.createElement("categoria");
             newCateg.setAttribute("nombre", categoria);
 
             //ArrayList<Element> productos = categoriasProductosValidos.get(categoria);
             for (Element producto : categoriasProductosValidos.get(categoria)) {
-                Element newProducto = cloneElement(newDoc, producto);
+                Element newProducto = cloneElement(newDocValid, producto);
                 newProducto.removeChild(newProducto.getElementsByTagName("categoria").item(0));
                 Element precio = (Element) newProducto.getElementsByTagName("precio").item(0);
                 precio.setTextContent(precio.getTextContent().replace(',', '.'));
@@ -56,13 +80,13 @@ public class Main {
 
                 producto.getParentNode().removeChild(producto);
             }
-            newDoc.getDocumentElement().appendChild(newCateg);
+            newDocValid.getDocumentElement().appendChild(newCateg);
         }
-        guardarDocumento(newDoc, "productosCategorizados.xml");
+        guardarDocumento(newDocValid, "productosCategorizados.xml");
 
         //CATEGORIAS NO VALIDAS
         try {
-            newDoc = AyudasXml.crearDocumentoConRaiz("categorias");
+            newDocValid = AyudasXml.crearDocumentoConRaiz("categorias");
         } catch (XmlException e) {
             System.out.println(e.getMessage());
             System.exit(0);
@@ -81,20 +105,43 @@ public class Main {
         productosNoValidos.remove("");
 
         for (String categoria : productosNoValidos.keySet()) {
-            Element newCateg = newDoc.createElement("categoria");
+            Element newCateg = newDocValid.createElement("categoria");
             newCateg.setAttribute("nombre", categoria);
 
             for (Element producto : productosNoValidos.get(categoria)) {
-                Element newProducto = cloneElement(newDoc, producto);
+                Element newProducto = cloneElement(newDocValid, producto);
                 newProducto.removeChild(newProducto.getElementsByTagName("categoria").item(0));
                 Element precio = (Element) newProducto.getElementsByTagName("precio").item(0);
                 precio.setTextContent(precio.getTextContent().replace(',', '.'));
                 newCateg.appendChild(newProducto);
             }
-            newDoc.getDocumentElement().appendChild(newCateg);
+            newDocValid.getDocumentElement().appendChild(newCateg);
         }
-        guardarDocumento(newDoc, "productosIncompletos.xml");
+        guardarDocumento(newDocValid, "productosIncompletos.xml");*/
+    }
 
+    /**
+     * A un Documento dado, se le crean los elementos categoria y
+     * dentro de cada categoria se importan los productos correspondientes
+     *
+     * @param doc Documento al que se importará
+     * @param categoriasProductos Categorias con un ArrayList de Productos
+     */
+    private static void completarDocPorCategorias(Document doc, HashMap<String, ArrayList<Element>> categoriasProductos) {
+        for (String categoria : categoriasProductos.keySet()) {
+            Element newCateg = doc.createElement("categoria");
+            newCateg.setAttribute("nombre", categoria);
+
+            for (Element producto : categoriasProductos.get(categoria)) {
+                Element newProducto = cloneElement(doc, producto);
+                Element precio = (Element) newProducto.getElementsByTagName("precio").item(0);
+                precio.setTextContent(precio.getTextContent().replace(',', '.'));
+                newCateg.appendChild(newProducto);
+
+                producto.getParentNode().removeChild(producto);
+            }
+            doc.getDocumentElement().appendChild(newCateg);
+        }
     }
 
     /**
@@ -104,14 +151,12 @@ public class Main {
      * @param doc Documento del que comprobar los Productos
      * @return Un mapa con la categoria y los producctos bajo esa categoria
      */
-    private static HashMap<String, ArrayList<Element>> productosPorCategoriaValidos(Document doc) {
+    private static HashMap<String, ArrayList<Element>> productosPorCategorias(Document doc) {
         HashMap<String, ArrayList<Element>> productoCategorias = new HashMap<>();
 
         NodeList productos = doc.getElementsByTagName("producto");
         for (int i = 0; i < productos.getLength(); i++) {
             Element producto = (Element) productos.item(i);
-            if (!validProducto(producto)) continue;
-
             organizarMapaCategorias(productoCategorias, producto);
         }
 
@@ -156,8 +201,8 @@ public class Main {
         if (palabras < MIN_DESCRIP || palabras > MAX_DESCRIP) return false;
 
         if (producto.getElementsByTagName("categoria").getLength() == 0) return false;
-
-        return !producto.getElementsByTagName("categoria").item(0).getTextContent().isBlank();
+        String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
+        return !categoria.isBlank() && !categoria.equals("Sin Categoria");
     }
 
     /**

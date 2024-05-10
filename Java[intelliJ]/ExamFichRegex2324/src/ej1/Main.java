@@ -33,7 +33,7 @@ public class Main {
     }
 
     /**
-     *Guarda en un fichero todas las palabras que empiezan y terminan en vocal, ya sea con tilde o sin tilde.
+     * Guarda en un fichero todas las palabras que empiezan y terminan en vocal, ya sea con tilde o sin tilde.
      *
      * @param path Fichero a leer
      */

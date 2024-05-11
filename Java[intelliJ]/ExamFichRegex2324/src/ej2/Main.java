@@ -27,8 +27,6 @@ public class Main {
      * Aquellos productos que no cumplan con algún requisito, deberán ir a otro fichero llamado productosIncompletos.xml.
      * En el mismo, deberás introducir los productos también separados por categorías, igual que el original.
      * Aquellos productos sin categoría deben agruparse bajo una categoría llamada “Sin categoría”.
-     *
-     * @param args
      */
     public static void main(String[] args) {
         Document doc = null, newDocValid = null, newDocInvalid = null;
@@ -52,9 +50,9 @@ public class Main {
         for (String categoria : categoriasProductos.keySet()) {
             for (Element producto : categoriasProductos.get(categoria)) {
                 if (validProducto(producto)) {
-                    organizarMapaCategorias(categoriasProductosValidos, producto);
+                    organizarMapaCategorias(categoriasProductosValidos, producto, categoria);
                 } else {
-                    organizarMapaCategorias(categoriasProductosNoValidos, producto);
+                    organizarMapaCategorias(categoriasProductosNoValidos, producto, categoria);
                 }
             }
         }
@@ -164,22 +162,32 @@ public class Main {
     }
 
     /**
-     * Guarda en el mapa el Elemento según su categoria
+     * Guarda en el mapa el Elemento según la categoria indicada por parametros
      *
-     * @param productosNoValidos Mapa donde se organizan los productos por Categorias
+     * @param productosCategorias Mapa donde se organizan los productos por Categorias
      * @param producto Elemento a guardar
+     * @param categoria Nombre de la categoria donde asignar el producto
      */
-    private static void organizarMapaCategorias(HashMap<String, ArrayList<Element>> productosNoValidos, Element producto) {
-        String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
-
-        ArrayList<Element> listProductos = productosNoValidos.get(categoria);
+    private static void organizarMapaCategorias(HashMap<String, ArrayList<Element>> productosCategorias, Element producto, String categoria) {
+        ArrayList<Element> listProductos = productosCategorias.get(categoria);
         if (listProductos == null) {
             listProductos = new ArrayList<>();
             listProductos.add(producto);
-            productosNoValidos.put(categoria, listProductos);
+            productosCategorias.put(categoria, listProductos);
         } else {
             listProductos.add(producto);
         }
+    }
+
+    /**
+     * Guarda en el mapa el Elemento según su categoria propia
+     *
+     * @param productosCategorias Mapa donde se organizan los productos por Categorias
+     * @param producto Elemento a guardar
+     */
+    private static void organizarMapaCategorias(HashMap<String, ArrayList<Element>> productosCategorias, Element producto) {
+        String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
+        organizarMapaCategorias(productosCategorias, producto, categoria);
     }
 
     /**

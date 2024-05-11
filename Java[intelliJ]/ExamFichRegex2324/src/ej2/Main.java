@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 public class Main {
     private static final String BASE_PATH = "./src/ej2/";
+
     /**
      * Fíjate en el archivo productos.xml. Necesitamos reconfigurar su estructura. Para ello:
      * Crea un nuevo archivo productosCategorizados.xml, en el que metas los productos agrupados por categorías.
@@ -61,68 +62,13 @@ public class Main {
         guardarDocumento(newDocValid, "productosCategorizados.xml");
         completarDocPorCategorias(newDocInvalid, categoriasProductosNoValidos);
         guardarDocumento(newDocInvalid, "productosIncompletos.xml");
-
-
-        /*
-        for (String categoria : categoriasProductosValidos.keySet()) {
-            Element newCateg = newDocValid.createElement("categoria");
-            newCateg.setAttribute("nombre", categoria);
-
-            //ArrayList<Element> productos = categoriasProductosValidos.get(categoria);
-            for (Element producto : categoriasProductosValidos.get(categoria)) {
-                Element newProducto = cloneElement(newDocValid, producto);
-                newProducto.removeChild(newProducto.getElementsByTagName("categoria").item(0));
-                Element precio = (Element) newProducto.getElementsByTagName("precio").item(0);
-                precio.setTextContent(precio.getTextContent().replace(',', '.'));
-                newCateg.appendChild(newProducto);
-
-                producto.getParentNode().removeChild(producto);
-            }
-            newDocValid.getDocumentElement().appendChild(newCateg);
-        }
-        guardarDocumento(newDocValid, "productosCategorizados.xml");
-
-        //CATEGORIAS NO VALIDAS
-        try {
-            newDocValid = AyudasXml.crearDocumentoConRaiz("categorias");
-        } catch (XmlException e) {
-            System.out.println(e.getMessage());
-            System.exit(0);
-        }
-
-        HashMap<String, ArrayList<Element>> productosNoValidos = new HashMap<>();
-        NodeList productos = doc.getElementsByTagName("producto");
-        for (int i = 0; i< productos.getLength(); i++) {
-            Element producto = (Element) productos.item(i);
-
-            organizarMapaCategorias(productosNoValidos, producto);
-        }
-
-        ArrayList<Element> sinCategoria = productosNoValidos.get("");
-        productosNoValidos.put("Sin Categoria", sinCategoria);
-        productosNoValidos.remove("");
-
-        for (String categoria : productosNoValidos.keySet()) {
-            Element newCateg = newDocValid.createElement("categoria");
-            newCateg.setAttribute("nombre", categoria);
-
-            for (Element producto : productosNoValidos.get(categoria)) {
-                Element newProducto = cloneElement(newDocValid, producto);
-                newProducto.removeChild(newProducto.getElementsByTagName("categoria").item(0));
-                Element precio = (Element) newProducto.getElementsByTagName("precio").item(0);
-                precio.setTextContent(precio.getTextContent().replace(',', '.'));
-                newCateg.appendChild(newProducto);
-            }
-            newDocValid.getDocumentElement().appendChild(newCateg);
-        }
-        guardarDocumento(newDocValid, "productosIncompletos.xml");*/
     }
 
     /**
      * A un Documento dado, se le crean los elementos categoria y
      * dentro de cada categoria se importan los productos correspondientes
      *
-     * @param doc Documento al que se importará
+     * @param doc                 Documento al que se importará
      * @param categoriasProductos Categorias con un ArrayList de Productos
      */
     private static void completarDocPorCategorias(Document doc, HashMap<String, ArrayList<Element>> categoriasProductos) {
@@ -165,8 +111,8 @@ public class Main {
      * Guarda en el mapa el Elemento según la categoria indicada por parametros
      *
      * @param productosCategorias Mapa donde se organizan los productos por Categorias
-     * @param producto Elemento a guardar
-     * @param categoria Nombre de la categoria donde asignar el producto
+     * @param producto            Elemento a guardar
+     * @param categoria           Nombre de la categoria donde asignar el producto
      */
     private static void organizarMapaCategorias(HashMap<String, ArrayList<Element>> productosCategorias, Element producto, String categoria) {
         ArrayList<Element> listProductos = productosCategorias.get(categoria);
@@ -183,7 +129,7 @@ public class Main {
      * Guarda en el mapa el Elemento según su categoria propia
      *
      * @param productosCategorias Mapa donde se organizan los productos por Categorias
-     * @param producto Elemento a guardar
+     * @param producto            Elemento a guardar
      */
     private static void organizarMapaCategorias(HashMap<String, ArrayList<Element>> productosCategorias, Element producto) {
         String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();

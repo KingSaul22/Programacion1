@@ -16,8 +16,6 @@ import java.util.stream.Stream;
 public class Main {
     /**
      * Puedes utilizar indistintamente java.io o java.nio para resolver los ejercicios.
-     *
-     * @param args
      */
     public static void main(String[] args) {
         Path qj = Path.of("./src/ej1/quijote.txt");
@@ -129,24 +127,22 @@ public class Main {
         Pattern pt = Pattern.compile("(\\p{L}+)", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
         try (Stream<String> lineas = Files.lines(path)) {
             lineas.map(pt::matcher)
-                    .forEach(matcher -> {
-                        matcher.results()
-                                .map(MatchResult::group)
-                                .forEach(palabra -> {
-                                    Path outPath = outBasePath.resolve(
-                                            String.valueOf(Character.toUpperCase(palabra.charAt(0))));
+                    .forEach(matcher -> matcher.results()
+                            .map(MatchResult::group)
+                            .forEach(palabra -> {
+                                Path outPath = outBasePath.resolve(
+                                        String.valueOf(Character.toUpperCase(palabra.charAt(0))));
 
-                                    try {
-                                        AyudasNIO.crearDirectorio(outPath, false);
-                                    } catch (NioException ignore) {
-                                    }
+                                try {
+                                    AyudasNIO.crearDirectorio(outPath, false);
+                                } catch (NioException ignore) {
+                                }
 
-                                    try {
-                                        AyudasNIO.crearFichero(outPath.resolve(palabra.toLowerCase() + ".txt"), false);
-                                    } catch (NioException ignore) {
-                                    }
-                                });
-                    });
+                                try {
+                                    AyudasNIO.crearFichero(outPath.resolve(palabra.toLowerCase() + ".txt"), false);
+                                } catch (NioException ignore) {
+                                }
+                            }));
         } catch (IOException e) {
             System.out.println("No se ha podido acceder al fichero\n" + e.getMessage());
         }

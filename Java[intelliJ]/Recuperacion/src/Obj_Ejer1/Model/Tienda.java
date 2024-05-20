@@ -3,6 +3,7 @@ package Obj_Ejer1.Model;
 import Obj_Ejer1.Enums.TFamilia;
 import Obj_Ejer1.Excepciones.TiendaException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,6 +38,15 @@ public class Tienda {
         mascotas.remove(mascota);
     }
 
+    public void venderMascota(int id_mascota, int id_cliente) throws TiendaException {
+        venderMascota(mascotas.get(--id_mascota), clientes.get(--id_cliente));
+    }
+
+    public void devolverMascota(Compra compra) {
+        compra.setFecha_devo(LocalDateTime.now());
+        mascotas.add(compra.getMascota());
+    }
+
     public void nuevoCliente(String newNombre) throws TiendaException {
         if (!Pattern.compile("^\\p{L}{2,}$").matcher(newNombre).matches())
             throw new TiendaException("Nombre de cliente no valido");
@@ -49,19 +59,20 @@ public class Tienda {
         mascotas.add(new Mascota(nombre, familia, edad, precio, disponible));
     }
 
-    public void comprarMascota(int id_cliente, int id_mascota) throws TiendaException {
-        try {
-            compras.add(new Compra(clientes.get(id_cliente - 1), mascotas.get(id_mascota - 1)));
-        } catch (IndexOutOfBoundsException e) {
-            throw new TiendaException("La selección del cliente y/o mascota no es valida");
-        }
-    }
-
     public List<String> getClientesString() {
-        return clientes.stream().map(cliente -> String);
+        return clientes.stream().map(Cliente::getNombre).toList();
     }
 
     public List<Mascota> getMascotasDisponibles() {
         return mascotas.stream().filter(Mascota::isDisponible).toList();
+    }
+
+    public List<Compra> getComprasDeCliente(int id) {
+        return getComprasDeCliente(clientes.get(--id));
+    }
+
+    public List<Compra> getComprasDeCliente(Cliente cliente) {
+        return compras.stream().filter(compra -> compra.getCliente().equals(cliente) &&
+                compra.getFecha_devo() == null).toList();
     }
 }

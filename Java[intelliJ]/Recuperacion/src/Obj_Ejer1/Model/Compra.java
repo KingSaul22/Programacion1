@@ -7,12 +7,30 @@ public class Compra {
     private int id;
     private Cliente cliente;
     private Mascota mascota;
-    private LocalDateTime fecha;
+    private LocalDateTime fecha_compra;
+    private LocalDateTime fecha_devo;
 
     public Compra(Cliente cliente, Mascota mascota) {
         this.cliente = cliente;
         this.mascota = mascota;
         this.id = contCompras++;
-        this.fecha = LocalDateTime.now();
+        this.fecha_compra = LocalDateTime.now();
+        this.fecha_devo = null;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public LocalDateTime getFecha_devo() {
+        return fecha_devo;
+    }
+
+    public void setFecha_devo(LocalDateTime fecha_devo) {
+        this.fecha_devo = fecha_devo;
     }
 }

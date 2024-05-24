@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac0af713-21bd-4bf6-a9a6-1181046ee979" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../examenFicheros24Alumnos/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../examenFicheros24Alumnos/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../examenFicheros24Alumnos/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../examenFicheros24Alumnos/ExamFichRegex2324.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NIO/AyudasNIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NIO/AyudasNIO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +22,12 @@
     &quot;assignee&quot;: &quot;Spatgar2210&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KingSaul22/Programacion1.git",
-    "accountId": "f69b6c71-5207-4f3d-9a39-be274fd8dd4e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KingSaul22/Programacion1.git&quot;,
+    &quot;accountId&quot;: &quot;40d2fb3e-2967-42d2-937b-e45eb8ad3a5e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -39,20 +37,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projects/Programacion1/Java[intelliJ]/ExamFichRegex2324",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projectos/Programacion1/Java[intelliJ]/UtilsKingSaul22&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -72,6 +70,8 @@
       <workItem from="1715239601759" duration="1677000" />
       <workItem from="1715243330856" duration="1371000" />
       <workItem from="1715346657510" duration="41000" />
+      <workItem from="1716548599728" duration="1215000" />
+      <workItem from="1716549843200" duration="960000" />
     </task>
     <servers />
   </component>

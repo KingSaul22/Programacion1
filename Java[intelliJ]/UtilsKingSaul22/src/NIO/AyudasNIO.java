@@ -176,7 +176,7 @@ public class AyudasNIO {
         Pattern pt = Pattern.compile(regex, flags);
         try (Stream<String> lineas = Files.lines(fichero)) {
             return lineas.map(pt::matcher).mapToLong(matcher -> {
-                if (!matcher.matches()) return 0;
+                //if (!matcher.matches()) return 0;
                 //return matcher.groupCount();
                 return matcher.results().count();
             }).sum();

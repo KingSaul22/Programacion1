@@ -1,7 +1,11 @@
 package Obj_Ejer3;
 
+import Obj_Ejer3.Enums.WeatherCondition;
+import Obj_Ejer3.Excepciones.MuerteException;
+import Obj_Ejer3.Excepciones.RoundStartException;
 import Obj_Ejer3.Excepciones.ValorNoValidoException;
-import Obj_Ejer3.Model.Pokemon;
+import Obj_Ejer3.Interfaces.Atacable;
+import Obj_Ejer3.Model.*;
 import utils.UserDataCollector;
 
 import java.util.ArrayList;
@@ -81,7 +85,7 @@ public class Main {
 
         for (int j = 0; j < pokemons.length; j++) {
             // TODO: comprobar que el pokemon está vivo, que no es él mismo y que puede ser atacado
-            if () {
+            if (j != i && pokemons[j].estaVivo() && pokemons[j] instanceof Atacable) {
                 System.out.println((numPokemonVivos + 1) + ": " + pokemons[j].getNombre() + " - " + pokemons[j].getClass().getSimpleName() + " - " + pokemons[j].getPuntosSalud() + " puntos de salud");
                 numPokemonVivos++;
                 atacables.add((Atacable) pokemons[j]);
@@ -158,9 +162,10 @@ public class Main {
     private static WeatherCondition generateRandomWeatherCondition() {
         int random = (int) (Math.random() * 4);
         return switch (random) {
-            //TODO: Devolver un valor de WeatherCondition
-            //case 0 -> ...;
-
+            case 0 -> WeatherCondition.LLUVIA;
+            case 1 -> WeatherCondition.SOLEADO;
+            case 2 -> WeatherCondition.TORMENTA_ELECTRICA;
+            case 3 -> WeatherCondition.TORMENTA_ARENA;
             default -> null;
         };
     }

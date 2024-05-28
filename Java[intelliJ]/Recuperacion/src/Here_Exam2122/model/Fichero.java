@@ -19,5 +19,13 @@ public abstract class Fichero {
         return fecha_creacion;
     }
 
+    public final void mostrarInfoBasica() {
+        System.out.printf("""
+                Nombre: %s
+                Tamaño: %s
+                Fecha de creación: %s
+                """, nombre, getTamanio(), fecha_creacion);
+    }
+
     public abstract long getTamanio();
 }

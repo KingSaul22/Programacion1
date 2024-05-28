@@ -9,8 +9,6 @@ public class FicheroTextoPlano extends FicheroTexto implements Representables {
 
     @Override
     public void representar() {
-        StringBuilder parrafos = new StringBuilder();
-        for (String parrafo : contenido) parrafos.append(parrafo).append("\n");
-        System.out.println(parrafos);
+        for (String parrafo : contenido) System.out.println(parrafo);
     }
 }

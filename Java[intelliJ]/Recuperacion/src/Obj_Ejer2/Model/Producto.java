@@ -3,6 +3,8 @@ package Obj_Ejer2.Model;
 import Obj_Ejer2.Enums.TProductos;
 import Obj_Ejer2.Excepciones.ValorNoValidoException;
 
+import java.util.Objects;
+
 public class Producto {
     private String nombre;
     private double precio;
@@ -65,5 +67,27 @@ public class Producto {
         if (unidadesVender < 0) throw new ValorNoValidoException("No se puede comprar una cantidad negativa");
         if (unidadesVender > cantidad) throw new ValorNoValidoException("No hay suficiente stock");
         this.cantidad -= unidadesVender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Producto producto)) return false;
+        return Objects.equals(nombre, producto.nombre) && tipoProducto == producto.tipoProducto;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, tipoProducto);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Producto{");
+        sb.append("  · Nombre: ").append(nombre).append(", categoria: ").append(tipoProducto)
+                .append("\n      La granja dispone de ").append(cantidad).append(" unidades")
+                .append(" a ").append(precio).append("€ cada una.\n      ")
+                .append(disponible ? "Si" : "No").append(" se encuentra disponible para la venta.");
+        return sb.toString();
     }
 }

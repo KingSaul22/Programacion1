@@ -5,30 +5,28 @@ import ExamenRecuperacionObjeto.exceptions.ValorNoValidoException;
 
 public class DepositoGasolina {
     /**
-     * La presión es correcta(true) o incorrecta(false)
+     * La presión puede ser correcta({@code true}) o incorrecta({@code false})
      */
     boolean presionCorrecta;
     //Capacidad medida en Litros (L)
     int capacidad;
     double nivelCombustible;
 
-    public DepositoGasolina(boolean presionCorrecta, int capacidad, double nivelCombustible) throws ValorNoValidoException {
-        this.presionCorrecta = presionCorrecta;
+    public DepositoGasolina(int capacidad, double nivelCombustible, boolean presionCorrecta) throws ValorNoValidoException {
         setCapacidad(capacidad);
         setNivelCombustible(nivelCombustible);
+        this.presionCorrecta = presionCorrecta;
     }
 
-    public void setCapacidad(int capacidad) throws ValorNoValidoException {
-        if (capacidad < 1) {
-            throw new ValorNoValidoException("La capacidad del deposito no puede ser inferior a 1");
-        }
+    private void setCapacidad(int capacidad) throws ValorNoValidoException {
+        if (capacidad < 1) throw new ValorNoValidoException("La capacidad del deposito no puede ser inferior a 1");
         this.capacidad = capacidad;
     }
 
-    public void setNivelCombustible(double nivelCombustible) throws ValorNoValidoException {
-        if (nivelCombustible < 0 || nivelCombustible > capacidad) {
-            throw new ValorNoValidoException("Nivel de combustible fuera del rango permitido [0," + capacidad + "]");
-        }
+    private void setNivelCombustible(double nivelCombustible) throws ValorNoValidoException {
+        if (nivelCombustible < 0 || nivelCombustible > capacidad) throw new ValorNoValidoException(
+                "Nivel de combustible fuera del rango permitido [0," + capacidad + "]");
+
         this.nivelCombustible = nivelCombustible;
     }
 
@@ -47,5 +45,14 @@ public class DepositoGasolina {
 
         if (fallos.isEmpty()) return true;
         throw new CocheException("Errores del deposito de gasolina:\n" + fallos);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Propiedades del Deposito de Gasolina");
+        sb.append("\n  ·Presion: ").append(presionCorrecta ? "Correcta" : "Incorrecta")
+                .append("\n  ·Capacidad: ").append(capacidad).append("L")
+                .append("\n  ·Combustible Actual: ").append(nivelCombustible).append("L");
+        return sb.toString();
     }
 }
